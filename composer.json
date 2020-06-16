@@ -1,0 +1,57 @@
+{
+  "name": "grupo1/proyectoTiendaDeMascotasMundoAnimal",
+  "version": "0.0.1",
+  "type": "project",
+  "keywords": ["console", "tool", "example"],
+  "homepage": "https://google.com",
+  "time": "2020-06-08",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Cindy Tatiana Pineda",
+      "email": "ctpineda1@misena.edu.co",
+      "homepage": "http://www.sena.edu.co",
+      "role": "Lider"
+    },
+    {
+      "name": "Angie Paola Alarcon",
+      "email": "apalarcon67@misena.edu.co",
+      "homepage": "http://www.sena.edu.co",
+      "role": "Developer"
+    },
+    {
+      "name": "Angela Yineth Sierra",
+      "email": "aysierra3@misena.edu.co",
+      "homepage": "http://www.sena.edu.co",
+      "role": "Developer"
+    },
+    {
+      "name": "Oscar Javier Duarte",
+      "email": "ojduarte36@misena.edu.co",
+      "homepage": "http://www.sena.edu.co",
+      "role": "Developer"
+    }
+  ],
+  "require":{
+    "php": ">=7.2.0",
+    "almasaeed2010/adminlte": "^3.0",
+    "vlucas/phpdotenv": "^3.6"
+  },
+  "require-dev": {
+
+  },
+  "autoload": {
+  },
+  "scripts": {
+    "post-install-cmd": [
+    ],
+    "post-update-cmd": [
+    ]
+  },
+  "config": {
+    "bin-dir": "bin"
+  },
+  "extra": {
+
+  }
+}
