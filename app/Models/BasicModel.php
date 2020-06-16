@@ -2,6 +2,12 @@
 
 namespace App\Models;
 
+/**
+ * Created by PhpStorm.
+ * User: Tatiana-PC
+ * Date: 16/06/2020
+ * Time: 9:17
+ */
 abstract class BasicModel {
 
     public $isConnected;
@@ -37,12 +43,16 @@ abstract class BasicModel {
         }
     }
 
+    //disconnecting from database
+    //$database->Disconnect();
     public function Disconnect(){
         $this->datab = null;
         $this->isConnected = false;
     }
 
-    public function getRow($query, $params=array()){
+    //Getting row -> Deveulve una sola fila de la Base de Datos.
+    //$getrow = $database->getRow("SELECT email, username FROM users WHERE username = ? and password = ?", array("diego","123456"));
+    public function getRow($query, $params = array()){
         try{
             $stmt = $this->datab->prepare($query);
             $stmt->execute($params);
@@ -52,6 +62,8 @@ abstract class BasicModel {
         }
     }
 
+    //Getting multiple rows
+    //$getrows = $database->getRows("SELECT id, username FROM users");
     public function getRows($query, $params=array()){
         try{
             $stmt = $this->datab->prepare($query);
@@ -62,6 +74,8 @@ abstract class BasicModel {
         }
     }
 
+    //Getting last id insert
+    //$getrows = $database->getLastId();
     public function getLastId(){
         try{
             return $this->datab->lastInsertId();
@@ -70,6 +84,8 @@ abstract class BasicModel {
         }
     }
 
+    //inserting un campo
+    //$insertrow = $database ->insertRow("INSERT INTO users (username, email) VALUES (?, ?)", array("Diego", "yusaf@email.com"));
     public function insertRow($query, $params){
         try{
             if (is_null($this->datab)){
@@ -82,10 +98,14 @@ abstract class BasicModel {
         }
     }
 
+    //updating existing row
+    //$updaterow = $database->updateRow("UPDATE users SET username = ?, email = ? WHERE id = ?", array("yusafk", "yusafk@email.com", "1"));
     public function updateRow($query, $params){
         return $this->insertRow($query, $params);
     }
 
+    //delete a row
+    //$deleterow = $database->deleteRow("DELETE FROM users WHERE id = ?", array("1"));
     public function deleteRow($query, $params){
         return $this->insertRow($query, $params);
     }
