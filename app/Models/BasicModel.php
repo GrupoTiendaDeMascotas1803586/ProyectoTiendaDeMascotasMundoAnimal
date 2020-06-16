@@ -4,21 +4,20 @@ namespace App\Models;
 
 /**
  * Created by PhpStorm.
- * User: Diego-PC
- * Date: 10/12/2019
+ * User: Tatiana-PC
+ * Date: 16/06/2020
  * Time: 9:17
  */
 abstract class BasicModel {
 
     public $isConnected;
     protected $datab;
-    private $username = "weber";
-    private $password = "weber2019";
+    private $username = "documento";
+    private $password = "contraseña";
     private $host = "localhost";
-    private $driver = "mysql"; //mysql, postgres, oracle, sql server, sqlite
-    private $dbname = "weber";
+    private $driver = "mysql";
+    private $dbname = "MERproyectoTMMA";
 
-    # métodos abstractos para ABM de clases que hereden
     abstract protected static function search($query);
     abstract protected static function getAll();
     abstract protected static function searchForId($id);

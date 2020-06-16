@@ -1,15 +1,33 @@
 {
-  "name": "daom89/weber",
+  "name": "grupo1/proyectoTiendaDeMascotasMundoAnimal",
   "version": "0.0.1",
   "type": "project",
   "keywords": ["console", "tool", "example"],
   "homepage": "https://google.com",
-  "time": "2019-10-28",
+  "time": "2020-06-08",
   "license": "MIT",
   "authors": [
     {
-      "name": "Diego Ojeda",
-      "email": "daom89@gmail.com",
+      "name": "Cindy Tatiana Pineda",
+      "email": "ctpineda1@misena.edu.co",
+      "homepage": "http://www.sena.edu.co",
+      "role": "Lider"
+    },
+    {
+      "name": "Angie Paola Alarcon",
+      "email": "apalarcon67@misena.edu.co",
+      "homepage": "http://www.sena.edu.co",
+      "role": "Developer"
+    },
+    {
+      "name": "Angela Yineth Sierra",
+      "email": "aysierra3@misena.edu.co",
+      "homepage": "http://www.sena.edu.co",
+      "role": "Developer"
+    },
+    {
+      "name": "Oscar Javier Duarte",
+      "email": "ojduarte36@misena.edu.co",
       "homepage": "http://www.sena.edu.co",
       "role": "Developer"
     }
@@ -23,7 +41,6 @@
 
   },
   "autoload": {
-
   },
   "scripts": {
     "post-install-cmd": [
