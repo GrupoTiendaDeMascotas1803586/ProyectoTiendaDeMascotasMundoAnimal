@@ -6,30 +6,36 @@ namespace App\Models;
 
 class ELEMENTO
 {
-    private $idELEMENTO;
-    private $nomELEMENTO;
-    private $tipoELEMENTO;
+    private $Id;
+    private $nombre;
+    private $tipoElemento;
     private $tamaño;
     private $material;
+    private $color;
+    private $marca;
 
 
     /**
      * Usuarios constructor.
-     * @param $idELEMENTO
-     * @param $nomELEMENTO
-     * @param $tipoELEMENTO
+     * @param $Id
+     * @param $nombre
+     * @param $tipoElemento
      * @param $tamaño
      * @param $material
+     * @param $color
+     * @param $marca
 
      */
-    public function __construct($idELEMENTO = array())
+    public function __construct($Id = array())
     {
         parent::__construct(); //Llama al contructor padre "la clase conexion" para conectarme a la BD
-        $this->idELEMENTO = $idELEMENTO['idELEMENTO'] ?? null;
-        $this->nomELEMENTO = $idELEMENTO['nomELEMENTO'] ?? null;
-        $this->tipoELEMENTO = $idELEMENTO['tipoELEMENTO'] ?? null;
-        $this->tamaño = $idELEMENTO['tamaño'] ?? null;
-        $this->material = $idELEMENTO['material'] ?? null;
+        $this->Id = $Id['Id'] ?? null;
+        $this->nombre = $Id['nombre'] ?? null;
+        $this->tipoElemento = $Id['tipoElemento'] ?? null;
+        $this->tamaño = $Id['tamaño'] ?? null;
+        $this->material = $Id['material'] ?? null;
+        $this->color = $Id['color'] ?? null;
+        $this->marca = $Id['marca'] ?? null;
     }
 
     /* Metodo destructor cierra la conexion. */
@@ -40,49 +46,49 @@ class ELEMENTO
     /**
      * @return int
      */
-    public function getidELEMNETO() : int
+    public function getId() : int
     {
-        return $this->idELEMENTO;
+        return $this->Id;
     }
 
     /**
-     * @param int $idELEMNTO
+     * @param int $Id
      */
-    public function setidELEMENTO(int $idELEMENTO): void
+    public function setId(int $Id): void
     {
-        $this->idELEMENTO = $idELEMENTO;
-    }
-
-    /**
-     * @return string
-     */
-    public function getnomELEMENTO() : string
-    {
-        return $this->nomELEMENTO;
-    }
-
-    /**
-     * @param string $nomELEMENTO
-     */
-    public function setnomELEMENTO(string $nomELEMENTO): void
-    {
-        $this->nomELEMENTO = $nomELEMENTO;
+        $this->Id = $Id;
     }
 
     /**
      * @return string
      */
-    public function gettipoELEMENTO() : string
+    public function getnombre() : string
     {
-        return $this->tipoELEMENTO;
+        return $this->nombre;
     }
 
     /**
-     * @param string $tipoELEMENTO
+     * @param string $nombre
      */
-    public function settipoELEMENTO(string $tipoELEMENTO): void
+    public function setnombre(string $nombre): void
     {
-        $this->tipoELEMENTO = $tipoELEMENTO;
+        $this->nombre = $nombre;
+    }
+
+    /**
+     * @return string
+     */
+    public function gettipoElemento() : string
+    {
+        return $this->tipoElemento;
+    }
+
+    /**
+     * @param string $tipoElemento
+     */
+    public function settipoElemento(string $tipoElemento): void
+    {
+        $this->tipoElemento = $tipoElemento;
     }
 
     /**
@@ -118,16 +124,48 @@ class ELEMENTO
         $this->material = $material;
     }
 
+    /**
+     * @return string
+     */
+    public function getcolor() : string
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param string $color
+     */
+    public function setcolor(string $color): void
+    {
+        $this->color = $color;
+    }
+
+    /**
+     * @return string
+     */
+    public function getmarca() : string
+    {
+        return $this->marca;
+    }
+
+    /**
+     * @param string $marca
+     */
+    public function setmarca(string $marca): void
+    {
+        $this->marca = $marca;
+    }
+
 
     public function create() : bool
     {
         $result = $this->insertRow("INSERT INTO ProyectoTiendaDeMascotasMundoAnimal VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
-                $this->nomELEMENTO,
-                $this->tipoELEMENTO,
+                $this->nombre,
+                $this->tipoElemento,
                 $this->tamaño,
-                $this->material
-
-
+                $this->material,
+                $this->color,
+                $this->marca
             )
         );
         $this->Disconnect();
@@ -135,64 +173,70 @@ class ELEMENTO
     }
     public function update() : bool
     {
-        $result = $this->updateRow("UPDATE ProyectoTiendaDeMascotasMundoAnimal.idELEMENTO SET nomELEMENTO = ?, tipoELEMENTO = ? tamaño = ?, material = ?, WHERE idELEMENTO = ?", array(
-                $this->nomELEMENTO,
-                $this->tipoELEMENTO,
+        $result = $this->updateRow("UPDATE ProyectoTiendaDeMascotasMundoAnimal.Id SET nombre = ?, tipoElemento = ? tamaño = ?, material = ?, color = ?, marca = ?, WHERE Id = ?", array(
+                $this->nombre,
+                $this->tipoElemento,
                 $this->tamaño,
-                $this->material
+                $this->material,
+                $this->color,
+                $this->marca
             )
         );
         $this->Disconnect();
         return $result;
     }
-    public function deleted($id) : void
+    public function deleted($Id) : void
     {
         // TODO: Implement deleted() method.
     }
     public static function search($query) : array
     {
-        $arridELEMENTO = array();
-        $tmp = new idELEMENTO();
+        $arrId = array();
+        $tmp = new Id();
         $getrows = $tmp->getRows($query);
 
         foreach ($getrows as $valor) {
-            $idELEMENTO = new idELEMENTO();
-            $idELEMENTO->idELEMENTO = $valor['idELEMENTO'];
-            $idELEMENTO->nomELEMENTO = $valor['nomELEMENTO'];
-            $idELEMENTO->tipoELEMENTO = $valor['tipoELEMENTO'];
-            $idELEMENTO->tamaño = $valor['tamaño'];
-            $idELEMENTO->material = $valor['material'];
-            $idELEMENTO->Disconnect();
-            array_push($arridELEMENTO, $idELEMENTO);
+            $Id = new Id();
+            $Id->Id = $valor['Id'];
+            $Id->nombre = $valor['nombre'];
+            $Id->tipoElemento = $valor['tipoElemento'];
+            $Id->tamaño = $valor['tamaño'];
+            $Id->material = $valor['material'];
+            $Id->color = $valor['color'];
+            $Id->marca = $valor['marca'];
+            $Id->Disconnect();
+            array_push($arrId, $Id);
         }
         $tmp->Disconnect();
-        return $arridELEMENTO;
+        return $arrId;
     }
-    public static function searchForidELEMENTO($idELEMENTO) : idELEMENTO
+    public static function searchForId($Id) : Id
     {
-        $idELEMENTO = null;
-        if ($idELEMENTO > 0){
-            $idELEMENTO= new idELEMENTO();
-            $getrow = $idELEMENTO->getRow("SELECT * FROM ProyectoTiendaDeMascotasMundoAnimal.idELEMENTO WHERE idELEMENTO =?", array($idELEMENTO));
-            $idELEMENTO->idELEMENTO = $getrow['idELEMENTO'];
-            $idELEMENTO->nombre = $getrow['nomELEMENTO'];
-            $idELEMENTO->tipoELEMENTO = $getrow['tipoELEMENTO'];
-            $idELEMENTO->tamaño = $getrow['tamaño'];
-            $idELEMENTO->material = $getrow['material'];
+        $Id = null;
+        if ($Id > 0){
+            $Id= new Id();
+            $getrow = $Id->getRow("SELECT * FROM ProyectoTiendaDeMascotasMundoAnimal.Id WHERE Id =?", array($Id));
+            $Id->Id = $getrow['Id'];
+            $Id->nombre = $getrow['nombre'];
+            $Id->tipoElemento = $getrow['tipoElemento'];
+            $Id->tamaño = $getrow['tamaño'];
+            $Id->material = $getrow['material'];
+            $Id->color = $getrow['color'];
+            $Id->marca = $getrow['marca'];
 
         }
-        $idELEMENTO->Disconnect();
-        return $idELEMENTO;
+        $Id->Disconnect();
+        return $Id;
     }
 
     public static function getAll() : array
     {
-        return idELEMENTO::search("SELECT * FROM ProyectoTiendaDeMascotasMundoAnimal.idELEMENTO");
+        return Id::search("SELECT * FROM ProyectoTiendaDeMascotasMundoAnimal.Id");
     }
 
-    public static function idELEMENTORegistrado($nomELEMENTO) : bool
+    public static function IdRegistrado($nombre) : bool
     {
-        $result = idELEMENTO::search("SELECT id FROM ProyectoTiendaDeMascotasMundoAnimal.idELEMENTO where nomELEMENTO = ".$nomELEMENTO);
+        $result = Id::search("SELECT id FROM ProyectoTiendaDeMascotasMundoAnimal.Id where nombre = ".$nombre);
         if (count($result) > 0){
             return true;
         }else{
