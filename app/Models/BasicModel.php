@@ -12,11 +12,11 @@ abstract class BasicModel {
 
     public $isConnected;
     protected $datab;
-    private $username = "documento";
-    private $password = "contraseña";
+    private $username = "root";
+    private $password = "";
     private $host = "localhost";
     private $driver = "mysql";
-    private $dbname = "MERproyectoTMMA";
+    private $dbname = "TiendaMacota";
 
     abstract protected static function search($query);
     abstract protected static function getAll();
