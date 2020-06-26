@@ -3,8 +3,8 @@
 
 namespace App\Controllers;
 
-require(__DIR__.'/../Models/Raza.php');
-use App\Models\Raza;
+require(__DIR__.'/../Models/raza.php');
+use App\Models\raza;
 
 if(!empty($_GET['action'])){
     RazaController::main($_GET['action']);
@@ -43,13 +43,13 @@ class RazaController
             if(!Raza::RazaRegistrada($arrayRaza['documento'])){
                 $Raza = new Usuarios ($arrayRaza);
                 if($Raza->create()){
-                    header("Location: ../../views/modules/Raza/index.php?respuesta=correcto");
+                    header("Location: ../../views/modules/raza/index.php?respuesta=correcto");
                 }
             }else{
-                header("Location: ../../views/modules/Raza/create.php?respuesta=error&mensaje=Usuario ya registrado");
+                header("Location: ../../views/modules/raza/create.php?respuesta=error&mensaje=Usuario ya registrado");
             }
         } catch (Exception $e) {
-            header("Location: ../../views/modules/Raza/create.php?respuesta=error&mensaje=" . $e->getMessage());
+            header("Location: ../../views/modules/raza/create.php?respuesta=error&mensaje=" . $e->getMessage());
         }
     }
 
