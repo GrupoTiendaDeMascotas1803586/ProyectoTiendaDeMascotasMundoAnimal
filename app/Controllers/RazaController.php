@@ -3,8 +3,8 @@
 
 namespace App\Controllers;
 
-require(__DIR__.'/../modules/raza.php');
-use App\Models\Raza;
+require(__DIR__.'/../Models/raza.php');
+use App\Models\raza;
 
 if(!empty($_GET['action'])){
     RazaController::main($_GET['action']);
