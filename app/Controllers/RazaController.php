@@ -3,8 +3,8 @@
 
 namespace App\Controllers;
 
-require(__DIR__.'/../Models/raza.php');
-use App\Models\raza;
+require(__DIR__.'/../Models/Raza.php');
+use App\Models\Raza;
 
 if(!empty($_GET['action'])){
     RazaController::main($_GET['action']);
@@ -18,7 +18,7 @@ class RazaController
         } else if ($action == "edit") {
             RazaController::edit();
         } else if ($action == "searchForID") {
-            RazaController::searchForID($_REQUEST['idRaza']);
+            RazaController::searchForID($_REQUEST['id']);
         } else if ($action == "searchAll") {
             RazaController::getAll();
         } else if ($action == "activate") {
@@ -41,7 +41,7 @@ class RazaController
             $arrayRaza['especie'] = $_POST['especie'];
             $arrayRaza['estado'] = 'Activo';
             if(!Raza::RazaRegistrada($arrayRaza['documento'])){
-                $Raza = new Usuarios ($arrayRaza);
+                $Raza = new Raza ($arrayRaza);
                 if($Raza->create()){
                     header("Location: ../../views/modules/raza/index.php?respuesta=correcto");
                 }
@@ -64,10 +64,10 @@ class RazaController
             $user = new Raza($arrayRaza);
             $user->update();
 
-            header("Location: ../../views/modules/Raza/show.php?id=".$user->getId()."&respuesta=correcto");
+            header("Location: ../../views/modules/raza/show.php?id=".$user->getId()."&respuesta=correcto");
         } catch (\Exception $e) {
             //var_dump($e);
-            header("Location: ../../views/modules/Raza/edit.php?respuesta=error&mensaje=".$e->getMessage());
+            header("Location: ../../views/modules/raza/edit.php?respuesta=error&mensaje=".$e->getMessage());
         }
     }
 
@@ -76,13 +76,13 @@ class RazaController
             $ObjRaza = Raza::searchForId($_GET['Id']);
             $ObjRaza->setEstado("Disponible");
             if($ObjRaza->update()){
-                header("Location: ../../views/modules/Raza/index.php");
+                header("Location: ../../views/modules/raza/index.php");
             }else{
-                header("Location: ../../views/modules/Raza/index.php?respuesta=error&mensaje=Error al guardar");
+                header("Location: ../../views/modules/raza/index.php?respuesta=error&mensaje=Error al guardar");
             }
         } catch (\Exception $e) {
             //var_dump($e);
-            header("Location: ../../views/modules/Raza/index.php?respuesta=error&mensaje=".$e->getMessage());
+            header("Location: ../../views/modules/raza/index.php?respuesta=error&mensaje=".$e->getMessage());
         }
     }
 
@@ -91,13 +91,13 @@ class RazaController
             $ObjRaza = Raza::searchForId($_GET['Id']);
             $ObjRaza->setEstado("No Disponible");
             if($ObjRaza->update()){
-                header("Location: ../../views/modules/Raza/index.php");
+                header("Location: ../../views/modules/raza/index.php");
             }else{
-                header("Location: ../../views/modules/Raza/index.php?respuesta=error&mensaje=Error al guardar");
+                header("Location: ../../views/modules/raza/index.php?respuesta=error&mensaje=Error al guardar");
             }
         } catch (\Exception $e) {
             //var_dump($e);
-            header("Location: ../../views/modules/Raza/index.php?respuesta=error");
+            header("Location: ../../views/modules/raza/index.php?respuesta=error");
         }
     }
 
@@ -106,7 +106,7 @@ class RazaController
             return Raza::searchForId($id);
         } catch (\Exception $e) {
             var_dump($e);
-            header("Location: ../../views/modules/Raza/manager.php?respuesta=error");
+            header("Location: ../../views/modules/raza/manager.php?respuesta=error");
         }
     }
 
@@ -115,7 +115,7 @@ class RazaController
             return Raza::getAll();
         } catch (\Exception $e) {
             var_dump($e);
-            header("Location: ../Vista/modules/Raza/manager.php?respuesta=error");
+            header("Location: ../../views/modules/raza/manager.php?respuesta=error");
         }
     }
 
