@@ -4,7 +4,7 @@
 namespace App\Models;
 
 
-class ELEMENTO
+class Elemento
 {
     private $Id;
     private $nombre;
@@ -13,7 +13,6 @@ class ELEMENTO
     private $material;
     private $color;
     private $marca;
-
 
     /**
      * Usuarios constructor.
