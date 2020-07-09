@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 //$RutaAbsoluta = "\GrupoTiendaDeMascotas1803586\views\index.php"; //https://www.php.net/manual/es/regexp.reference.escape.php
 //$RutaRelativa = "../index.php";
@@ -14,4 +15,17 @@ $baseURL = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST']."/".getenv('RO
 //https://localhost/GrupoTiendaDeMascotas1803586/
 $adminlteURL = $baseURL."/vendor/almasaeed2010/adminlte";
 //https://localhost/GrupoTiendaDeMascotas1803586/vendor/almasaeed2010/adminlte
+=======
+<?php
+require('../../../vendor/autoload.php');
+?>
+<?php
+$dotenv = Dotenv\Dotenv::create("../../../");
+$dotenv->load();
+
+$baseURL = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST']."/".getenv('ROOT_FOLDER');
+//https://localhost/ProyectoTiendaDeMascotasMundoAnimal/
+$adminlteURL = $baseURL."/vendor/almasaeed2010/adminlte";
+//https://localhost/ProyectoTiendaDeMascotasMundoAnimal/vendor/almasaeed2010/adminlte
+>>>>>>> origin/angie
 ?>

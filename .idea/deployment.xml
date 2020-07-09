@@ -1,14 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="Laragon">
-    <serverData>
-      <paths name="Laragon">
-        <serverdata>
-          <mappings>
-            <mapping deploy="\GrupoTiendaDeMascotas1803586" local="$PROJECT_DIR$" web="/GrupoTiendaDeMascotas1803586" />
-          </mappings>
-        </serverdata>
-      </paths>
-    </serverData>
-  </component>
+  <component name="PublishConfigData" serverName="Laragon" />
 </project>

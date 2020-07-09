@@ -2,11 +2,11 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
-        <img src="<?= $baseURL ?>/views/components/img/weber-icon.png"
+        <img src="<?= $baseURL ?>/views/components/img/logo.png"
              alt="AdminLTE Logo"
              class="brand-image img-circle elevation-3"
              style="opacity: .8">
-        <span class="brand-text font-weight-light">WebER</span>
+        <span class="brand-text font-weight-light">Tienda de mascotas MUNDO ANIMAL</span>
     </a>
 
     <!-- Sidebar -->
@@ -17,7 +17,7 @@
                 <img src="<?= $baseURL ?>/views/components/img/user.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Diego Ojeda</a>
+                <a href="#" class="d-block">Tatiana Pineda</a>
             </div>
         </div>
 
@@ -27,7 +27,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="<?= $baseURL; ?>/views/" class="nav-link">
+                    <a href="<?= $baseURL; ?>/views/index.php" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Inicio
