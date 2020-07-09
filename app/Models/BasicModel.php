@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php
 
 namespace App\Models;
@@ -111,7 +111,7 @@ abstract class BasicModel {
         return $this->insertRow($query, $params);
     }
 }
-=======
+
 <?php
 
 namespace App\Models;
@@ -224,4 +224,4 @@ abstract class BasicModel {
         return $this->insertRow($query, $params);
     }
 }
->>>>>>> origin/angie
+

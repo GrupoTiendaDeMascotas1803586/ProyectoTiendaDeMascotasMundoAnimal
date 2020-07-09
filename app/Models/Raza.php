@@ -75,7 +75,7 @@ class Raza extends BasicModel
 
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO proyecto.Raza VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO MERproyectoTMMA.Raza VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
                 $this->nombre,
                 $this->especie,
                 $this->estado
@@ -87,7 +87,7 @@ class Raza extends BasicModel
 
     public function update() : bool
     {
-        $result = $this->updateRow("UPDATE proyecto.Raza SET nombre = ?, especie = ?, estado = ? WHERE id = ?", array(
+        $result = $this->updateRow("UPDATE MERproyectoTMMA.Raza SET nombre = ?, especie = ?, estado = ? WHERE id = ?", array(
                 $this->nombre,
                 $this->especie,
                 $this->estado,
@@ -122,12 +122,12 @@ class Raza extends BasicModel
         return $arrRaza;
     }
 
-    public static function searchForId($id) : Raza
+    public static function searchForId($id) : Usuarios
     {
         $Raza = null;
         if ($id > 0){
             $Raza = new Raza();
-            $getrow = $Raza->getRow("SELECT * FROM proyecto.Raza WHERE id =?", array($id));
+            $getrow = $Raza->getRow("SELECT * FROM MERproyectoTMMA.Raza WHERE id =?", array($id));
             $Raza->id = $getrow['id'];
             $Raza->nombre = $getrow['nombre'];
             $Raza->especie = $getrow['especie'];
@@ -139,12 +139,12 @@ class Raza extends BasicModel
 
     public static function getAll() : array
     {
-        return Raza::search("SELECT * FROM proyecto.Raza");
+        return Raza::search("SELECT * FROM MERproyectoTMMA.Raza");
     }
 
     public static function RazaRegistrada ($id) : bool
     {
-        $result = Raza::search("SELECT id FROM proyecto.Raza where id = ".$id);
+        $result = Raza::search("SELECT id FROM MERproyectoTMMA.Raza where id = ".$id);
         if (count($result) > 0){
             return true;
         }else{
