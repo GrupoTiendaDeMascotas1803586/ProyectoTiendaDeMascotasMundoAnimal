@@ -4,8 +4,8 @@ namespace App\Models;
 
 require('BasicModel.php');
 
-class Servicio extends BasicModel
-{
+class Servicio extends BasicModel{
+
     private $id;
     private $Nombre;
     private $Costo;
@@ -16,16 +16,18 @@ class Servicio extends BasicModel
     {
         parent::__construct(); //Llama al contructor padre "la clase conexion" para conectarme a la BD
         $this->id = $Servicio['id'] ?? null;
-        $this->Nombre = Servicio['Nombre'] ?? null;
-        $this->Costo= Servicio['Costo'] ?? null;
-        $this->Estado = Servicio['Estado'] ?? null;
-        $this->TipoServicio = Servicio['TipoServicio'] ?? null;
-   Servicio    function __destruct() {
+        $this->Nombre = $Servicio['Nombre'] ?? null;
+        $this->Costo= $Servicio['Costo'] ?? null;
+        $this->Estado = $Servicio['Estado'] ?? null;
+        $this->TipoServicio = $Servicio['TipoServicio'] ?? null;
+    }
+    function __destruct() {
         $this->Disconnect();
     }
+
  /**
-     * @return mixed|null
-     */
+  * @return mixed|null
+  */
     public function getId(): int
     {
         return $this->id;
@@ -60,7 +62,7 @@ class Servicio extends BasicModel
      */
     public function getCosto(): string
     {
-    TipoServicio  return $this->Costo;
+        return $this->Costo;
     }
 
     /**
@@ -71,40 +73,39 @@ class Servicio extends BasicModel
         $this->Costo = $Costo;
     }
     /**
-    * @return mixed|null
-    */
+     * @return mixed|null
+     */
     public function getEstado(): string
     {
-     return $this->Estado;
+        return $this->Estado;
     }
 
     /**
-    * @param mixed|null $Estado
-    */
+     * @param mixed|null $Estado
+     */
     public function setEstado(string $Estado): void
     {
-     $this->Estado = $Estado;
+        $this->Estado = $Estado;
     }
     /**
-    * @return mixed|null
-    */
+     * @return mixed|null
+     */
     public function getTipoServicio(): string
     {
-     return $this->TipoServicio;
+        return $this->TipoServicio;
     }
 
     /**
-    * @param mixed|null $TipoServicio
-    */
+     * @param mixed|null $TipoServicio
+     */
     public function setTipoServicio(string $TipoServicio): void
     {
-     $this->TipoServicio = $TipoServicio;
-    Estado
-
+        $this->TipoServicio = $TipoServicio;
+    }
 
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO MERproyectoTMMA.Servicio VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO tiendamascota.Servicio VALUES (NULL, ?, ?, ?, ?, ?)", array(
                 $this->Nombre,
                 $this->Costo,
                 $this->Estado,
@@ -118,7 +119,7 @@ class Servicio extends BasicModel
 
     public function update() : bool
     {
-        $result = $this->updateRow("UPDATE MERproyectoTMMA.Servicio SET Nombre = ?, Costo = ?, Estado = ?, TipoServicio = ? WHERE id = ?", array(
+        $result = $this->updateRow("UPDATE tiendamascota.Servicio SET Nombre = ?, Costo = ?, Estado = ?, TipoServicio = ? WHERE id = ?", array(
                 $this->Nombre,
                 $this->Costo,
                 $this->Estado,
@@ -131,9 +132,9 @@ class Servicio extends BasicModel
     }
 
    public function deleted($id) : void
-       {
-           // TODO: Implement deleted() method.
-       }
+    {
+        // TODO: Implement deleted() method.
+    }
 
     public static function search($query) : array
     {
@@ -142,8 +143,8 @@ class Servicio extends BasicModel
         $getrows = $tmp->getRows($query);
 
         foreach ($getrows as $valor) {
-            $Servicio->id = $valor['id'];
             $Servicio = new Servicio();
+            $Servicio->id = $valor['id'];
             $Servicio->Nombre = $valor['Nombre'];
             $Servicio->Costo = $valor['Costo'];
             $Servicio->Estado = $valor['Estado'];
@@ -155,11 +156,12 @@ class Servicio extends BasicModel
         return $arrServicio;
     }
 
-    public static function searchForId($id) : Usuarios
-    {Servicio     $Servicio = null;
+    public static function searchForId($id) : Servicio
+    {
+        $Servicio = null;
         if ($id > 0){
             $Servicio = new Servicio();
-            $getrow = $Servicio->getRow("SELECT * FROM MERproyectoTMMA.Servicio WHERE id =?", array($id));
+            $getrow = $Servicio->getRow("SELECT * FROM tiendamascota.Servicio WHERE id =?", array($id));
             $Servicio->id = $getrow['id'];
             $Servicio->Nombre = $getrow['Nombre'];
             $Servicio->Costo = $getrow['Costo'];
@@ -171,17 +173,18 @@ class Servicio extends BasicModel
     }
 
     public static function getAll() : array
-        {
-            return Servicio::search("SELECT * FROM MERproyectoTMMA.Servicio");
+    {
+        return Servicio::search("SELECT * FROM tiendamascota.Servicio");
+    }
+
+        public static function ServicioRegistrado ($id) : bool
+    {
+        $result = Servicio::search("SELECT id FROM tiendamascota.Servicio where id = ".$id);
+        if (count($result) > 0){
+            return true;
+        }else{
+            return false;
         }
 
-        public static function RazaRegistrada ($id) : bool
-        {
-            $result = Servicio::search("SELECT id FROM MERproyectoTMMA.Servicio where id = ".$id);
-            if (count($result) > 0){
-                return true;
-            }else{
-                return false;
-            }
-
+    }
 }

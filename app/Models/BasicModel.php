@@ -16,7 +16,7 @@ abstract class BasicModel {
     private $password = "";
     private $host = "localhost";
     private $driver = "mysql";
-    private $dbname = "TiendaMacota";
+    private $dbname = "tiendamascota";
 
     abstract protected static function search($query);
     abstract protected static function getAll();
