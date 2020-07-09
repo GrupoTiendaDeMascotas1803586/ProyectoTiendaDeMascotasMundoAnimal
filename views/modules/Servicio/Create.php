@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Crear Raza</title>
+    <title><?= getenv('TITLE_SITE') ?> | Crear Servicio</title>
     <?php require("../../partials/head_imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -20,11 +20,11 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Crear un Nueva Raza</h1>
+                        <h1>Crear Nuevo Servicio</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">ProyectoTiendaDeMascotasMundoAnimal</a></li>
+                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">GrupoTiendaDeMascotasMundoAnimal1803586</a></li>
                             <li class="breadcrumb-item active">Inicio</li>
                         </ol>
                     </div>
@@ -40,7 +40,7 @@
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                            Error al crear la raza: <?= $_GET['mensaje'] ?>
+                        Error al crear el servicio: <?= $_GET['mensaje'] ?>
                     </div>
                 <?php } ?>
             <?php } ?>
@@ -57,30 +57,31 @@
                         <div class="form-group row">
                             <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
                             <div class="col-sm-10">
-                                <input required type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre de la raza">
+                                <input required type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="especie" class="col-sm-2 col-form-label">Especie</label>
+                            <label for="Costo" class="col-sm-2 col-form-label">Costo</label>
                             <div class="col-sm-10">
-                                <select id="especie" name="especie" class="custom-select">
-                                    <option value="1">Acuatico</option>
-                                    <option value="2">Canino</option>
-                                    <option value="3">Felino</option>
-                                    <option value="4">Avicola</option>
-                                    <option value="5">Roedor</option>
-                                </select>
+                                <input required type="number" minlength="6" class="form-control" id="Costo" name="Costo" placeholder="Ingrese el costo">
                             </div>
-                        </div>
                         <div class="form-group row">
-                            <label for="estado" class="col-sm-2 col-form-label">Estado</label>
+                            <label for="Estado" class="col-sm-2 col-form-label">Estado</label>
                             <div class="col-sm-10">
-                                <select id="estado" name="estado" class="custom-select">
-                                    <option value="1">Disponible</option>
-                                    <option value="2">No Disponible</option>
+                                <select id="Estado" name="Estado" class="custom-select">
+                                    <option value="C.C">Activo</option>
+                                    <option value="T.I">Inactivo</option>
                                 </select>
                             </div>
                         </div>
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="TipoServicio" class="col-sm-2 col-form-label">TipoServicio</label>
+                                    <div class="col-sm-10">
+                                        <input required type="text" class="form-control" id="TipoServicio" name="TipoServicio" placeholder="Ingrese el Tipo de Servicio">
+                                    </div>
+                                </div>
+                    </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                         <button type="submit" class="btn btn-info">Enviar</button>
