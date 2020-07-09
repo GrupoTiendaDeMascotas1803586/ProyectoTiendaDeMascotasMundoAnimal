@@ -15,7 +15,7 @@ $baseURL = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST']."/".getenv('RO
 //https://localhost/GrupoTiendaDeMascotas1803586/
 $adminlteURL = $baseURL."/vendor/almasaeed2010/adminlte";
 //https://localhost/GrupoTiendaDeMascotas1803586/vendor/almasaeed2010/adminlte
-
+?>
 <?php
 require('../../../vendor/autoload.php');
 ?>
