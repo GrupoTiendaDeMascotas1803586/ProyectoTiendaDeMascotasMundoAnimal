@@ -1,0 +1,125 @@
+<?php
+
+
+namespace App\Controllers;
+
+require(__DIR__ . '/../Models/Servicio.php');
+use App\Models\Servicio;
+
+if(!empty($_GET['action'])){
+    ServicioController::main($_GET['action']);
+}
+class ServicioController
+{
+    static function main($action)
+    {
+        if ($action == "create") {
+            ServicioController::Create();
+        } else if ($action == "edit") {
+            ServicioController::edit();
+        } else if ($action == "searchForID") {
+            ServicioController::searchForID($_REQUEST['idServicio']);
+        } else if ($action == "searchAll") {
+            ServicioController::getAll();
+        } else if ($action == "activate") {
+            ServicioController::activate();
+        } else if ($action == "inactivate") {
+            ServicioController::inactivate();
+        }/*else if ($action == "login"){
+            ServicioController::login();
+        }else if($action == "cerrarSession"){
+            ServicioController::cerrarSession();
+        }*/
+
+    }
+
+    static public function create()
+    {
+        try {
+            $arrayServicio = array();
+            $arrayServicio['Nombre'] = $_POST['Nombre'];
+            $arrayServicio['Costo'] = $_POST['especie'];
+            $arrayServicio['Estado'] = 'Activo';
+            $arrayServicio['TipoServicio'] = $_POST['TipoServicio'];
+            if(!Servicio::ServicioRegistrado($arrayServicio['id'])){
+                $Servicio = new Servicio ($arrayServicio);
+                if($Servicio->create()){
+                    header("Location: ../../views/modules/Servicio/index.php?respuesta=correcto");
+                }
+            }else{
+                header("Location: ../../views/modules/Servicio/create.php?respuesta=error&mensaje=Servicio ya registrado");
+            }
+        } catch (Exception $e) {
+            header("Location: ../../views/modules/Servicio/create.php?respuesta=error&mensaje=" . $e->getMessage());
+        }
+    }
+
+
+    static public function edit (){
+        try {
+            $arrayServicio = array();
+            $arrayServicio['Nombre'] = $_POST['Nombre'];
+            $arrayServicio['Costo'] = $_POST['Costo'];
+            $arrayServicio['Estado'] = $_POST['Estado'];
+            $arrayServicio['TipoServicio'] = $_POST['TipoServicio'];
+            $arrayServicio['id'] = $_POST['id'];
+
+            $user = new Servicio($arrayServicio);
+            $user->update();
+
+            header("Location: ../../views/modules/Servicio/show.php?id=".$user->getId()."&respuesta=correcto");
+        } catch (\Exception $e) {
+            //var_dump($e);
+            header("Location: ../../views/modules/Servicio/edit.php?respuesta=error&mensaje=".$e->getMessage());
+        }
+    }
+
+    static public function activate (){
+        try {
+            $ObjServicio = Servicio::searchForId($_GET['Id']);
+            $ObjServicio->setEstado("Disponible");
+            if($ObjServicio->update()){
+                header("Location: ../../views/modules/Servicio/index.php");
+            }else{
+                header("Location: ../../views/modules/Servicio/index.php?respuesta=error&mensaje=Error al guardar");
+            }
+        } catch (\Exception $e) {
+            //var_dump($e);
+            header("Location: ../../views/modules/Servicio/index.php?respuesta=error&mensaje=".$e->getMessage());
+        }
+    }
+
+    static public function inactivate (){
+        try {
+            $ObjServicio = Servicio::searchForId($_GET['Id']);
+            $ObjServicio->setEstado("No Disponible");
+            if($ObjServicio->update()){
+                header("Location: ../../views/modules/Servicio/index.php");
+            }else{
+                header("Location: ../../views/modules/Servicio/index.php?respuesta=error&mensaje=Error al guardar");
+            }
+        } catch (\Exception $e) {
+            //var_dump($e);
+            header("Location: ../../views/modules/Servicio/index.php?respuesta=error");
+        }
+    }
+
+    static public function searchForID ($id){
+        try {
+            return Servicio::searchForId($id);
+        } catch (\Exception $e) {
+            var_dump($e);
+            header("Location: ../../views/modules/Servicio/manager.php?respuesta=error");
+        }
+    }
+
+    static public function getAll (){
+        try {
+            return Servicio::getAll();
+        } catch (\Exception $e) {
+            var_dump($e);
+            header("Location: ../Vista/modules/Servicio/manager.php?respuesta=error");
+        }
+    }
+
+}
