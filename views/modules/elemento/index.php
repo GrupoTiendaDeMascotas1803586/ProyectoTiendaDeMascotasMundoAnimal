@@ -31,7 +31,7 @@ use App\Controllers\ElementoController; ?>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">WebER</a></li>
+                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">ProyectoTiendaDeMascotasMundoAnimal</a></li>
                             <li class="breadcrumb-item active">Inicio</li>
                         </ol>
                     </div>
@@ -59,7 +59,7 @@ use App\Controllers\ElementoController; ?>
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Gestionar Elementos</h3>
+                    <h3 class="card-title">Gestionar Elemento</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                             <i class="fas fa-minus"></i></button>
@@ -78,7 +78,7 @@ use App\Controllers\ElementoController; ?>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <table id="tblUsuarios" class="datatable table table-bordered table-striped">
+                            <table id="tblElemento" class="datatable table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>#</th>
@@ -98,11 +98,11 @@ use App\Controllers\ElementoController; ?>
                                     <tr>
                                         <td><?php echo $ELEMENTO->getId(); ?></td>
                                         <td><?php echo $ELEMENTO->getNombre(); ?></td>
-                                        <td><?php echo $ELEMENTO->gettipoElemento(); ?></td>
-                                        <td><?php echo $ELEMENTO->gettamaño(); ?></td>
-                                        <td><?php echo $ELEMENTO->getmaterial(); ?></td>
-                                        <td><?php echo $ELEMENTO->getcolor(); ?></td>
-                                        <td><?php echo $ELEMENTO->getmarca(); ?></td>
+                                        <td><?php echo $ELEMENTO->getTipoElemento(); ?></td>
+                                        <td><?php echo $ELEMENTO->getTamaño(); ?></td>
+                                        <td><?php echo $ELEMENTO->getMaterial(); ?></td>
+                                        <td><?php echo $ELEMENTO->getColor(); ?></td>
+                                        <td><?php echo $ELEMENTO->getMarca(); ?></td>
                                         <td>
                                             <a href="edit.php?id=<?php echo $ELEMENTO->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
                                             <a href="show.php?id=<?php echo $ELEMENTO->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
@@ -119,11 +119,11 @@ use App\Controllers\ElementoController; ?>
                                 <tr>
                                     <th>#</th>
                                     <th>Nombre</th>
-                                    <th>tipoElemento</th>
-                                    <th>tamaño</th>
-                                    <th>material</th>
-                                    <th>color</th>
-                                    <th>marca</th>
+                                    <th>TipoElemento</th>
+                                    <th>Tamaño</th>
+                                    <th>Material</th>
+                                    <th>Color</th>
+                                    <th>Marca</th>
                                 </tr>
                                 </tfoot>
                             </table>

@@ -17,7 +17,7 @@ class ElementoController{
         } else if ($action == "edit") {
             ElementoController::edit();
         } else if ($action == "searchForID") {
-            ElementoController::searchForID($_REQUEST['Id']);
+            ElementoController::searchForID($_REQUEST['id']);
         } else if ($action == "searchAll") {
             ElementoController::getAll();
         } else if ($action == "activate") {
@@ -43,16 +43,16 @@ class ElementoController{
             $arrayELEMENTO['color'] = $_POST['color'];
             $arrayELEMENTO['marca'] = $_POST['marca'];
 
-            if(!ElementoController::ELEMENTORegistrado($arrayELEMENTO['Id'])){
+            if(!ElementoController::ELEMENTORegistrado($arrayELEMENTO['id'])){
                 $ELEMENTO = new ElementoController($arrayELEMENTO);
                 if($ELEMENTO->create()){
-                    header("Location: ../../views/modules/ElementoController/index.php?respuesta=correcto");
+                    header("Location: ../../views/modules/elemento/index.php?respuesta=correcto");
                 }
             }else{
-                header("Location: ../../views/modules/ElementoController/create.php?respuesta=error&mensaje=ElementoController ya registrado");
+                header("Location: ../../views/modules/elemento/create.php?respuesta=error&mensaje=Elemento ya creado");
             }
         } catch (Exception $e) {
-            header("Location: ../../views/modules/ElementoController/create.php?respuesta=error&mensaje=" . $e->getMessage());
+            header("Location: ../../views/modules/elemento/create.php?respuesta=error&mensaje=" . $e->getMessage());
         }
     }
 
@@ -65,51 +65,51 @@ class ElementoController{
             $arrayELEMENTO['material'] = $_POST['material'];
             $arrayELEMENTO['color'] = $_POST['color'];
             $arrayELEMENTO['marca'] = $_POST['marca'];
-            $arrayELEMENTO['Id'] = $_POST['Id'];
+            $arrayELEMENTO['id'] = $_POST['id'];
 
-            $user = new ElementoController($arrayELEMENTO);
-            $user->update();
+            $elemento = new Elemento($arrayELEMENTO);
+            $elemento->update();
 
-            header("Location: ../../views/modules/ElementoController/show.php?Id=".$user->getId()."&respuesta=correcto");
+            header("Location: ../../views/modules/elemento/show.php?Id=".$elemento->getid()."&respuesta=correcto");
         } catch (\Exception $e) {
             //var_dump($e);
-            header("Location: ../../views/modules/ElementoController/edit.php?respuesta=error&mensaje=".$e->getMessage());
+            header("Location: ../../views/modules/elemento/edit.php?respuesta=error&mensaje=".$e->getMessage());
         }
     }
 
     static public function activate (){
         try {
-            $ObjELEMENTO = ElementoController::searchForId($_GET['Id']);
+            $ObjELEMENTO = Elemento::searchForId($_GET['id']);
             $ObjELEMENTO->setEstado("Activo");
             if($ObjELEMENTO->update()){
-                header("Location: ../../views/modules/ElementoController/index.php");
+                header("Location: ../../views/modules/elemento/index.php");
             }else{
-                header("Location: ../../views/modules/ElementoController/index.php?respuesta=error&mensaje=Error al guardar");
+                header("Location: ../../views/modules/elemento/index.php?respuesta=error&mensaje=Error al guardar");
             }
         } catch (\Exception $e) {
             //var_dump($e);
-            header("Location: ../../views/modules/ElementoController/index.php?respuesta=error&mensaje=".$e->getMessage());
+            header("Location: ../../views/modules/elemento/index.php?respuesta=error&mensaje=".$e->getMessage());
         }
     }
 
     static public function inactivate (){
         try {
-            $ObjELEMENTO = ElementoController::searchForId($_GET['Id']);
+            $ObjELEMENTO = Elemento::searchForId($_GET['id']);
             $ObjELEMENTO->setEstado("Inactivo");
             if($ObjELEMENTO->update()){
-                header("Location: ../../views/modules/ElementoController/index.php");
+                header("Location: ../../views/modules/elemento/index.php");
             }else{
-                header("Location: ../../views/modules/ElementoController/index.php?respuesta=error&mensaje=Error al guardar");
+                header("Location: ../../views/modules/elemento/index.php?respuesta=error&mensaje=Error al guardar");
             }
         } catch (\Exception $e) {
             //var_dump($e);
-            header("Location: ../../views/modules/ElementoController/index.php?respuesta=error");
+            header("Location: ../../views/modules/elemento/index.php?respuesta=error");
         }
     }
 
     static public function searchForID ($id){
         try {
-            return ElementoController::searchForId($id);
+            return Elemento::searchForId($id);
         } catch (\Exception $e) {
             var_dump($e);
             //header("Location: ../../views/modules/usuarios/manager.php?respuesta=error");
@@ -118,7 +118,7 @@ class ElementoController{
 
     static public function getAll (){
         try {
-            return ElementoController::getAll();
+            return Elemento::getAll();
         } catch (\Exception $e) {
             var_dump($e);
             //header("Location: ../Vista/modules/persona/manager.php?respuesta=error");
