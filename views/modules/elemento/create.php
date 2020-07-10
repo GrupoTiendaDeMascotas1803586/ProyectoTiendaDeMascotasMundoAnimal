@@ -24,7 +24,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">WebER</a></li>
+                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">ProyectoTiendaDeMascotasMundoAnimal</a></li>
                             <li class="breadcrumb-item active">Inicio</li>
                         </ol>
                     </div>
@@ -58,29 +58,21 @@
                         <div class="form-group row">
                             <label for="nombre" class="col-sm-2 col-form-label">nombre</label>
                             <div class="col-sm-10">
-                                <input required type="text" class="form-control" id="nombre name=" nombre"
+                                <input required type="text" class="form-control" id="nombre" name=" nombre"
                                 placeholder="Ingrese el nombre">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="tipoElemento" class="col-sm-2 col-form-label">tipoElemento</label>
-                            <div class="col-sm-10">
-                                <input required type="text" class="form-control" id="tipoElemento" name="tipoElemento"
-                                       placeholder="Ingrese el tipo de elemento">
-                            </div>
-                        </div>
-                        <!-- /.<div class="form-group row">
-                             <label for="tamaño" class="col-sm-2 col-form-label">tamaño</label>
-                             <div class="col-sm-10">
-                                 <select id="tamaño" name="tamaño" class="custom-select">
-                                     <option value="C.C">Cedula de Ciudadania</option>
-                                     <option value="T.I">Tarjeta de Identidad</option>
-                                     <option value="R.C">Registro Civil</option>
-                                     <option value="Pasaporte">Pasaporte</option>
-                                     <option value="C.E">Cedula de Extranjeria</option>
-                                 </select>
-                             </div>
-                         </div>-->
+
+                                <div class="form-group row">
+                                    <label for="tipoElemento" class="col-sm-2 col-form-label">tipoElemento</label>
+                                    <div class="col-sm-10">
+                                        <select id="tipoElemento" name="tipoElemento" class="custom-select">
+                                            <option value="1">Accesorios</option>
+                                            <option value="2">Alimentos</option>
+                                            <option value="3">Medicamentos</option>
+                                        </select>
+                                    </div>
+                                </div>
 
                         <div class="form-group row">
                             <label for="tamaño" class="col-sm-2 col-form-label">tamaño</label>

@@ -3,10 +3,11 @@
 
 namespace App\Models;
 
+require('BasicModel.php');
 
-class Elemento
+class Elemento extends BasicModel
 {
-    private $Id;
+    private $id;
     private $nombre;
     private $tipoElemento;
     private $tamaño;
@@ -16,7 +17,7 @@ class Elemento
 
     /**
      * Usuarios constructor.
-     * @param $Id
+     * @param $id
      * @param $nombre
      * @param $tipoElemento
      * @param $tamaño
@@ -25,16 +26,16 @@ class Elemento
      * @param $marca
 
      */
-    public function __construct($Id = array())
+    public function __construct($id = array())
     {
         parent::__construct(); //Llama al contructor padre "la clase conexion" para conectarme a la BD
-        $this->Id = $Id['Id'] ?? null;
-        $this->nombre = $Id['nombre'] ?? null;
-        $this->tipoElemento = $Id['tipoElemento'] ?? null;
-        $this->tamaño = $Id['tamaño'] ?? null;
-        $this->material = $Id['material'] ?? null;
-        $this->color = $Id['color'] ?? null;
-        $this->marca = $Id['marca'] ?? null;
+        $this->id = $id['id'] ?? null;
+        $this->nombre = $id['nombre'] ?? null;
+        $this->tipoElemento = $id['tipoElemento'] ?? null;
+        $this->tamaño = $id['tamaño'] ?? null;
+        $this->material = $id['material'] ?? null;
+        $this->color = $id['color'] ?? null;
+        $this->marca = $id['marca'] ?? null;
     }
 
     /* Metodo destructor cierra la conexion. */
@@ -43,122 +44,122 @@ class Elemento
     }
 
     /**
-     * @return int
+     * @return mixed|null
      */
-    public function getId() : int
+    public function getId(): ?int
     {
-        return $this->Id;
+        return $this->id;
     }
 
     /**
-     * @param int $Id
+     * @param mixed|null $id
      */
-    public function setId(int $Id): void
+    public function setId(?mixed $id): void
     {
-        $this->Id = $Id;
+        $this->id = $id;
     }
 
     /**
-     * @return string
+     * @return mixed|null
      */
-    public function getnombre() : string
+    public function getNombre(): ?string
     {
         return $this->nombre;
     }
 
     /**
-     * @param string $nombre
+     * @param mixed|null $nombre
      */
-    public function setnombre(string $nombre): void
+    public function setNombre(?mixed $nombre): void
     {
         $this->nombre = $nombre;
     }
 
     /**
-     * @return string
+     * @return mixed|null
      */
-    public function gettipoElemento() : string
+    public function getTipoElemento(): ?string
     {
         return $this->tipoElemento;
     }
 
     /**
-     * @param string $tipoElemento
+     * @param mixed|null $tipoElemento
      */
-    public function settipoElemento(string $tipoElemento): void
+    public function setTipoElemento(?mixed $tipoElemento): void
     {
         $this->tipoElemento = $tipoElemento;
     }
 
     /**
-     * @return string
+     * @return mixed|null
      */
-    public function gettamaño() : string
+    public function getTamaño(): ?double
     {
         return $this->tamaño;
     }
 
     /**
-     * @param string $tamaño
+     * @param mixed|null $tamaño
      */
-    public function settamaño(string $tamaño): void
+    public function setTamaño(?mixed $tamaño): void
     {
         $this->tamaño = $tamaño;
     }
 
-
     /**
-     * @return string
+     * @return mixed|null
      */
-    public function getmaterial() : string
+    public function getMaterial(): ?string
     {
         return $this->material;
     }
 
     /**
-     * @param string $material
+     * @param mixed|null $material
      */
-    public function setmaterial(string $material): void
+    public function setMaterial(?mixed $material): void
     {
         $this->material = $material;
     }
 
     /**
-     * @return string
+     * @return mixed|null
      */
-    public function getcolor() : string
+    public function getColor(): ?string
     {
         return $this->color;
     }
 
     /**
-     * @param string $color
+     * @param mixed|null $color
      */
-    public function setcolor(string $color): void
+    public function setColor(?mixed $color): void
     {
         $this->color = $color;
     }
 
     /**
-     * @return string
+     * @return mixed|null
      */
-    public function getmarca() : string
+    public function getMarca(): ?string
     {
         return $this->marca;
     }
 
     /**
-     * @param string $marca
+     * @param mixed|null $marca
      */
-    public function setmarca(string $marca): void
+    public function setMarca(?mixed $marca): void
     {
         $this->marca = $marca;
     }
 
 
+
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO ProyectoTiendaDeMascotasMundoAnimal VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO proyecto VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
                 $this->nombre,
                 $this->tipoElemento,
                 $this->tamaño,
@@ -172,7 +173,7 @@ class Elemento
     }
     public function update() : bool
     {
-        $result = $this->updateRow("UPDATE ProyectoTiendaDeMascotasMundoAnimal.Id SET nombre = ?, tipoElemento = ? tamaño = ?, material = ?, color = ?, marca = ?, WHERE Id = ?", array(
+        $result = $this->updateRow("UPDATE proyecto.elemento SET nombre = ?, tipoElemento = ? tamaño = ?, material = ?, color = ?, marca = ?, WHERE id = ?", array(
                 $this->nombre,
                 $this->tipoElemento,
                 $this->tamaño,
@@ -184,58 +185,58 @@ class Elemento
         $this->Disconnect();
         return $result;
     }
-    public function deleted($Id) : void
+    public function deleted($id) : void
     {
         // TODO: Implement deleted() method.
     }
     public static function search($query) : array
     {
-        $arrId = array();
-        $tmp = new Id();
+        $arrid = array();
+        $tmp = new Elemento();
         $getrows = $tmp->getRows($query);
 
         foreach ($getrows as $valor) {
-            $Id = new Id();
-            $Id->Id = $valor['Id'];
-            $Id->nombre = $valor['nombre'];
-            $Id->tipoElemento = $valor['tipoElemento'];
-            $Id->tamaño = $valor['tamaño'];
-            $Id->material = $valor['material'];
-            $Id->color = $valor['color'];
-            $Id->marca = $valor['marca'];
-            $Id->Disconnect();
-            array_push($arrId, $Id);
+            $id = new id();
+            $id->id = $valor['id'];
+            $id->nombre = $valor['nombre'];
+            $id->tipoElemento = $valor['tipoElemento'];
+            $id->tamaño = $valor['tamaño'];
+            $id->material = $valor['material'];
+            $id->color = $valor['color'];
+            $id->marca = $valor['marca'];
+            $id->Disconnect();
+            array_push($arrid, $id);
         }
         $tmp->Disconnect();
-        return $arrId;
+        return $arrid;
     }
-    public static function searchForId($Id) : Id
+    public static function searchForId($id) : id
     {
-        $Id = null;
-        if ($Id > 0){
-            $Id= new Id();
-            $getrow = $Id->getRow("SELECT * FROM ProyectoTiendaDeMascotasMundoAnimal.Id WHERE Id =?", array($Id));
-            $Id->Id = $getrow['Id'];
-            $Id->nombre = $getrow['nombre'];
-            $Id->tipoElemento = $getrow['tipoElemento'];
-            $Id->tamaño = $getrow['tamaño'];
-            $Id->material = $getrow['material'];
-            $Id->color = $getrow['color'];
-            $Id->marca = $getrow['marca'];
+        $id = null;
+        if ($id > 0){
+            $id= new Id();
+            $getrow = $id->getRow("SELECT * FROM proyecto.elemento WHERE id =?", array($id));
+            $id->id = $getrow['id'];
+            $id->nombre = $getrow['nombre'];
+            $id->tipoElemento = $getrow['tipoElemento'];
+            $id->tamaño = $getrow['tamaño'];
+            $id->material = $getrow['material'];
+            $id->color = $getrow['color'];
+            $id->marca = $getrow['marca'];
 
         }
-        $Id->Disconnect();
-        return $Id;
+        $id->Disconnect();
+        return $id;
     }
 
     public static function getAll() : array
     {
-        return Id::search("SELECT * FROM ProyectoTiendaDeMascotasMundoAnimal.Id");
+        return Elemento::search("SELECT * FROM proyecto.elemento");
     }
 
-    public static function IdRegistrado($nombre) : bool
+    public static function idRegistrado($nombre) : bool
     {
-        $result = Id::search("SELECT id FROM ProyectoTiendaDeMascotasMundoAnimal.Id where nombre = ".$nombre);
+        $result = Elemento::search("SELECT id FROM proyecto.elemento where nombre = ".$nombre);
         if (count($result) > 0){
             return true;
         }else{
