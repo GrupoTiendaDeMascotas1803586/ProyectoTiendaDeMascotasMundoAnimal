@@ -28,7 +28,7 @@ use App\Controllers\ElementoController; ?>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">WebER</a></li>
+                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">ProyectoTiendaDeMascotasMundoAnimal</a></li>
                             <li class="breadcrumb-item active">Inicio</li>
                         </ol>
                     </div>
@@ -68,7 +68,7 @@ use App\Controllers\ElementoController; ?>
                     if(!empty($DataELEMENTO)){
                         ?>
                         <!-- form start -->
-                        <form class="form-horizontal" method="post" id="frmEditELEMENTO" name="frmEditELEMENTO" action="../../../app/Controllers/ElementoController.php?action=edit">
+                        <form class="form-horizontal" method="post" id="frmEditElemento" name="frmEditElemento" action="../../../app/Controllers/ElementoController.php?action=edit">
                             <input id="Id" name="Id" value="<?php echo $DataELEMENTO->getId(); ?>" hidden required="required" type="text">
                             <div class="card-body">
                                 <div class="form-group row">
@@ -77,63 +77,48 @@ use App\Controllers\ElementoController; ?>
                                         <input required type="text" class="form-control" id="nombre" name="nombre" value="<?= $DataELEMENTO->getNombre(); ?>" placeholder="Ingrese el nombre">
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
-                                    <label for="tipoElemento" class="col-sm-2 col-form-label">tipoElemento</label>
+                                    <label for="tipoElemento" class="col-sm-2 col-form-label">Tipo Elemento</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="tipoElemento" name="tipoElemento" value="<?= $DataELEMENTO->gettipoElemento(); ?>" placeholder="Ingrese el tipo de elemento">
-                                    </div>
-                                </div>
-                                <!--<div class="form-group row">
-                                    <label for="tipo_documento" class="col-sm-2 col-form-label">Tipo Documento</label>
-                                    <div class="col-sm-10">
-                                        <select id="tipo_documento" name="tipo_documento" class="custom-select">
-                                            <option <?= ($DataUsuario->getTipoDocumento() == "C.C") ? "selected":""; ?> value="C.C">Cedula de Ciudadania</option>
-                                            <option <?= ($DataUsuario->getTipoDocumento() == "T.I") ? "selected":""; ?> value="T.I">Tarjeta de Identidad</option>
-                                            <option <?= ($DataUsuario->getTipoDocumento() == "R.C") ? "selected":""; ?> value="R.C">Registro Civil</option>
-                                            <option <?= ($DataUsuario->getTipoDocumento() == "Pasaporte") ? "selected":""; ?> value="Pasaporte">Pasaporte</option>
-                                            <option <?= ($DataUsuario->getTipoDocumento() == "C.E") ? "selected":""; ?> value="C.E">Cedula de Extranjeria</option>
+                                        <select id="tipoElemento" name="tipoElemento" class="custom-select">
+                                            <option <?= ($DataELEMENTO->getTipoElemento() == "1") ? "selected":""; ?> value="1">Accesorios</option>
+                                            <option <?= ($DataELEMENTO->getTipoElemento() == "2") ? "selected":""; ?> value="2">Alimentos</option>
+                                            <option <?= ($DataELEMENTO->getTipoElemento() == "3") ? "selected":""; ?> value="3">Medicamentos</option>
                                         </select>
                                     </div>
                                 </div>-->
                                 <div class="form-group row">
                                     <label for="tamaño" class="col-sm-2 col-form-label">tamaño</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" minlength="6" class="form-control" id="tamaño" name="tamaño" value="<?= $DataELEMENTO->gettamaño(); ?>" placeholder="Ingrese el tamaño">
+                                        <input required type="text" minlength="6" class="form-control" id="tamaño" name="tamaño" value="<?= $DataELEMENTO->getTamaño(); ?>" placeholder="Ingrese el tamaño">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="material" class="col-sm-2 col-form-label">material</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" minlength="6" class="form-control" id="material" name="material" value="<?= $DataELEMENTO->getmaterial(); ?>" placeholder="Ingrese el material">
+                                        <input required type="text" minlength="6" class="form-control" id="material" name="material" value="<?= $DataELEMENTO->getMaterial(); ?>" placeholder="Ingrese el material">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="color" class="col-sm-2 col-form-label">color</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="color" name="color" value="<?= $DataELEMENTO->getcolor(); ?>" placeholder="Ingrese el color">
+                                        <input required type="text" class="form-control" id="color" name="color" value="<?= $DataELEMENTO->getColor(); ?>" placeholder="Ingrese el color">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="marca" class="col-sm-2 col-form-label">marca</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="marca" name="marca" value="<?= $DataELEMENTO->getmarca(); ?>" placeholder="Ingrese la marca">
+                                        <input required type="text" class="form-control" id="marca" name="marca" value="<?= $DataELEMENTO->getMarca(); ?>" placeholder="Ingrese la marca">
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="rol" class="col-sm-2 col-form-label">Rol</label>
-                                    <div class="col-sm-10">
-                                        <select id="rol" name="rol" class="custom-select">
-                                            <option <?= ($DataUsuario->getRol() == "Empleado") ? "selected":""; ?> value="Empleado">Empleado</option>
-                                            <option <?= ($DataUsuario->getRol() == "Cliente") ? "selected":""; ?> value="Cliente">Cliente</option>
-                                        </select>
-                                    </div>
-                                </div>
+
                                 <div class="form-group row">
                                     <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                                     <div class="col-sm-10">
                                         <select id="estado" name="estado" class="custom-select">
-                                            <option <?= ($DataUsuario->getEstado() == "Activo") ? "selected":""; ?> value="Activo">Activo</option>
-                                            <option <?= ($DataUsuario->getEstado() == "Inactivo") ? "selected":""; ?> value="Inactivo">Inactivo</option>
+                                            <option <?= ($DataELEMENTO->getEstado() == "Activo") ? "selected":""; ?> value="Activo">Activo</option>
+                                            <option <?= ($DataELEMENTO->getEstado() == "Inactivo") ? "selected":""; ?> value="Inactivo">Inactivo</option>
                                         </select>
                                     </div>
                                 </div>

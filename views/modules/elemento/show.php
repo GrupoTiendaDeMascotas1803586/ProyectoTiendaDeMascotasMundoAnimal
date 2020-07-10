@@ -28,7 +28,7 @@ use App\Controllers\ElementoController; ?>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">WebER</a></li>
+                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">ProyectoTiendaDeMascotasMundoAnimal</a></li>
                             <li class="breadcrumb-item active">Inicio</li>
                         </ol>
                     </div>
@@ -56,7 +56,7 @@ use App\Controllers\ElementoController; ?>
             <?php } ?>
 
             <!-- Horizontal Form -->
-            <div class="card card-info">
+            <hr class="card card-info">
                 <?php if(!empty($_GET["Id"]) && isset($_GET["Id"])){
                     $DataELEMENTO = ElementoController::searchForID($_GET["Id"]);
                     if(!empty($DataELEMENTO)){
@@ -64,26 +64,25 @@ use App\Controllers\ElementoController; ?>
                         <div class="card-header">
                             <h3 class="card-title"><?= $DataELEMENTO->getNombre()  ?></h3>
                         </div>
-                        <div class="card-body">
-                            <p>
+            <div class="card-body">
+                <p>
+                <hr>
+                <strong><i class="fas fa-user mr-1"></i> Nombre</strong>
+                <p class="text-muted"><?= $DataELEMENTO->getNombre().": ".$DataELEMENTO->getNombre() ?></p>
+                <hr>
+                <strong><i class="far fa-file-alt mr-1"></i> TipoElemento</strong>
+                <p class="text-muted"><?= $DataELEMENTO->getTipoElemento()." - ".$DataELEMENTO->getTipoElemento() ?></p>
+                <strong><i class="far fa-file-alt mr-1"></i> Tamaño</strong>
+                <p class="text-muted"><?= $DataELEMENTO->getTamaño()." - ".$DataELEMENTO->getTamaño() ?></p>
+                <strong><i class="far fa-file-alt mr-1"></i> Material</strong>
+                <p class="text-muted"><?= $DataELEMENTO->getMaterial()." - ".$DataELEMENTO->getMaterial() ?></p>
+                <strong><i class="far fa-file-alt mr-1"></i> Color</strong>
+                <p class="text-muted"><?= $DataELEMENTO->getColor()." - ".$DataELEMENTO->getColor() ?></p>
+                <strong><i class="far fa-file-alt mr-1"></i> Marca</strong>
+                <p class="text-muted"><?= $DataELEMENTO->getMarca()." - ".$DataELEMENTO->getMarca() ?></p>
+                </p>
 
-                                <strong><i class="fas fa-book mr-1"></i> Nombre y TipoElemento</strong>
-                            <p class="text-muted">
-                                <?= $DataELEMENTO->getnombre()." ".$DataELEMENTO->gettipoElemento() ?>
-                            </p>
-                            <hr>
-                            <strong><i class="fas fa-user mr-1"></i> Tamaño</strong>
-                            <p class="text-muted"><?= $DataELEMENTO->gettamaño() ?></p>
-                            <hr>
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> material</strong>
-                            <p class="text-muted"><?= $DataELEMENTO->getmaterial() ?></p>
-                            <hr>
-                            <strong><i class="fas fa-phone mr-1"></i> Color</strong>
-                            <p class="text-muted"><?= $DataELEMENTO->getcolor() ?></p>
-                            <hr>
-                            <strong><i class="far fa-file-alt mr-1"></i> Marca</strong>
-                            <p class="text-muted"><?= $DataELEMENTO->getmarca() ?></p>
-                            </p>
+            </div>
 
                         </div>
                         <div class="card-footer">
