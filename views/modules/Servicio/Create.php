@@ -24,7 +24,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">GrupoTiendaDeMascotasMundoAnimal1803586</a></li>
+                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">ProyectoTiendaDeMascotasMundoAnimal</a></li>
                             <li class="breadcrumb-item active">Inicio</li>
                         </ol>
                     </div>
@@ -44,7 +44,6 @@
                     </div>
                 <?php } ?>
             <?php } ?>
-
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <div class="card-header">
@@ -52,7 +51,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" method="post" id="frmCreateUsuario" name="frmCreateUsuario" action="../../../app/Controllers/UsuariosController.php?action=create">
+                <form class="form-horizontal" method="post" id="frmCreateServicio" name="frmCreateServicio" action="../../../app/Controllers/ServicioController.php?action=Create">
                     <div class="card-body">
                         <div class="form-group row">
                             <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
@@ -74,14 +73,18 @@
                                 </select>
                             </div>
                         </div>
-                            <div class="card-body">
-                                <div class="form-group row">
-                                    <label for="TipoServicio" class="col-sm-2 col-form-label">TipoServicio</label>
-                                    <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="TipoServicio" name="TipoServicio" placeholder="Ingrese el Tipo de Servicio">
-                                    </div>
+                            <div class="form-group row">
+                                <label for="TipoServicio" class="col-sm-2 col-form-label">Tipo Servicio</label>
+                                <div class="col-sm-10">
+                                    <select id="TipoServicio" name="TipoServicio" class="custom-select">
+                                        <option value="1">Guarderia</option>
+                                        <option value="2">Peluqueria</option>
+                                        <option value="3">Baño</option>
+                                        <option value="4">Desparasitacion</option>
+
+                                    </select>
                                 </div>
-                    </div>
+                            </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                         <button type="submit" class="btn btn-info">Enviar</button>
