@@ -1,8 +1,8 @@
 <?php
 require("../../partials/routes.php");
-require("../../../app/Controllers/UsuariosController.php");
+require("../../../app/Controllers/ServicioController.php");
 
-use App\Controllers\UsuariosController; ?>
+use App\Controllers\ServicioController; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +28,7 @@ use App\Controllers\UsuariosController; ?>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">GrupoTiendaDeMascotasMundoAnimal1803586</a></li>
+                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">ProyectoTiendaDeMascotasMundoAnimal</a></li>
                             <li class="breadcrumb-item active">Inicio</li>
                         </ol>
                     </div>
@@ -64,11 +64,11 @@ use App\Controllers\UsuariosController; ?>
                 <?php if(!empty($_GET["id"]) && isset($_GET["id"])){ ?>
                     <p>
                     <?php
-                    $DataServicio = UsuariosController::searchForID($_GET["id"]);
-                    if(!empty($DataUsuario)){
+                    $DataServicio = ServicioController::searchForID($_GET["id"]);
+                    if(!empty($DataServicio)){
                         ?>
                         <!-- form start -->
-                        <form class="form-horizontal" method="post" id="frmEditServicio" name="frmEditServicio" action="../../../app/Controllers/UsuariosController.php?action=edit">
+                        <form class="form-horizontal" method="post" id="frmEditServicio" name="frmEditServicio" action="../../../app/Controllers/ServicioController.php?action=edit">
                             <input id="id" name="id" value="<?php echo $DataServicio->getId(); ?>" hidden required="required" type="text">
                             <div class="card-body">
                                 <div class="form-group row">
@@ -87,16 +87,22 @@ use App\Controllers\UsuariosController; ?>
                                     <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                                     <div class="col-sm-10">
                                         <select id="estado" name="estado" class="custom-select">
-                                            <option <?= ($DataUsuario->getEstado() == "Activo") ? "selected":""; ?> value="Activo">Activo</option>
-                                            <option <?= ($DataUsuario->getEstado() == "Inactivo") ? "selected":""; ?> value="Inactivo">Inactivo</option>
+                                            <option <?= ($DataServicio->getEstado() == "Activo") ? "selected":""; ?> value="Activo">Activo</option>
+                                            <option <?= ($DataServicio->getEstado() == "Inactivo") ? "selected":""; ?> value="Inactivo">Inactivo</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="TipoServicio" class="col-sm-2 col-form-label">TipoServicio</label>
+                                <label for="TipoServicio" class="col-sm-2 col-form-label">Tipo Servicio</label>
                                 <div class="col-sm-10">
-                                    <input required type="text" class="form-control" id="TipoServicio" name="TipoServicio" value="<?= $DataServicio->getTipoServicio(); ?>" placeholder="Ingrese el TipoServicio">
+                                    <select id="TipoServicio" name="TipoServicio" class="custom-select">
+                                        <option <?= ($DataServicio->getTipoServicio() == "1") ? "selected":""; ?> value="1">Guarderia</option>
+                                        <option <?= ($DataServicio->getTipoServicio() == "2") ? "selected":""; ?> value="2">Peluqueria</option>
+                                        <option <?= ($DataServicio->getTipoServicio() == "3") ? "selected":""; ?> value="3">Baño</option>
+                                        <option <?= ($DataServicio->getTipoServicio() == "4") ? "selected":""; ?> value="4">Desparasitacion</option>
+
+                                    </select>
                                 </div>
                             </div>
                             <!-- /.card-body -->
