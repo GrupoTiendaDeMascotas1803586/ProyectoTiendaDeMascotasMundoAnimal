@@ -5,7 +5,7 @@
       <paths name="Laragon">
         <serverdata>
           <mappings>
-            <mapping deploy="\ProyectoTiendaDeMascotasMundoAnimal" local="$PROJECT_DIR$" web="/ProyectoTiendaDeMascotasMundoAnimal" />
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
