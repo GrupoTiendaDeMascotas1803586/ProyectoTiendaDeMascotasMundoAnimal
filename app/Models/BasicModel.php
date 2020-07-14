@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 /**
@@ -110,3 +109,4 @@ abstract class BasicModel {
         return $this->insertRow($query, $params);
     }
 }
+
