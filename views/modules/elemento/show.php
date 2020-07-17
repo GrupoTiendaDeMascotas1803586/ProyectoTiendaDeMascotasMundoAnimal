@@ -80,6 +80,8 @@ use App\Controllers\ElementoController; ?>
                 <p class="text-muted"><?= $DataELEMENTO->getColor()." - ".$DataELEMENTO->getColor() ?></p>
                 <strong><i class="far fa-file-alt mr-1"></i> Marca</strong>
                 <p class="text-muted"><?= $DataELEMENTO->getMarca()." - ".$DataELEMENTO->getMarca() ?></p>
+                <strong><i class="far fa-file-alt mr-1"></i> Estado</strong>
+                <p class="text-muted"><?= $DataELEMENTO->getEstado()." - ".$DataELEMENTO->getEstado() ?></p>
                 </p>
 
             </div>

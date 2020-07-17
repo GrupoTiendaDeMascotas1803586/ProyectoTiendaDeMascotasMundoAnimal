@@ -88,6 +88,7 @@ use App\Controllers\ElementoController; ?>
                                     <th>Material</th>
                                     <th>Color</th>
                                     <th>Marca</th>
+                                    <th>Elemento</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -103,6 +104,7 @@ use App\Controllers\ElementoController; ?>
                                         <td><?php echo $ELEMENTO->getMaterial(); ?></td>
                                         <td><?php echo $ELEMENTO->getColor(); ?></td>
                                         <td><?php echo $ELEMENTO->getMarca(); ?></td>
+                                        <td><?php echo $ELEMENTO->getEstado(); ?></td>
                                         <td>
                                             <a href="edit.php?id=<?php echo $ELEMENTO->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
                                             <a href="show.php?id=<?php echo $ELEMENTO->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
@@ -124,6 +126,7 @@ use App\Controllers\ElementoController; ?>
                                     <th>Material</th>
                                     <th>Color</th>
                                     <th>Marca</th>
+                                    <th>Estado</th>
                                 </tr>
                                 </tfoot>
                             </table>
