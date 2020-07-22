@@ -89,6 +89,7 @@ use App\Controllers\ElementoController; ?>
                                     <th>Color</th>
                                     <th>Marca</th>
                                     <th>Elemento</th>
+                                    <th>Acciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -127,6 +128,7 @@ use App\Controllers\ElementoController; ?>
                                     <th>Color</th>
                                     <th>Marca</th>
                                     <th>Estado</th>
+                                    <th>Acciones</th>
                                 </tr>
                                 </tfoot>
                             </table>
