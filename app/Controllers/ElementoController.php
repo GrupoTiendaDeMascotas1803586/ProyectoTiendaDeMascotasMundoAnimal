@@ -45,7 +45,7 @@ class ElementoController{
             $arrayELEMENTO['estado'] = $_POST['estado'];
 
             if(!Elemento::ElementoRegistrado($arrayELEMENTO['nombre'])){
-                $ELEMENTO = new ElementoController($arrayELEMENTO);
+                $ELEMENTO = new Elemento($arrayELEMENTO);
                 if($ELEMENTO->create()){
                     header("Location: ../../views/modules/elemento/index.php?respuesta=correcto");
                 }

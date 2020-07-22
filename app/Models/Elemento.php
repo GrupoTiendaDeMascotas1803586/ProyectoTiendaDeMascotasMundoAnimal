@@ -86,7 +86,7 @@ class Elemento extends BasicModel
     /**
      * @return mixed|null
      */
-    public function getTamaño(): ?double
+    public function getTamaño(): ?string
     {
         return $this->tamaño;
     }
