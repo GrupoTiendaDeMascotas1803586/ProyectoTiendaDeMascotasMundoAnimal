@@ -86,6 +86,7 @@ use App\Controllers\ServicioController; ?>
                                     <th>Costo</th>
                                     <th>TipoServicio</th>
                                     <th>Estado</th>
+                                    <th>Acciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -95,7 +96,7 @@ use App\Controllers\ServicioController; ?>
                                     ?>
                                     <tr>
                                         <td><?php echo $servicio->getId(); ?></td>
-                                        <td><?php echo $servicio->getNombres(); ?></td>
+                                        <td><?php echo $servicio->getNombre(); ?></td>
                                         <td><?php echo $servicio->getCosto(); ?></td>
                                         <td><?php echo $servicio->getTipoServicio(); ?></td>
                                         <td><?php echo $servicio->getEstado(); ?></td>
@@ -118,6 +119,7 @@ use App\Controllers\ServicioController; ?>
                                     <th>Costo</th>
                                     <th>TipoServicio</th>
                                     <th>Estado</th>
+                                    <th>Acciones</th>
                                 </tr>
                                 </tfoot>
                             </table>
