@@ -24,7 +24,7 @@ use App\Controllers\ServicioController; ?>
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Editar Nuevo Servicio</h1>
+                        <h1>Editar Servicio</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -44,7 +44,7 @@ use App\Controllers\ServicioController; ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al crear el servicio: <?= ($_GET['mensaje']) ?? "" ?>
+                        Error al editar el servicio: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
             <?php } else if (empty($_GET['id'])) { ?>
@@ -78,25 +78,25 @@ use App\Controllers\ServicioController; ?>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="Costo" class="col-sm-2 col-form-label">Costo</label>
+                                    <label for="costo" class="col-sm-2 col-form-label">Costo</label>
                                     <div class="col-sm-10">
-                                        <input required type="number" minlength="6" class="form-control" id="Costo" name="Costo" value="<?= $DataServicio->getCosto(); ?>" placeholder="Ingrese el Costo">
+                                        <input required type="number" minlength="6" class="form-control" id="costo" name="costo" value="<?= $DataServicio->getCosto(); ?>" placeholder="Ingrese el Costo">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                                     <div class="col-sm-10">
                                         <select id="estado" name="estado" class="custom-select">
-                                            <option <?= ($DataServicio->getEstado() == "Activo") ? "selected":""; ?> value="Activo">Activo</option>
-                                            <option <?= ($DataServicio->getEstado() == "Inactivo") ? "selected":""; ?> value="Inactivo">Inactivo</option>
+                                            <option <?= ($DataServicio->getEstado() == "Disponible") ? "selected":""; ?> value="Disponible">Disponible</option>
+                                            <option <?= ($DataServicio->getEstado() == "No Disponible") ? "selected":""; ?> value="No Disponible">No Disponible</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="TipoServicio" class="col-sm-2 col-form-label">Tipo Servicio</label>
+                                <label for="tipoServicio" class="col-sm-2 col-form-label">Tipo Servicio</label>
                                 <div class="col-sm-10">
-                                    <select id="TipoServicio" name="TipoServicio" class="custom-select">
+                                    <select id="tipoServicio" name="tipoServicio" class="custom-select">
                                         <option <?= ($DataServicio->getTipoServicio() == "1") ? "selected":""; ?> value="1">Guarderia</option>
                                         <option <?= ($DataServicio->getTipoServicio() == "2") ? "selected":""; ?> value="2">Peluqueria</option>
                                         <option <?= ($DataServicio->getTipoServicio() == "3") ? "selected":""; ?> value="3">Baño</option>
