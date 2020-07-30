@@ -1,7 +1,7 @@
 <?php require("../../partials/routes.php");
-require("../../../app/Controllers/PersonaController.php");
+require("../../../app/Controllers/CompraController.php");
 
-use App\Controllers\PersonaController; ?>
+use App\Controllers\CompraController; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,9 +48,9 @@ use App\Controllers\PersonaController; ?>
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-check"></i> Correcto!</h5>
                         <?php if ($_GET['action'] == "create"){ ?>
-                            La persona ha sido creada con exito!
+                            La compra ha sido registrada con exito!
                         <?php }else if($_GET['action'] == "update"){ ?>
-                            Los datos de la persona han sido actualizados correctamente!
+                            Los datos de la compra han sido actualizados correctamente!
                         <?php } ?>
                     </div>
                 <?php } ?>
@@ -59,7 +59,7 @@ use App\Controllers\PersonaController; ?>
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Gestionar Persona</h3>
+                    <h3 class="card-title">Gestionar Compra</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                             <i class="fas fa-minus"></i></button>
@@ -72,71 +72,48 @@ use App\Controllers\PersonaController; ?>
                         <div class="col-auto mr-auto"></div>
                         <div class="col-auto">
                             <a role="button" href="create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
-                                <i class="fas fa-plus"></i> Crear Persona
+                                <i class="fas fa-plus"></i> Crear Compra
                             </a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <table id="tblPersona" class="datatable table table-bordered table-striped">
+                            <table id="tblCompra" class="datatable table table-bordered table-striped">
                                 <thead>
                                 <tr>
 
                                     <th>#</th>
-                                    <th>Tipo Documento</th>
-                                    <th>Documento</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
-                                    <th>Telefono</th>
-                                    <th>TelefonoOpcional</th>
-                                    <th>Direccion</th>
-                                    <th>Contraseña</th>
-                                    <th>tipoPersona</th>
-                                    <th>Estado</th>
+                                    <th>Fecha</th>
+                                    <th>Total</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                $arrPersona = PersonaController::getAll();
-                                foreach ($arrPersona as $persona){
+                                $arrCompra = CompraController::getAll();
+                                foreach ($arrCompra as $compra){
                                     ?>
                                     <tr>
-                                        <td><?php echo $persona->getId(); ?></td>
-                                        <td><?php echo $persona->getTipoDocumento(); ?></td>
-                                        <td><?php echo $persona->getDocumento(); ?></td>
-                                        <td><?php echo $persona->getNombre(); ?></td>
-                                        <td><?php echo $persona->getApellido(); ?></td>
-                                        <td><?php echo $persona->getTelefono(); ?></td>
-                                        <td><?php echo $persona->getTelefonoOpcional(); ?></td>
-                                        <td><?php echo $persona->getDireccion(); ?></td>
-                                        <td><?php echo $persona->getContraseña(); ?></td>
-                                        <td><?php echo $persona->gettipoPersona(); ?></td>
-                                        <td><?php echo $persona->getEstado(); ?></td>
+                                        <td><?php echo $compra->getId(); ?></td>
+                                        <td><?php echo $compra->getFecha(); ?></td>
+                                        <td><?php echo $compra->getTotal(); ?></td>
+
+
+
                                         <td>
-                                            <a href="edit.php?id=<?php echo $persona->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="show.php?id=<?php echo $persona->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
-                                            <?php if ($persona->getEstado() != "Activo"){ ?>
-                                                <a href="../../../app/Controllers/PersonaController.php?action=activate&id=<?php echo $persona->getId(); ?>" type="button" data-toggle="tooltip" title="Activar" class="btn docs-tooltip btn-success btn-xs"><i class="fa fa-check-square"></i></a>
-                                            <?php }else{ ?>
-                                                <a type="button" href="../../../app/Controllers/PersonaController.php?action=inactivate&id=<?php echo $persona->getId(); ?>" data-toggle="tooltip" title="Inactivar" class="btn docs-tooltip btn-danger btn-xs"><i class="fa fa-times-circle"></i></a>
-                                            <?php } ?>
+                                            <a href="edit.php?id=<?php echo $compra->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="show.php?id=<?php echo $compra->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
+
+
                                         </td>
                                     </tr>
                                 <?php } ?>
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Tipo Documento</th>
-                                    <th>Documento</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
-                                    <th>Telefono</th>
-                                    <th>TelefonoOpcional</th>
-                                    <th>Direccion</th>
-                                    <th>Contraseña</th>
-                                    <th>tipoPersona</th>
-                                    <th>Estado</th>
+                                    <th>#</th>s
+                                    <th>Fecha</th>
+                                    <th>Toral</th>
                                 </tr>
                                 </tfoot>
                             </table>

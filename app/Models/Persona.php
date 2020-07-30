@@ -1,10 +1,9 @@
 <?php
 
-
 namespace App\Models;
 require('BasicModel.php');
 
-class Persona
+class Persona extends BasicModel
 {
 private $id;
 private $tipoDocumento;
@@ -15,7 +14,7 @@ private $telefono;
 private $telefonoOpcional;
 private $direccion;
 private $contraseña;
-private $TIPOPERSONA;
+private $tipoPersona;
 private $estado;
 
     public function __construct($Persona = array())
@@ -30,7 +29,7 @@ private $estado;
         $this->telefonoOpcional = $Persona['telefonoOpcional'] ?? null;
         $this->direccion = $Persona['direccion'] ?? null;
         $this->contraseña = $Persona['contraseña'] ?? null;
-        $this->TIPOPERSONA = $Persona['TIPOPERSONA'] ?? null;
+        $this->tipoPersona = $Persona['tipoPersona'] ?? null;
         $this->estado = $Persona['estado'] ?? null;
     }
     function __destruct() {
@@ -38,7 +37,7 @@ private $estado;
     }
 
     /**
-     * @return mixed|null
+     * @return int
      */
     public function getId(): ?int
     {
@@ -46,15 +45,15 @@ private $estado;
     }
 
     /**
-     * @param mixed|null $id
+     * @param int $id
      */
-    public function setId(?mixed $id): void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
 
     /**
-     * @return mixed|null
+     * @return string
      */
     public function getTipoDocumento(): ?string
     {
@@ -62,15 +61,15 @@ private $estado;
     }
 
     /**
-     * @param mixed|null $tipoDocumento
+     * @param string $tipoDocumento
      */
-    public function setTipoDocumento(?mixed $tipoDocumento): void
+    public function setTipoDocumento(?string $tipoDocumento): void
     {
         $this->tipoDocumento = $tipoDocumento;
     }
 
     /**
-     * @return mixed|null
+     * @return int
      */
     public function getDocumento(): ?int
     {
@@ -78,15 +77,15 @@ private $estado;
     }
 
     /**
-     * @param mixed|null $documento
+     * @param int $documento
      */
-    public function setDocumento(?mixed $documento): void
+    public function setDocumento(?int $documento): void
     {
         $this->documento = $documento;
     }
 
     /**
-     * @return mixed|null
+     * @return string
      */
     public function getNombre(): ?string
     {
@@ -94,15 +93,15 @@ private $estado;
     }
 
     /**
-     * @param mixed|null $nombre
+     * @param string $nombre
      */
-    public function setNombre(?mixed $nombre): void
+    public function setNombre(?string $nombre): void
     {
         $this->nombre = $nombre;
     }
 
     /**
-     * @return mixed|null
+     * @return string
      */
     public function getApellido(): ?string
     {
@@ -110,47 +109,47 @@ private $estado;
     }
 
     /**
-     * @param mixed|null $apellido
+     * @param string $apellido
      */
-    public function setApellido(?mixed $apellido): void
+    public function setApellido(?string $apellido): void
     {
         $this->apellido = $apellido;
     }
 
     /**
-     * @return mixed|null
+     * @return int
      */
-    public function getTelefono(): ?string
+    public function getTelefono(): ? int
     {
         return $this->telefono;
     }
 
     /**
-     * @param mixed|null $telefono
+     * @param int $telefono
      */
-    public function setTelefono(?mixed $telefono): void
+    public function setTelefono(?int $telefono): void
     {
         $this->telefono = $telefono;
     }
 
     /**
-     * @return mixed|null
+     * @return int
      */
-    public function getTelefonoOpcional(): ?string
+    public function getTelefonoOpcional(): ?int
     {
         return $this->telefonoOpcional;
     }
 
     /**
-     * @param mixed|null $telefonoOpcional
+     * @param int $telefonoOpcional
      */
-    public function setTelefonoOpcional(?mixed $telefonoOpcional): void
+    public function setTelefonoOpcional(?int $telefonoOpcional): void
     {
         $this->telefonoOpcional = $telefonoOpcional;
     }
 
     /**
-     * @return mixed|null
+     * @return string
      */
     public function getDireccion(): ?string
     {
@@ -158,15 +157,15 @@ private $estado;
     }
 
     /**
-     * @param mixed|null $direccion
+     * @param string $direccion
      */
-    public function setDireccion(?mixed $direccion): void
+    public function setDireccion(?string $direccion): void
     {
         $this->direccion = $direccion;
     }
 
     /**
-     * @return mixed|null
+     * @return string
      */
     public function getContraseña(): ?string
     {
@@ -174,31 +173,31 @@ private $estado;
     }
 
     /**
-     * @param mixed|null $contraseña
+     * @param string $contraseña
      */
-    public function setContraseña(?mixed $contraseña): void
+    public function setContraseña(?string $contraseña): void
     {
         $this->contraseña = $contraseña;
     }
 
     /**
-     * @return mixed|null
+     * @return string
      */
-    public function getTIPOPERSONA(): ?string
+    public function gettipoPersona(): ?string
     {
-        return $this->TIPOPERSONA;
+        return $this->tipoPersona;
     }
 
     /**
-     * @param mixed|null $TIPOPERSONA
+     * @param string $tipoPersona
      */
-    public function setTIPOPERSONA(?mixed $TIPOPERSONA): void
+    public function settipoPersona(?string $tipoPersona): void
     {
-        $this->TIPOPERSONA = $TIPOPERSONA;
+        $this->tipoPersona = $tipoPersona;
     }
 
     /**
-     * @return mixed|null
+     * @return string
      */
     public function getEstado(): ?string
     {
@@ -206,26 +205,25 @@ private $estado;
     }
 
     /**
-     * @param mixed|null $estado
+     * @param string $estado
      */
-    public function setEstado(?mixed $estado): void
+    public function setEstado(?string $estado): void
     {
         $this->estado = $estado;
     }
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO proyecto.Persona VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
-                $this->documento,
+        $result = $this->insertRow("INSERT INTO proyecto.persona VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
                 $this->tipoDocumento,
+                $this->documento,
                 $this->nombre,
                 $this->apellido,
                 $this->telefono,
                 $this->telefonoOpcional,
                 $this->direccion,
                 $this->contraseña,
-                $this->TIPOPERSONA,
-                $this->estado,
-
+                $this->tipoPersona,
+                $this->estado
 
             )
         );
@@ -235,17 +233,19 @@ private $estado;
 
     public function update() : bool
     {
-        $result = $this->updateRow("UPDATE proyecto.Persona SET documento = ?, tipoDocumento = ?, nombre = ?, apellido = ?, telefono = ?, telefonoOpcinal = ?, direccion = ?, contraseña = ?, TIPOPERSONA = ?, estado = ? WHERE id = ?", array(
-                $this->documento,
+        $result = $this->updateRow("UPDATE proyecto.persona SET tipoDocumento = ?,documento = ?, nombre = ?, apellido = ?, telefono = ?, telefonoOpcional = ?, direccion = ?, contraseña = ?, tipoPersona = ?, estado = ? WHERE id = ?", array(
+
                 $this->tipoDocumento,
+                $this->documento,
                 $this->nombre,
                 $this->apellido,
                 $this->telefono,
                 $this->telefonoOpcional,
                 $this->direccion,
                 $this->contraseña,
-                $this->TIPOPERSONA,
+                $this->tipoPersona,
                 $this->estado,
+                $this->id
             )
         );
         $this->Disconnect();
@@ -264,20 +264,20 @@ private $estado;
         $getrows = $tmp->getRows($query);
 
         foreach ($getrows as $valor) {
-            $arrPersona = new Persona();
-            $arrPersona->id = $valor['id'];
-            $arrPersona->documento = $valor['documento'];
-            $arrPersona->tipoDocumento = $valor['tipoDocumento'];
-            $arrPersona->nombre = $valor['nombre'];
-            $arrPersona->apellido = $valor['apellido'];
-            $arrPersona->telefono = $valor['telefono'];
-            $arrPersona->telefonoOpcional = $valor['telefonoOpcional'];
-            $arrPersona->direccion = $valor['direccion'];
-            $arrPersona->contraseña = $valor['contraseña'];
-            $arrPersona->TIPOPERSONA = $valor['TIPOPERSONA'];
-            $arrPersona->estado = $valor['estado'];
+            $Persona = new Persona();
+            $Persona->id = $valor['id'];
+            $Persona->tipoDocumento = $valor['tipoDocumento'];
+            $Persona->documento = $valor['documento'];
+            $Persona->nombre = $valor['nombre'];
+            $Persona->apellido = $valor['apellido'];
+            $Persona->telefono = $valor['telefono'];
+            $Persona->telefonoOpcional = $valor['telefonoOpcional'];
+            $Persona->direccion = $valor['direccion'];
+            $Persona->contraseña = $valor['contraseña'];
+            $Persona->tipoPersona = $valor['tipoPersona'];
+            $Persona->estado = $valor['estado'];
 
-            $arrPersona->Disconnect();
+            $Persona->Disconnect();
             array_push($arrPersona, $Persona);
         }
         $tmp->Disconnect();
@@ -299,7 +299,7 @@ private $estado;
             $Persona->telefonoOpcional = $getrow['telefonoOpcional'];
             $Persona->direccion = $getrow['direccion'];
             $Persona->contraseña = $getrow['contraseña'];
-            $Persona->TIPOPERSONA = $getrow['TIPOPERSONA'];
+            $Persona->tipoPersona = $getrow['tipoPersona'];
             $Persona->estado = $getrow['estado'];
         }
         $Persona->Disconnect();
@@ -311,14 +311,13 @@ private $estado;
         return Persona::search("SELECT * FROM proyecto.persona");
     }
 
-    public static function PersonaRegistrada ($id) : bool
+    public static function PersonaRegistrada ($documento) : bool
     {
-        $result = Persona::search("SELECT id FROM proyecto.persona where id = ".$id);
+        $result = Persona::search("SELECT documento FROM proyecto.persona where documento = '".$documento."'");
         if (count($result) > 0){
             return true;
         }else{
             return false;
         }
     }
-
 }

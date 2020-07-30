@@ -42,10 +42,10 @@ class PersonaController
             $arrayPersona['telefonoOpcional'] = $_POST['telefonoOpcional'];
             $arrayPersona['direccion'] = $_POST['direccion'];
             $arrayPersona['contraseña'] = $_POST['contraseña'];
-            $arrayPersona['TIPOPERSONA'] = $_POST['TIPOPERSONA'];
-            $arrayPersona['estado'] = 'Activo';
+            $arrayPersona['tipoPersona'] = $_POST['tipoPersona'];
+            $arrayPersona['estado'] = $_POST ['estado'];
             if(!Persona::PersonaRegistrada($arrayPersona['documento'])){
-                $Persona = new persona ($arrayPersona);
+                $Persona = new Persona ($arrayPersona);
                 if($Persona->create()){
                     header("Location: ../../views/modules/persona/index.php?respuesta=correcto");
                 }
@@ -68,8 +68,8 @@ class PersonaController
             $arrayPersona['telefonoOpcional'] = $_POST['telefonoOpcional'];
             $arrayPersona['direccion'] = $_POST['direccion'];
             $arrayPersona['contraseña'] = $_POST['contraseña'];
-            $arrayPersona['TIPOPERSONA'] = $_POST['TIPOPERSONA'];
-            $arrayPersona['estado'] = 'Activo';
+            $arrayPersona['tipoPersona'] = $_POST['tipoPersona'];
+            $arrayPersona['estado'] = $_POST ['estado'];
             $arrayPersona['id'] = $_POST['id'];
 
             $persona = new persona($arrayPersona);
@@ -83,7 +83,7 @@ class PersonaController
     }
     static public function activate (){
         try {
-            $Objpersona = Persona::searchForId($_GET['Id']);
+            $Objpersona = Persona::searchForId($_GET['id']);
             $Objpersona->setEstado("Activo");
             if($Objpersona->update()){
                 header("Location: ../../views/modules/persona/index.php");
@@ -98,7 +98,7 @@ class PersonaController
 
     static public function inactivate (){
         try {
-            $Objpersona = persona::searchForId($_GET['Id']);
+            $Objpersona = persona::searchForId($_GET['id']);
             $Objpersona->setEstado("Inactivo");
             if($Objpersona->update()){
                 header("Location: ../../views/modules/persona/index.php");
@@ -127,5 +127,5 @@ class PersonaController
             var_dump($e);
             header("Location: ../views/modules/persona/manager.php?respuesta=error");
         }
-    }
+    } 
 }

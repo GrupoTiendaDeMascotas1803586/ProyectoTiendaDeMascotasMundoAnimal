@@ -62,7 +62,7 @@ use App\Controllers\PersonaController; ?>
                     if(!empty($DataPersona)){
                 ?>
                 <div class="card-header">
-                    <h3 class="card-title"><?= $DataPersona->getNombre()  ?></h3>
+                    <h3 class="card-title"><?= $DataPersona->getNombre() ." ". $DataPersona->getApellido() ?></h3>
                 </div>
                 <div class="card-body">
                     <strong><i class="fas fa-user mr-1"></i>Tipo Documento</strong>
@@ -74,13 +74,13 @@ use App\Controllers\PersonaController; ?>
                     <p>
                         <strong><i class="fas fa-book mr-1"></i> Nombres</strong>
                     <p class="text-muted">
-                        <?= $DataPersona->getNombre()." ".$DataPersona->getNombre() ?>
+                        <?= $DataPersona->getNombre() ?>
                     </p>
                     <hr>
 
                         <strong><i class="fas fa-book mr-1"></i>Apellidos</strong>
                         <p class="text-muted">
-                            <?= $DataPersona->getApellido()." ".$DataPersona->getApellido() ?>
+                            <?= $DataPersona->getApellido() ?>
                         </p>
                         <hr>
 
@@ -90,6 +90,15 @@ use App\Controllers\PersonaController; ?>
                         <strong><i class="fas fa-phone mr-1"></i> Telefono</strong>
                         <p class="text-muted"><?= $DataPersona->getTelefono() ?></p>
                         <hr>
+                    <strong><i class="fas fa-phone mr-1"></i> TelefonoOpcional</strong>
+                    <p class="text-muted"><?= $DataPersona->getTelefonoOpcional() ?></p>
+                    <hr>
+                    <strong><i class="fas fa-phone mr-1"></i> Contraseña</strong>
+                    <p class="text-muted"><?= $DataPersona->getContraseña() ?></p>
+                    <hr>
+                    <strong><i class="fas fa-user mr-1"></i>Tipo Persona</strong>
+                    <p class="text-muted"><?= $DataPersona->gettipoPersona() ?></p>
+                    <hr>
                         <strong><i class="far fa-file-alt mr-1"></i> Estado</strong>
                         <p class="text-muted"><?= $DataPersona->getEstado() ?></p>
                     </p>

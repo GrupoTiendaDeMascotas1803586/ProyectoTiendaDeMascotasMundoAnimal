@@ -114,9 +114,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="TIPOPERSONA" class="col-sm-2 col-form-label">Tipo Persona</label>
+                            <label for="tipoPersona" class="col-sm-2 col-form-label">Tipo Persona</label>
                             <div class="col-sm-10">
-                                <select id="TIPOPERSONA" name="TIPOPERSONA" class="custom-select">
+                                <select id="tipoPersona" name="tipoPersona" class="custom-select">
                                     <option value="Gerente">Gerente</option>
                                     <option value="Proveedor">Proveedor</option>
                                     <option value="Auxiliar">Auxiliar</option>
@@ -129,8 +129,8 @@
                             <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                             <div class="col-sm-10">
                                 <select id="estado" name="estado" class="custom-select">
-                                    <option value="activo">activo</option>
-                                    <option value="inactivo">inactivo</option>
+                                    <option value="1">activo</option>
+                                    <option value="2">inactivo</option>
                                 </select>
                             </div>
                         </div>

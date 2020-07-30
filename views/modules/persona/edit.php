@@ -94,14 +94,14 @@ use App\Controllers\PersonaController; ?>
                                     <div class="form-group row">
                                         <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
                                         <div class="col-sm-10">
-                                            <input required type="text" class="form-control" id="nombre" name="nombre" value="<?= $DataPersona->getNombres(); ?>" placeholder="Ingrese sus nombres">
+                                            <input required type="text" class="form-control" id="nombre" name="nombre" value="<?= $DataPersona->getNombre(); ?>" placeholder="Ingrese sus nombres">
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label for="apellido" class="col-sm-2 col-form-label">Apellido</label>
                                         <div class="col-sm-10">
-                                            <input required type="text" class="form-control" id="apellido" name="apellido" value="<?= $DataPersona->getApellidos(); ?>" placeholder="Ingrese sus apellidos">
+                                            <input required type="text" class="form-control" id="apellido" name="apellido" value="<?= $DataPersona->getApellido(); ?>" placeholder="Ingrese sus apellidos">
                                         </div>
                                     </div>
 
@@ -113,9 +113,9 @@ use App\Controllers\PersonaController; ?>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="telefonoOpcinal" class="col-sm-2 col-form-label">Telefono Opcinal</label>
+                                        <label for="telefonoOpcional" class="col-sm-2 col-form-label">Telefono Opcional</label>
                                         <div class="col-sm-10">
-                                            <input required type="number" minlength="6" class="form-control" id="telefonoOpcinal" name="telefonoOpcinal" value="<?= $DataPersona->getTelefonoOpcional(); ?>" placeholder="Ingrese su telefono opcional">
+                                            <input required type="number" minlength="6" class="form-control" id="telefonoOpcional" name="telefonoOpcional" value="<?= $DataPersona->getTelefonoOpcional(); ?>" placeholder="Ingrese su telefono opcional">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -133,13 +133,13 @@ use App\Controllers\PersonaController; ?>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="TIPOPERSONA" class="col-sm-2 col-form-label">Tipo persona</label>
+                                        <label for="tipoPersona" class="col-sm-2 col-form-label">Tipo persona</label>
                                         <div class="col-sm-10">
-                                            <select id="rol" name="rol" class="custom-select">
-                                                <option <?= ($DataPersona->getTIPOPERSONA() == "Gerente") ? "selected":""; ?> value="Gerente">Gerente</option>
-                                                <option <?= ($DataPersona->getTIPOPERSONA() == "Proveedor") ? "selected":""; ?> value="Proveedor">Proveedor</option>
-                                                <option <?= ($DataPersona->getTIPOPERSONA() == "Auxiliar") ? "selected":""; ?> value="Auxiliar">Auxiliar</option>
-                                                <option <?= ($DataPersona->getTIPOPERSONA() == "Cliente") ? "selected":""; ?> value="Cliente">Cliente</option>
+                                            <select id="tipoPersona" name="tipoPersona" class="custom-select">
+                                                <option <?= ($DataPersona->gettipoPersona() == "Gerente") ? "selected":""; ?> value="Gerente">Gerente</option>
+                                                <option <?= ($DataPersona->gettipoPersona() == "Proveedor") ? "selected":""; ?> value="Proveedor">Proveedor</option>
+                                                <option <?= ($DataPersona->gettipoPersona() == "Auxiliar") ? "selected":""; ?> value="Auxiliar">Auxiliar</option>
+                                                <option <?= ($DataPersona->gettipoPersona() == "Cliente") ? "selected":""; ?> value="Cliente">Cliente</option>
                                             </select>
                                         </div>
                                     </div>
