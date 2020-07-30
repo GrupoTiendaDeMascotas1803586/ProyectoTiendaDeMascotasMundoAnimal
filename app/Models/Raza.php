@@ -73,6 +73,7 @@ class Raza extends BasicModel
         $this->especie = $especie;
     }
 
+
     public function create() : bool
     {
         $result = $this->insertRow("INSERT INTO MERproyectoTMMA.Raza VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(

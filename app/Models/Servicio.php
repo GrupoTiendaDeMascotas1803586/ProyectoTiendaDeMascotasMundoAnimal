@@ -7,19 +7,19 @@ require('BasicModel.php');
 class Servicio extends BasicModel{
 
     private $id;
-    private $Nombre;
-    private $Costo;
-    private $Estado;
-    private $TipoServicio;
+    private $nombre;
+    private $costo;
+    private $estado;
+    private $tipoServicio;
 
     public function __construct($Servicio= array())
     {
         parent::__construct(); //Llama al contructor padre "la clase conexion" para conectarme a la BD
         $this->id = $Servicio['id'] ?? null;
-        $this->Nombre = $Servicio['Nombre'] ?? null;
-        $this->Costo= $Servicio['Costo'] ?? null;
-        $this->Estado = $Servicio['Estado'] ?? null;
-        $this->TipoServicio = $Servicio['TipoServicio'] ?? null;
+        $this->nombre = $Servicio['nombre'] ?? null;
+        $this->costo= $Servicio['costo'] ?? null;
+        $this->estado = $Servicio['estado'] ?? null;
+        $this->tipoServicio = $Servicio['tipoServicio'] ?? null;
     }
     function __destruct() {
         $this->Disconnect();
@@ -46,15 +46,15 @@ class Servicio extends BasicModel{
      */
     public function getNombre(): string
     {
-        return $this->Nombre;
+        return $this->nombre;
     }
 
     /**
-     * @param mixed|null $Nombre
+     * @param mixed|null $nombre
      */
-    public function setNombre(string $Nombre): void
+    public function setNombre(string $nombre): void
     {
-        $this->Nombre = $Nombre;
+        $this->nombre = $nombre;
     }
 
     /**
@@ -62,54 +62,54 @@ class Servicio extends BasicModel{
      */
     public function getCosto(): string
     {
-        return $this->Costo;
+        return $this->costo;
     }
 
     /**
-     * @param mixed|null $Costo
+     * @param mixed|null $costo
      */
-    public function setCosto(string $Costo): void
+    public function setCosto(string $costo): void
     {
-        $this->Costo = $Costo;
+        $this->costo = $costo;
     }
     /**
      * @return mixed|null
      */
     public function getEstado(): string
     {
-        return $this->Estado;
+        return $this->estado;
     }
 
     /**
-     * @param mixed|null $Estado
+     * @param mixed|null $estado
      */
-    public function setEstado(string $Estado): void
+    public function setEstado(string $estado): void
     {
-        $this->Estado = $Estado;
+        $this->estado = $estado;
     }
     /**
      * @return mixed|null
      */
     public function getTipoServicio(): string
     {
-        return $this->TipoServicio;
+        return $this->tipoServicio;
     }
 
     /**
-     * @param mixed|null $TipoServicio
+     * @param mixed|null $tipoServicio
      */
-    public function setTipoServicio(string $TipoServicio): void
+    public function setTipoServicio(string $tipoServicio): void
     {
-        $this->TipoServicio = $TipoServicio;
+        $this->tipoServicio = $tipoServicio;
     }
 
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO proyecto.Servicio VALUES (NULL, ?, ?, ?, ?, ?)", array(
-                $this->Nombre,
-                $this->Costo,
-                $this->Estado,
-                $this->TipoServicio
+        $result = $this->insertRow("INSERT INTO proyecto.servicio VALUES (NULL, ?, ?, ?, ?)", array(
+                $this->nombre,
+                $this->costo,
+                $this->estado,
+                $this->tipoServicio
 
             )
         );
@@ -119,11 +119,11 @@ class Servicio extends BasicModel{
 
     public function update() : bool
     {
-        $result = $this->updateRow("UPDATE proyecto.Servicio SET Nombre = ?, Costo = ?, Estado = ?, TipoServicio = ? WHERE id = ?", array(
-                $this->Nombre,
-                $this->Costo,
-                $this->Estado,
-                $this->TipoServicio,
+        $result = $this->updateRow("UPDATE proyecto.servicio SET nombre = ?, costo = ?, estado = ?, tipoServicio = ? WHERE id = ?", array(
+                $this->nombre,
+                $this->costo,
+                $this->estado,
+                $this->tipoServicio,
                 $this->id
             )
         );
@@ -145,10 +145,10 @@ class Servicio extends BasicModel{
         foreach ($getrows as $valor) {
             $Servicio = new Servicio();
             $Servicio->id = $valor['id'];
-            $Servicio->Nombre = $valor['Nombre'];
-            $Servicio->Costo = $valor['Costo'];
-            $Servicio->Estado = $valor['Estado'];
-            $Servicio->TipoServicio = $valor['TipoServicio'];
+            $Servicio->nombre = $valor['nombre'];
+            $Servicio->costo = $valor['costo'];
+            $Servicio->estado = $valor['estado'];
+            $Servicio->tipoServicio = $valor['tipoServicio'];
             $Servicio->Disconnect();
             array_push($arrServicio, $Servicio);
         }
@@ -161,12 +161,12 @@ class Servicio extends BasicModel{
         $Servicio = null;
         if ($id > 0){
             $Servicio = new Servicio();
-            $getrow = $Servicio->getRow("SELECT * FROM proyecto.Servicio WHERE id =?", array($id));
+            $getrow = $Servicio->getRow("SELECT * FROM proyecto.servicio WHERE id =?", array($id));
             $Servicio->id = $getrow['id'];
-            $Servicio->Nombre = $getrow['Nombre'];
-            $Servicio->Costo = $getrow['Costo'];
-            $Servicio->Estado = $getrow['Estado'];
-            $Servicio->TipoServicio = $getrow['TipoServicio'];
+            $Servicio->nombre = $getrow['nombre'];
+            $Servicio->costo = $getrow['costo'];
+            $Servicio->estado = $getrow['estado'];
+            $Servicio->tipoServicio = $getrow['tipoServicio'];
         }
         $Servicio->Disconnect();
         return $Servicio;
@@ -174,12 +174,12 @@ class Servicio extends BasicModel{
 
     public static function getAll() : array
     {
-        return Servicio::search("SELECT * FROM proyecto.Servicio");
+        return Servicio::search("SELECT * FROM proyecto.servicio");
     }
 
-        public static function ServicioRegistrado ($id) : bool
+        public static function ServicioRegistrado ($nombre) : bool
     {
-        $result = Servicio::search("SELECT id FROM proyecto.Servicio where id = ".$id);
+        $result = Servicio::search("SELECT id FROM proyecto.servicio where nombre = '".$nombre ."'");
         if (count($result) > 0){
             return true;
         }else{
