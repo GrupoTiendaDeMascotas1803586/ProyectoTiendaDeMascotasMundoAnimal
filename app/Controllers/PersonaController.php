@@ -39,7 +39,7 @@ class PersonaController
             $arrayPersona['nombre'] = $_POST['nombre'];
             $arrayPersona['apellido'] = $_POST['apellido'];
             $arrayPersona['telefono'] = $_POST['telefono'];
-            $arrayPersona['telefonoOpcional'] = $_POST['telefonoOpcional'];
+            $arrayPersona['telefonoOpcional'] = !empty($_POST['telefonoOpcional']) ? $_POST['telefonoOpcional'] : null;
             $arrayPersona['direccion'] = $_POST['direccion'];
             $arrayPersona['contraseña'] = $_POST['contraseña'];
             $arrayPersona['tipoPersona'] = $_POST['tipoPersona'];
