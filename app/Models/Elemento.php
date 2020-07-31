@@ -182,14 +182,16 @@ class Elemento extends BasicModel
     }
     public function update() : bool
     {
-        $result = $this->updateRow("UPDATE proyecto.elemento SET nombre = ?, tipoElemento = ? tamaño = ?, material = ?, color = ?, marca = ?, estado = ?, WHERE id = ?", array(
+        $result = $this->updateRow("UPDATE proyecto.elemento SET nombre = ?, tipoElemento = ?, tamaño = ?, material = ?, color = ?, marca = ?, estado = ? WHERE id = ?", array(
                 $this->nombre,
                 $this->tipoElemento,
                 $this->tamaño,
                 $this->material,
                 $this->color,
                 $this->marca,
-                $this->estado
+                $this->estado,
+                $this->id
+
 
             )
         );

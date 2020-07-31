@@ -69,7 +69,7 @@ use App\Controllers\ElementoController; ?>
                         ?>
                         <!-- form start -->
                         <form class="form-horizontal" method="post" id="frmEditElemento" name="frmEditElemento" action="../../../app/Controllers/ElementoController.php?action=edit">
-                            <input id="Id" name="Id" value="<?php echo $DataELEMENTO->getId(); ?>" hidden required="required" type="text">
+                            <input id="id" name="id" value="<?php echo $DataELEMENTO->getId(); ?>" hidden required="required" type="text">
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
