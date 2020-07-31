@@ -95,7 +95,7 @@
                         <div class="form-group row">
                             <label for="telefonoOpcional" class="col-sm-2 col-form-label">TelefonoOpcinal</label>
                             <div class="col-sm-10">
-                                <input required type="number" minlength="6" class="form-control" id="telefonoOpcional" name="telefonoOpcional" placeholder="Ingrese un telefonoOpcional">
+                                <input  type="number" minlength="6" class="form-control" id="telefonoOpcional" name="telefonoOpcional" placeholder="Ingrese un telefonoOpcional">
                             </div>
                         </div>
 
