@@ -93,6 +93,7 @@ use App\Controllers\PersonaController; ?>
                                     <th>Contraseña</th>
                                     <th>tipoPersona</th>
                                     <th>Estado</th>
+                                    <th>Acciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -137,6 +138,8 @@ use App\Controllers\PersonaController; ?>
                                     <th>Contraseña</th>
                                     <th>tipoPersona</th>
                                     <th>Estado</th>
+                                    <th>Acciones</th>
+
                                 </tr>
                                 </tfoot>
                             </table>
