@@ -1,12 +1,12 @@
 <?php
 require("../../partials/routes.php");
-require("../../../app/Controllers/ServicioController.php");
+require("../../../app/Controllers/CompraController.php");
 
-use App\Controllers\ServicioController; ?>
+use App\Controllers\CompraController; ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Editar Servicio</title>
+    <title><?= getenv('TITLE_SITE') ?> | Editar Compra</title>
     <?php require("../../partials/head_imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -24,7 +24,7 @@ use App\Controllers\ServicioController; ?>
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Editar Servicio</h1>
+                        <h1>Editar Comprar</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -44,7 +44,7 @@ use App\Controllers\ServicioController; ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al editar el servicio: <?= ($_GET['mensaje']) ?? "" ?>
+                        Error al editar Compra: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
             <?php } else if (empty($_GET['id'])) { ?>
@@ -64,45 +64,25 @@ use App\Controllers\ServicioController; ?>
                 <?php if(!empty($_GET["id"]) && isset($_GET["id"])){ ?>
                     <p>
                     <?php
-                    $DataServicio = ServicioController::searchForID($_GET["id"]);
-                    if(!empty($DataServicio)){
+                    $DataCompra = CompraController::searchForID($_GET["id"]);
+                    if(!empty($DataCompra)){
                         ?>
                         <!-- form start -->
-                        <form class="form-horizontal" method="post" id="frmEditServicio" name="frmEditServicio" action="../../../app/Controllers/ServicioController.php?action=edit">
-                            <input id="id" name="id" value="<?php echo $DataServicio->getId(); ?>" hidden required="required" type="text">
+                        <form class="form-horizontal" method="post" id="frmEditCompra" name="frmEditCompra" action="../../../app/Controllers/CompraController.php?action=edit">
+                            <input id="id" name="id" value="<?php echo $DataCompra->getId(); ?>" hidden required="required" type="text">
                             <div class="card-body">
-                                <div class="form-group row">
-                                    <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
-                                    <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="nombre" name="nombre" value="<?= $DataServicio->getNombre(); ?>" placeholder="Ingrese el nombre">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="costo" class="col-sm-2 col-form-label">Costo</label>
-                                    <div class="col-sm-10">
-                                        <input required type="number" minlength="6" class="form-control" id="costo" name="costo" value="<?= $DataServicio->getCosto(); ?>" placeholder="Ingrese el Costo">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="estado" class="col-sm-2 col-form-label">Estado</label>
-                                    <div class="col-sm-10">
-                                        <select id="estado" name="estado" class="custom-select">
-                                            <option <?= ($DataServicio->getEstado() == "Disponible") ? "selected":""; ?> value="Disponible">Disponible</option>
-                                            <option <?= ($DataServicio->getEstado() == "No Disponible") ? "selected":""; ?> value="No Disponible">No Disponible</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="tipoServicio" class="col-sm-2 col-form-label">Tipo Servicio</label>
-                                <div class="col-sm-10">
-                                    <select id="tipoServicio" name="tipoServicio" class="custom-select">
-                                        <option <?= ($DataServicio->getTipoServicio() == "1") ? "selected":""; ?> value="1">Guarderia</option>
-                                        <option <?= ($DataServicio->getTipoServicio() == "2") ? "selected":""; ?> value="2">Peluqueria</option>
-                                        <option <?= ($DataServicio->getTipoServicio() == "3") ? "selected":""; ?> value="3">Baño</option>
-                                        <option <?= ($DataServicio->getTipoServicio() == "4") ? "selected":""; ?> value="4">Desparasitacion</option>
 
-                                    </select>
+                                <div class="form-group row">
+                                    <label for="fecha" class="col-sm-2 col-form-label">Fecha</label>
+                                    <div class="col-sm-10">
+                                        <input required type="text" class="form-control" id="fecha" name="fecha" value="<?= $DataCompra->getFecha(); ?>" placeholder="Ingrese la fecha">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="total" class="col-sm-2 col-form-label">Total</label>
+                                    <div class="col-sm-10">
+                                        <input required type="number" minlength="6" class="form-control" id="total" name="total" value="<?= $DataCompra->getTotal(); ?>" placeholder="Ingrese el total">
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -134,3 +114,5 @@ use App\Controllers\ServicioController; ?>
 <?php require ('../../partials/scripts.php');?>
 </body>
 </html>
+
+

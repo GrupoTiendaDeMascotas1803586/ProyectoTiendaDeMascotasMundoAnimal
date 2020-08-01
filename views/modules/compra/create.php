@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Crear Servicio</title>
+    <title><?= getenv('TITLE_SITE') ?> | Crear Compra</title>
     <?php require("../../partials/head_imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -20,7 +20,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Crear Nuevo Servicio</h1>
+                        <h1>Agregar una Nueva Compra</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -40,10 +40,11 @@
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al crear el servicio: <?= $_GET['mensaje'] ?>
+                        Error al Agregar una nueva Compra: <?= $_GET['mensaje'] ?>
                     </div>
                 <?php } ?>
             <?php } ?>
+
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <div class="card-header">
@@ -51,41 +52,26 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" method="post" id="frmCreateServicio" name="frmCreateServicio" action="../../../app/Controllers/ServicioController.php?action=create">
+                <form class="form-horizontal" method="post" id="frmCreateCompra" name="frmCreateCompra" action="../../../app/Controllers/CompraController.php?action=create">
                     <div class="card-body">
-                        <div class="form-group row">
-                            <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
-                            <div class="col-sm-10">
-                                <input required type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="costo" class="col-sm-2 col-form-label">Costo</label>
-                            <div class="col-sm-10">
-                                <input required type="number" minlength="6" class="form-control" id="costo" name="costo" placeholder="Ingrese el costo">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="estado" class="col-sm-2 col-form-label">Estado</label>
-                            <div class="col-sm-10">
-                                <select id="estado" name="estado" class="custom-select">
-                                    <option value="Disponible">Disponible</option>
-                                    <option value="No Disponible">No Disponible</option>
-                                </select>
-                            </div>
-                        </div>
-                            <div class="form-group row">
-                                <label for="tipoServicio" class="col-sm-2 col-form-label">Tipo Servicio</label>
-                                <div class="col-sm-10">
-                                    <select id="tipoServicio" name="tipoServicio" class="custom-select">
-                                        <option value="1">Guarderia</option>
-                                        <option value="2">Peluqueria</option>
-                                        <option value="3">Baño</option>
-                                        <option value="4">Desparasitacion</option>
 
-                                    </select>
-                                </div>
+                        <div class="form-group row">
+                            <label for="fecha" class="col-sm-2 col-form-label">fecha</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control" id="fecha" name="fecha" placeholder="Ingrese la fecha">
                             </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="total" class="col-sm-2 col-form-label">total</label>
+                            <div class="col-sm-10">
+                                <input required type="number" minlength="6" class="form-control" id="total" name="total" placeholder="Ingrese el total">
+                            </div>
+                        </div>
+
+
+
+                    </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                         <button type="submit" class="btn btn-info">Enviar</button>

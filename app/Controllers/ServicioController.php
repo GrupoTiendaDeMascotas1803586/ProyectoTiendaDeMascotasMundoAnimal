@@ -14,7 +14,7 @@ class ServicioController
     static function main($action)
     {
         if ($action == "create") {
-            ServicioController::Create();
+            ServicioController::create();
         } else if ($action == "edit") {
             ServicioController::edit();
         } else if ($action == "searchForID") {
@@ -37,11 +37,11 @@ class ServicioController
     {
         try {
             $arrayServicio = array();
-            $arrayServicio['Nombre'] = $_POST['Nombre'];
-            $arrayServicio['Costo'] = $_POST['especie'];
-            $arrayServicio['Estado'] = 'Activo';
-            $arrayServicio['TipoServicio'] = $_POST['TipoServicio'];
-            if(!Servicio::ServicioRegistrado($arrayServicio['id'])){
+            $arrayServicio['nombre'] = $_POST['nombre'];
+            $arrayServicio['costo'] = $_POST['costo'];
+            $arrayServicio['estado'] = $_POST['estado'];
+            $arrayServicio['tipoServicio'] = $_POST['tipoServicio'];
+            if(!Servicio::ServicioRegistrado($arrayServicio['nombre'])){
                 $Servicio = new Servicio ($arrayServicio);
                 if($Servicio->create()){
                     header("Location: ../../views/modules/Servicio/index.php?respuesta=correcto");
@@ -58,10 +58,10 @@ class ServicioController
     static public function edit (){
         try {
             $arrayServicio = array();
-            $arrayServicio['Nombre'] = $_POST['Nombre'];
-            $arrayServicio['Costo'] = $_POST['Costo'];
-            $arrayServicio['Estado'] = $_POST['Estado'];
-            $arrayServicio['TipoServicio'] = $_POST['TipoServicio'];
+            $arrayServicio['nombre'] = $_POST['nombre'];
+            $arrayServicio['costo'] = $_POST['costo'];
+            $arrayServicio['estado'] = $_POST['estado'];
+            $arrayServicio['tipoServicio'] = $_POST['tipoServicio'];
             $arrayServicio['id'] = $_POST['id'];
 
             $user = new Servicio($arrayServicio);
