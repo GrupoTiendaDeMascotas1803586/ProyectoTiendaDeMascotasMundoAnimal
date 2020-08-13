@@ -34,6 +34,121 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item has-treeview menu-close">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+                            Persona <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= $baseURL?>/Views/Modules/persona/create.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Crear</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= $baseURL?>/Views/Modules/persona/index.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Index</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview menu-close">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+                            Raza <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= $baseURL?>/Views/Modules/raza/create.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Crear</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= $baseURL?>/Views/Modules/raza/index.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Index</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview menu-close">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+                            Compra <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= $baseURL?>/Views/Modules/compra/create.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Crear</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= $baseURL?>/Views/Modules/compra/index.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Index</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview menu-close">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+                            Elemento <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= $baseURL?>/Views/Modules/elemento/create.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Crear</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= $baseURL?>/Views/Modules/elemento/index.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Index</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview menu-close">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+                            Servicio <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= $baseURL?>/Views/Modules/servicio/create.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Crear</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= $baseURL?>/Views/Modules/servicio/index.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Index</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
