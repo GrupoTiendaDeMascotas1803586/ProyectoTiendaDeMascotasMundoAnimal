@@ -70,10 +70,10 @@ use App\Controllers\RazaController; ?>
                         <strong><i class="fas fa-user mr-1"></i> Nombre</strong>
                         <p class="text-muted"><?= $DataRaza->getNombre().": ".$DataRaza->getNombre() ?></p>
                         <hr>
-                        <strong><i class="far fa-file-alt mr-1"></i> Especie y Rol</strong>
-                        <p class="text-muted"><?= $DataRaza->getEspecie()." - ".$DataRaza->getEspecie() ?></p>
-                        <strong><i class="far fa-file-alt mr-1"></i> Estado y Rol</strong>
-                        <p class="text-muted"><?= $DataRaza->getEstado()." - ".$DataRaza->getEstado() ?></p>
+                        <strong><i class="far fa-file-alt mr-1"></i> Especie </strong>
+                        <p class="text-muted"><?= $DataRaza->getEspecie()?></p>
+                        <strong><i class="far fa-file-alt mr-1"></i> Estado </strong>
+                        <p class="text-muted"><?= $DataRaza->getEstado() ?></p>
                     </p>
 
                 </div>
