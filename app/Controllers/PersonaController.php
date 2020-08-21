@@ -127,5 +127,6 @@ class PersonaController
             var_dump($e);
             header("Location: ../views/modules/persona/manager.php?respuesta=error");
         }
-    } 
+    }
+
 }

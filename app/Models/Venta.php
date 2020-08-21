@@ -3,30 +3,22 @@
 
 namespace App\Models;
 
+require('BasicModel.php');
 
-class Venta
+class Venta extends BasicModel
 {
-    private $Id;
+    private $id;
     private $fecha;
-    private $subTotal;
-    private $totalaPagar;
+    private $subtotal;
+    private $totalApagar;
 
-
-    /**
-     * Usuarios constructor.
-     * @param $Id
-     * @param $fecha
-     * @param $subTotal
-     * @param $totalaPagar
-
-     */
-    public function __construct($Id = array())
+    public function __construct($Venta = array())
     {
         parent::__construct(); //Llama al contructor padre "la clase conexion" para conectarme a la BD
-        $this->Id = $Id['Id'] ?? null;
-        $this->fecha = $Id['fecha'] ?? null;
-        $this->subTotal = $Id['subTotal'] ?? null;
-        $this->totalaPagar = $Id['totalaPagar'] ?? null;
+        $this->id = $Venta['id'] ?? null;
+        $this->fecha = $Venta['fecha'] ?? null;
+        $this->subtotal = $Venta['subtotal'] ?? null;
+        $this->totalApagar = $Venta['totalApagar'] ?? null;
     }
 
     /* Metodo destructor cierra la conexion. */
@@ -35,76 +27,76 @@ class Venta
     }
 
     /**
-     * @return int
+     * @return mixed|null
      */
-    public function getId() : int
+    public function getId(): ?Int
     {
-        return $this->Id;
+        return $this->id;
     }
 
     /**
-     * @param int $Id
+     * @param mixed|null $id
      */
-    public function setId(int $Id): void
+    public function setId(?mixed $id): void
     {
-        $this->Id = $Id;
+        $this->id = $id;
     }
 
     /**
-     * @return string
+     * @return mixed|null
      */
-    public function getfecha() : string
+    public function getFecha(): ?\DateTime
     {
         return $this->fecha;
     }
 
     /**
-     * @param string $fecha
+     * @param mixed|null $fecha
      */
-    public function setfecha(string $fecha): void
+    public function setFecha(?mixed $fecha): void
     {
         $this->fecha = $fecha;
     }
 
     /**
-     * @return string
+     * @return mixed|null
      */
-    public function getsubTotal() : string
+    public function getSubtotal(): ?Double
     {
-        return $this->subTotal;
+        return $this->subtotal;
     }
 
     /**
-     * @param string $subTotal
+     * @param mixed|null $subtotal
      */
-    public function setsubTotal(string $subTotal): void
+    public function setSubtotal(?mixed $subtotal): void
     {
-        $this->subTotal = $subTotal;
+        $this->subtotal = $subtotal;
     }
 
     /**
-     * @return string
+     * @return mixed|null
      */
-    public function gettotalaPagar() : string
+    public function getTotalApagar(): ?Double
     {
-        return $this->totalaPagar;
+        return $this->totalApagar;
     }
 
     /**
-     * @param string $totalaPagar
+     * @param mixed|null $totalApagar
      */
-    public function settotalaPagar(string $totalaPagar): void
+    public function setTotalApagar(?mixed $totalApagar): void
     {
-        $this->totalaPagar = $totalaPagar;
+        $this->totalApagar = $totalApagar;
     }
 
 
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO ProyectoTiendaDeMascotasMundoAnimal VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO proyecto.venta VALUES (NULL, ?, ?, ?)", array(
                 $this->fecha,
-                $this->subTotal,
-                $this->totalaPagar,
+                $this->subtotal,
+                $this->totalApagar
 
             )
         );
@@ -113,61 +105,64 @@ class Venta
     }
     public function update() : bool
     {
-        $result = $this->updateRow("UPDATE ProyectoTiendaDeMascotasMundoAnimal.Id SET fecha = ?, subTotal = ? totalaPagar = ?, WHERE Id = ?", array(
+        $result = $this->updateRow("UPDATE proyecto.venta SET fecha = ?, subtotal = ?, totalApagar = ? WHERE id = ?", array(
                 $this->fecha,
-                $this->subTotal,
-                $this->totalaPagar,
+                $this->subtotal,
+                $this->totalApagar,
+                $this->id
+
+
             )
         );
         $this->Disconnect();
         return $result;
     }
-    public function deleted($Id) : void
+    public function deleted($id) : void
     {
         // TODO: Implement deleted() method.
     }
     public static function search($query) : array
     {
-        $arrId = array();
-        $tmp = new Id();
+        $arrVenta = array();
+        $tmp = new Venta();
         $getrows = $tmp->getRows($query);
 
         foreach ($getrows as $valor) {
-            $Id = new Id();
-            $Id->Id = $valor['Id'];
-            $Id->fecha = $valor['fecha'];
-            $Id->subTotal = $valor['subTotal'];
-            $Id->totalaPagar = $valor['totalaPagar'];
-
-            $Id->Disconnect();
-            array_push($arrId, $Id);
+            $Venta = new Venta();
+            $Venta->id = $valor['id'];
+            $Venta->fecha = $valor['fecha'];
+            $Venta->subtotal = $valor['subtotal'];
+            $Venta->totalApagar = $valor['totalApagar'];
+            $Venta->Disconnect();
+            array_push($arrVenta, $Venta);
         }
         $tmp->Disconnect();
-        return $arrId;
+        return $arrVenta;
     }
-    public static function searchForId($Id) : Id
+    public static function searchForId($id) : Venta
     {
-        $Id = null;
-        if ($Id > 0){
-            $Id= new Id();
-            $getrow = $Id->getRow("SELECT * FROM ProyectoTiendaDeMascotasMundoAnimal.Id WHERE Id =?", array($Id));
-            $Id->Id = $getrow['Id'];
-            $Id->fecha = $getrow['fecha'];
-            $Id->subTotal = $getrow['subTotal'];
-            $Id->totalaPagar = $getrow['totalaPagar'];
+        $Venta = null;
+        if ($id > 0){
+            $Venta= new Venta();
+            $getrow = $Venta->getRow("SELECT * FROM proyecto.venta WHERE id =?", array($id));
+            $Venta->id = $getrow['id'];
+            $Venta->fecha = $getrow['fecha'];
+            $Venta->subtotal = $getrow['subtotal'];
+            $Venta->totalApagar = $getrow['totalApagar'];
+
         }
-        $Id->Disconnect();
-        return $Id;
+        $Venta->Disconnect();
+        return $Venta;
     }
 
     public static function getAll() : array
     {
-        return Id::search("SELECT * FROM ProyectoTiendaDeMascotasMundoAnimal.Id");
+        return Venta::search("SELECT * FROM proyecto.venta");
     }
 
-    public static function IdRegistrado($fecha) : bool
+    public static function VentaRegistrado($fecha) : bool
     {
-        $result = Id::search("SELECT id FROM ProyectoTiendaDeMascotasMundoAnimal.Id where fecha = ".$fecha);
+        $result = Venta::search("SELECT fecha FROM proyecto.venta where fecha = ' ".$fecha."'");
         if (count($result) > 0){
             return true;
         }else{
