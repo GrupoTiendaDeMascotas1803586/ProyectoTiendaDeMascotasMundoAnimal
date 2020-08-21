@@ -85,6 +85,7 @@ use App\Controllers\RazaController; ?>
                                     <th>Nombre</th>
                                     <th>Especie</th>
                                     <th>Estado</th>
+                                    <th>Acciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -100,10 +101,10 @@ use App\Controllers\RazaController; ?>
                                         <td>
                                             <a href="edit.php?id=<?php echo $raza->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
                                             <a href="show.php?id=<?php echo $raza->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
-                                            <?php if ($raza->getEstado() != "Disponible"){ ?>
-                                                <a href="../../../app/Controllers/RazaController.php?action=activate&Id=<?php echo $raza->getId(); ?>" type="button" data-toggle="tooltip" title="Activar" class="btn docs-tooltip btn-success btn-xs"><i class="fa fa-check-square"></i></a>
+                                            <?php if ($raza->getEstado() != "Activo"){ ?>
+                                                <a href="../../../app/Controllers/RazaController.php?action=activate&id=<?php echo $raza->getId(); ?>" type="button" data-toggle="tooltip" title="Activar" class="btn docs-tooltip btn-success btn-xs"><i class="fa fa-check-square"></i></a>
                                             <?php }else{ ?>
-                                                <a type="button" href="../../../app/Controllers/RazaController.php?action=inactivate&Id=<?php echo $raza->getId(); ?>" data-toggle="tooltip" title="Inactivar" class="btn docs-tooltip btn-danger btn-xs"><i class="fa fa-times-circle"></i></a>
+                                                <a type="button" href="../../../app/Controllers/RazaController.php?action=inactivate&id=<?php echo $raza->getId(); ?>" data-toggle="tooltip" title="Inactivar" class="btn docs-tooltip btn-danger btn-xs"><i class="fa fa-times-circle"></i></a>
                                             <?php } ?>
                                         </td>
                                     </tr>
@@ -115,6 +116,7 @@ use App\Controllers\RazaController; ?>
                                     <th>Nombre</th>
                                     <th>Especie</th>
                                     <th>Estado</th>
+                                    <th>Acciones</th>
                                 </tr>
                                 </tfoot>
                             </table>

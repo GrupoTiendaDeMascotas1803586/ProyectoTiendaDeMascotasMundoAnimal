@@ -94,8 +94,8 @@ use App\Controllers\RazaController; ?>
                                         <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                                         <div class="col-sm-10">
                                             <select id="estado" name="estado" class="custom-select">
-                                                <option <?= ($DataRaza->getEstado() == "Disponible") ? "selected":""; ?> value="1">Disponible</option>
-                                                <option <?= ($DataRaza->getEstado() == "No Disponible") ? "selected":""; ?> value="2">No Disponible</option>
+                                                <option <?= ($DataRaza->getEstado() == "Activo") ? "selected":""; ?> value="Activo">Disponible</option>
+                                                <option <?= ($DataRaza->getEstado() == "Inactivo") ? "selected":""; ?> value="Inactivo">No Disponible</option>
                                             </select>
                                         </div>
                                     </div>
