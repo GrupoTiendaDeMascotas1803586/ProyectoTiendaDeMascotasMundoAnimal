@@ -1,7 +1,8 @@
-<?php require("../../partials/routes.php");
-require("../../../app/Controllers/RazaController.php");
 
-use App\Controllers\RazaController; ?>
+<?php require("../../partials/routes.php");
+require("../../../app/Controllers/CitaController.php");
+
+use App\Controllers\CitaController; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +32,7 @@ use App\Controllers\RazaController; ?>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                             <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">ProyectoTiendaDeMascotasMundoAnimal</a></li>
+                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">ProyectoTiendaDeMascotasMundoAnimal </a></li>
                             <li class="breadcrumb-item active">Inicio</li>
                         </ol>
                     </div>
@@ -48,9 +49,9 @@ use App\Controllers\RazaController; ?>
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-check"></i> Correcto!</h5>
                         <?php if ($_GET['action'] == "create"){ ?>
-                            La raza ha sido creada con exito!
+                            La cita ha sido creado con exito!
                         <?php }else if($_GET['action'] == "update"){ ?>
-                            Los datos de la raza han sido actualizados correctamente!
+                            Los datos de la cita han sido actualizados correctamente!
                         <?php } ?>
                     </div>
                 <?php } ?>
@@ -59,7 +60,7 @@ use App\Controllers\RazaController; ?>
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Gestionar Raza</h3>
+                    <h3 class="card-title">Gestionar Cita</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                             <i class="fas fa-minus"></i></button>
@@ -72,39 +73,39 @@ use App\Controllers\RazaController; ?>
                         <div class="col-auto mr-auto"></div>
                         <div class="col-auto">
                             <a role="button" href="create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
-                                <i class="fas fa-plus"></i> Crear Raza
+                                <i class="fas fa-plus"></i> Crear Cita
                             </a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <table id="tblRaza" class="datatable table table-bordered table-striped">
+                            <table id="tblCita" class="datatable table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nombre</th>
-                                    <th>Especie</th>
+                                    <th>Hora de Inicio</th>
+                                    <th>Fecha de Inicio</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                $arrRaza = RazaController::getAll();
-                                foreach ($arrRaza as $raza){
+                                $arrCita = CitaController::getAll();
+                                foreach ($arrCita as $Cita){
                                     ?>
                                     <tr>
-                                        <td><?php echo $raza->getId(); ?></td>
-                                        <td><?php echo $raza->getNombre(); ?></td>
-                                        <td><?php echo $raza->getEspecie(); ?></td>
-                                        <td><?php echo $raza->getEstado(); ?></td>
+                                        <td><?php echo $Cita->getId(); ?></td>
+                                        <td><?php echo $Cita->getHoraInicio(); ?></td>
+                                        <td><?php echo $Cita->getFechaInicio(); ?></td>
+                                        <td><?php echo $Cita->getEstado(); ?></td>
                                         <td>
-                                            <a href="edit.php?id=<?php echo $raza->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="show.php?id=<?php echo $raza->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
-                                            <?php if ($raza->getEstado() != "Activo"){ ?>
-                                                <a href="../../../app/Controllers/RazaController.php?action=activate&id=<?php echo $raza->getId(); ?>" type="button" data-toggle="tooltip" title="Activar" class="btn docs-tooltip btn-success btn-xs"><i class="fa fa-check-square"></i></a>
+                                            <a href="edit.php?id=<?php echo $Cita->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="show.php?id=<?php echo $Cita->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
+                                            <?php if ($Cita->getEstado() != "Activo"){ ?>
+                                                <a href="../../../app/Controllers/CitaController.php?action=activate&Id=<?php echo $Cita->getId(); ?>" type="button" data-toggle="tooltip" title="Activar" class="btn docs-tooltip btn-success btn-xs"><i class="fa fa-check-square"></i></a>
                                             <?php }else{ ?>
-                                                <a type="button" href="../../../app/Controllers/RazaController.php?action=inactivate&id=<?php echo $raza->getId(); ?>" data-toggle="tooltip" title="Inactivar" class="btn docs-tooltip btn-danger btn-xs"><i class="fa fa-times-circle"></i></a>
+                                                <a type="button" href="../../../app/Controllers/CitaController.php?action=inactivate&Id=<?php echo $Cita->getId(); ?>" data-toggle="tooltip" title="Inactivar" class="btn docs-tooltip btn-danger btn-xs"><i class="fa fa-times-circle"></i></a>
                                             <?php } ?>
                                         </td>
                                     </tr>
@@ -113,8 +114,8 @@ use App\Controllers\RazaController; ?>
                                 <tfoot>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nombre</th>
-                                    <th>Especie</th>
+                                    <th>Hora de Inicio</th>
+                                    <th>Fecha de Inicio</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>

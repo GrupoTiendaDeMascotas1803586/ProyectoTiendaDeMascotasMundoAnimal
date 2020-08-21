@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Crear Raza</title>
+    <title><?= getenv('TITLE_SITE') ?> | Crear Cita</title>
     <?php require("../../partials/head_imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -20,7 +20,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Crear un Nueva Raza</h1>
+                        <h1>Crear Nueva Cita</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -40,11 +40,10 @@
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                            Error al crear la raza: <?= $_GET['mensaje'] ?>
+                        Error al crear el servicio: <?= $_GET['mensaje'] ?>
                     </div>
                 <?php } ?>
             <?php } ?>
-
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <div class="card-header">
@@ -52,41 +51,35 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" method="post" id="frmCreateRaza" name="frmCreateRaza" action="../../../app/Controllers/RazaController.php?action=create">
+                <form class="form-horizontal" method="post" id="frmCreateCita" name="frmCreateCita" action="../../../app/Controllers/CitaController.php?action=create">
                     <div class="card-body">
                         <div class="form-group row">
-                            <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+                            <label for="horaInicio" class="col-sm-2 col-form-label">Hora de inicio</label>
                             <div class="col-sm-10">
-                                <input required type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre de la raza">
+                                <input required type="time" class="form-control" id="horaInicio" name="horaInicio" placeholder="Ingrese la hora de inicio">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="especie" class="col-sm-2 col-form-label">Especie</label>
+                            <label for="fechaInicio" class="col-sm-2 col-form-label">Fecha de Inicio</label>
                             <div class="col-sm-10">
-                                <select id="especie" name="especie" class="custom-select">
-                                    <option value="1">Acuatico</option>
-                                    <option value="2">Canino</option>
-                                    <option value="3">Felino</option>
-                                    <option value="4">Avicola</option>
-                                    <option value="5">Roedor</option>
-                                </select>
+                                <input required type="date" minlength="6" class="form-control" id="fechaInicio" name="fechaInicio" placeholder="Ingrese la fecha de inicio">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                             <div class="col-sm-10">
                                 <select id="estado" name="estado" class="custom-select">
-                                    <option value="1">Activo</option>
-                                    <option value="2">Inactivo</option>
+                                    <option value="Disponible">Disponible</option>
+                                    <option value="No Disponible">No Disponible</option>
                                 </select>
                             </div>
+                        </div
+                            <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-info">Enviar</button>
+                            <a href="index.php" role="button" class="btn btn-default float-right">Cancelar</a>
                         </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-info">Enviar</button>
-                        <a href="index.php" role="button" class="btn btn-default float-right">Cancelar</a>
-                    </div>
-                    <!-- /.card-footer -->
+                        <!-- /.card-footer -->
                 </form>
             </div>
             <!-- /.card -->
