@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models;
-
 require('BasicModel.php');
 
 class Raza extends BasicModel
@@ -26,7 +24,7 @@ class Raza extends BasicModel
     }
 
     /**
-     * @return mixed|null
+     * @return int
      */
     public function getId(): int
     {
@@ -34,7 +32,7 @@ class Raza extends BasicModel
     }
 
     /**
-     * @param mixed|null $id
+     * @param int $id
      */
     public function setId(int $id): void
     {
@@ -42,7 +40,7 @@ class Raza extends BasicModel
     }
 
     /**
-     * @return mixed|null
+     * @return string
      */
     public function getNombre(): string
     {
@@ -50,7 +48,7 @@ class Raza extends BasicModel
     }
 
     /**
-     * @param mixed|null $nombre
+     * @param string $nombre
      */
     public function setNombre(string $nombre): void
     {
@@ -58,7 +56,7 @@ class Raza extends BasicModel
     }
 
     /**
-     * @return mixed|null
+     * @return string
      */
     public function getEspecie(): string
     {
@@ -66,13 +64,28 @@ class Raza extends BasicModel
     }
 
     /**
-     * @param mixed|null $especie
+     * @param string $especie
      */
     public function setEspecie(string $especie): void
     {
         $this->especie = $especie;
     }
 
+    /**
+     * @return string
+     */
+    public function getEstado(): ?string
+    {
+        return $this->estado;
+    }
+
+    /**
+     * @param string $estado
+     */
+    public function setEstado(?string $estado): void
+    {
+        $this->estado = $estado;
+    }
 
     public function create() : bool
     {
