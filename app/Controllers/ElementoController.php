@@ -42,9 +42,10 @@ class ElementoController{
             $arrayELEMENTO['material'] = $_POST['material'];
             $arrayELEMENTO['color'] = $_POST['color'];
             $arrayELEMENTO['marca'] = $_POST['marca'];
+            $arrayELEMENTO['estado'] = $_POST['estado'];
 
-            if(!ElementoController::ELEMENTORegistrado($arrayELEMENTO['id'])){
-                $ELEMENTO = new ElementoController($arrayELEMENTO);
+            if(!Elemento::ElementoRegistrado($arrayELEMENTO['nombre'])){
+                $ELEMENTO = new Elemento($arrayELEMENTO);
                 if($ELEMENTO->create()){
                     header("Location: ../../views/modules/elemento/index.php?respuesta=correcto");
                 }
@@ -65,6 +66,7 @@ class ElementoController{
             $arrayELEMENTO['material'] = $_POST['material'];
             $arrayELEMENTO['color'] = $_POST['color'];
             $arrayELEMENTO['marca'] = $_POST['marca'];
+            $arrayELEMENTO['estado'] = $_POST['estado'];
             $arrayELEMENTO['id'] = $_POST['id'];
 
             $elemento = new Elemento($arrayELEMENTO);

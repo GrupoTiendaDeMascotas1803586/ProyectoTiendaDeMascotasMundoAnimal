@@ -69,7 +69,7 @@ use App\Controllers\ElementoController; ?>
                         ?>
                         <!-- form start -->
                         <form class="form-horizontal" method="post" id="frmEditElemento" name="frmEditElemento" action="../../../app/Controllers/ElementoController.php?action=edit">
-                            <input id="Id" name="Id" value="<?php echo $DataELEMENTO->getId(); ?>" hidden required="required" type="text">
+                            <input id="id" name="id" value="<?php echo $DataELEMENTO->getId(); ?>" hidden required="required" type="text">
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
@@ -117,8 +117,8 @@ use App\Controllers\ElementoController; ?>
                                     <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                                     <div class="col-sm-10">
                                         <select id="estado" name="estado" class="custom-select">
-                                            <option <?= ($DataELEMENTO->getEstado() == "Activo") ? "selected":""; ?> value="Activo">Activo</option>
-                                            <option <?= ($DataELEMENTO->getEstado() == "Inactivo") ? "selected":""; ?> value="Inactivo">Inactivo</option>
+                                            <option <?= ($DataELEMENTO->getEstado() == "Disponible") ? "selected":""; ?> value="1">Disponible</option>
+                                            <option <?= ($DataELEMENTO->getEstado() == "No Disponible") ? "selected":""; ?> value="2">No Disponible</option>
                                         </select>
                                     </div>
                                 </div>
