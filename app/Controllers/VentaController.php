@@ -17,7 +17,7 @@ class VentaController{
         } else if ($action == "edit") {
             VentaController::edit();
         } else if ($action == "searchForID") {
-            VentaController::searchForID($_REQUEST['Id']);
+            VentaController::searchForID($_REQUEST['id']);
         } else if ($action == "searchAll") {
             VentaController::getAll();
         } else if ($action == "activate") {
@@ -35,192 +35,121 @@ class VentaController{
     static public function create()
     {
         try {
-            $arrayVenta = array();
-            $arrayVenta['fecha'] = $_POST['fecha'];
-            $arrayVenta['subTotal'] = $_POST['subTotal'];
-            $arrayVenta['totalaPagar'] = $_POST['totalaPagar'];
+            $arrayVENTA = array();
+            $arrayVENTA['fecha'] = $_POST['fecha'];
+            $arrayVENTA['subtotal'] = $_POST['subtotal'];
+            $arrayVENTA['totalApagar'] = $_POST['totalApagar'];
+            $arrayVENTA['PERSONA'] = $_POST['PERSONA'];
 
-
-            if(!VentaController::VentaRegistrado($arrayVenta['Id'])){
-                $Venta = new VentaController($arrayVenta);
-                if($Venta->create()){
-                    header("Location: ../../views/modules/VentaController/index.php?respuesta=correcto");
+            if (!Venta::VentaRegistrado($arrayVENTA['fecha'])) {
+                $VENTA = new Venta($arrayVENTA);
+                if ($VENTA->create()) {
+                    header("Location: ../../views/modules/venta/index.php?respuesta=correcto");
                 }
-            }else{
-                header("Location: ../../views/modules/VentaController/create.php?respuesta=error&mensaje=ElementoController ya registrado");
+            } else {
+                header("Location: ../../views/modules/venta/create.php?respuesta=error&mensaje=Venta ya creada");
             }
         } catch (Exception $e) {
-            header("Location: ../../views/modules/VentaController/create.php?respuesta=error&mensaje=" . $e->getMessage());
+            header("Location: ../../views/modules/venta/create.php?respuesta=error&mensaje=" . $e->getMessage());
         }
     }
 
-    static public function edit (){
+    static public function edit()
+    {
         try {
-            $arrayVenta = array();
-            $arrayVenta['fecha'] = $_POST['fecha'];
-            $arrayVenta['subTotal'] = $_POST['subTotal'];
-            $arrayVenta['totalaPagar'] = $_POST['totalaPagar'];
-            $arrayELEMENTO['Id'] = $_POST['Id'];
+            $arrayVENTA = array();
+            $arrayVENTA['fecha'] = $_POST['fecha'];
+            $arrayVENTA['subtotal'] = $_POST['subtotal'];
+            $arrayVENTA['totalApagar'] = $_POST['totalApagar'];
+            $arrayVENTA['PERSONA'] = $_POST['PERSONA'];
+            $arrayVENTA['id'] = $_POST['id'];
 
-            $user = new VentaController($arrayVenta);
-            $user->update();
+            $venta = new Venta($arrayVENTA);
+            $venta->update();
 
-            header("Location: ../../views/modules/VentaController/show.php?Id=".$user->getId()."&respuesta=correcto");
+            header("Location: ../../views/modules/venta/show.php?Id=" . $venta->getid() . "&respuesta=correcto");
         } catch (\Exception $e) {
             //var_dump($e);
-            header("Location: ../../views/modules/VentaController/edit.php?respuesta=error&mensaje=".$e->getMessage());
+            header("Location: ../../views/modules/venta/edit.php?respuesta=error&mensaje=" . $e->getMessage());
         }
     }
 
-    static public function activate (){
+    static public function activate()
+    {
         try {
-            $ObjVenta = VentaController::searchForId($_GET['Id']);
-            $ObjVenta->setEstado("Activo");
-            if($ObjVenta->update()){
-                header("Location: ../../views/modules/VentaController/index.php");
-            }else{
-                header("Location: ../../views/modules/VentaController/index.php?respuesta=error&mensaje=Error al guardar");
+            $ObjVENTA = Venta::searchForId($_GET['id']);
+            $ObjVENTA->setEstado("Activo");
+            if ($ObjVENTA->update()) {
+                header("Location: ../../views/modules/venta/index.php");
+            } else {
+                header("Location: ../../views/modules/venta/index.php?respuesta=error&mensaje=Error al guardar");
             }
         } catch (\Exception $e) {
             //var_dump($e);
-            header("Location: ../../views/modules/VentaController/index.php?respuesta=error&mensaje=".$e->getMessage());
+            header("Location: ../../views/modules/venta/index.php?respuesta=error&mensaje=" . $e->getMessage());
         }
     }
 
-    static public function inactivate (){
+    static public function inactivate()
+    {
         try {
-            $ObjVenta = VentaController::searchForId($_GET['Id']);
-            $ObjVenta->setEstado("Inactivo");
-            if($ObjVenta->update()){
-                header("Location: ../../views/modules/VentaController/index.php");
-            }else{
-                header("Location: ../../views/modules/VentaController/index.php?respuesta=error&mensaje=Error al guardar");
+            $ObjVENTA = Venta::searchForId($_GET['id']);
+            $ObjVENTA->setEstado("Inactivo");
+            if ($ObjVENTA->update()) {
+                header("Location: ../../views/modules/venta/index.php");
+            } else {
+                header("Location: ../../views/modules/venta/index.php?respuesta=error&mensaje=Error al guardar");
             }
         } catch (\Exception $e) {
             //var_dump($e);
-            header("Location: ../../views/modules/VentaController/index.php?respuesta=error");
+            header("Location: ../../views/modules/venta/index.php?respuesta=error");
         }
     }
 
-    static public function searchForID ($id){
+    static public function searchForID($id)
+    {
         try {
-            return EVentaController::searchForId($id);
+            return Venta::searchForId($id);
         } catch (\Exception $e) {
             var_dump($e);
             //header("Location: ../../views/modules/usuarios/manager.php?respuesta=error");
         }
     }
 
-    static public function getAll (){
+    static public function getAll()
+    {
         try {
-            return VentaController::getAll();
+            return Venta::getAll();
         } catch (\Exception $e) {
             var_dump($e);
             //header("Location: ../Vista/modules/persona/manager.php?respuesta=error");
         }
     }
-
-    /*public static function personaIsInArray($idPersona, $ArrPersonas){
-        if(count($ArrPersonas) > 0){
-            foreach ($ArrPersonas as $Persona){
-                if($Persona->getIdPersona() == $idPersona){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    static public function selectPersona ($isMultiple=false,
-                                          $isRequired=true,
-                                          $id="idConsultorio",
-                                          $nombre="idConsultorio",
-                                          $defaultValue="",
-                                          $class="",
-                                          $where="",
-                                          $arrExcluir = array()){
-        $arrPersonas = array();
-        if($where != ""){
-            $base = "SELECT * FROM persona WHERE ";
-            $arrPersonas = Persona::buscar($base.$where);
-        }else{
-            $arrPersonas = Persona::getAll();
+    static public function selectVenta($isMultiple = false,
+                                         $isRequired = true,
+                                         $id = "id",
+                                         $fecha = "id",
+                                         $defaultValue = "",
+                                         $class = "",
+                                         $where = "",
+                                         $arrExcluir = array())
+    {
+        $arrVenta = array();
+        if ($where != "") {
+            $base = "SELECT * FROM Venta WHERE ";
+            $arrVenta = Venta::search($base . $where);
+        } else {
+            $arrVenta = Venta:: getAll();
         }
 
-        $htmlSelect = "<select ".(($isMultiple) ? "multiple" : "")." ".(($isRequired) ? "required" : "")." id= '".$id."' name='".$nombre."' class='".$class."'>";
+        $htmlSelect = "<select " . (($isMultiple) ? "multiple" : "") . " " . (($isRequired) ? "required" : "") . " id= '" . $id . "' datetime='" . $fecha. "' class='" . $class . "'>";
         $htmlSelect .= "<option value='' >Seleccione</option>";
-        if(count($arrPersonas) > 0){
-            foreach ($arrPersonas as $persona)
-                if (!UsuariosController::personaIsInArray($persona->getIdPersona(),$arrExcluir))
-                    $htmlSelect .= "<option ".(($persona != "") ? (($defaultValue == $persona->getIdPersona()) ? "selected" : "" ) : "")." value='".$persona->getIdPersona()."'>".$persona->getNombres()." ".$persona->getApellidos()."</option>";
+        if (count($arrVenta) > 0) {
+            foreach ($arrVenta as $Venta)
+                if (!VentaController::VentaIsInArray($Venta->getId(), $arrExcluir))
+                    $htmlSelect .= "<option " . (($Venta != "") ? (($defaultValue == $Venta->getId()) ? "selected" : "") : "") . " value='" . $Venta->getId() . "'> - " . $Venta->getFecha() . "</option>";
         }
         $htmlSelect .= "</select>";
         return $htmlSelect;
-    }*/
-
-    /*
-    public function buscar ($Query){
-        try {
-            return Persona::buscar($Query);
-        } catch (Exception $e) {
-            header("Location: ../Vista/modules/persona/manager.php?respuesta=error");
-        }
     }
-
-    static public function asociarEspecialidad (){
-        try {
-            $Persona = new Persona();
-            $Persona->asociarEspecialidad($_POST['Persona'],$_POST['Especialidad']);
-            header("Location: ../Vista/modules/persona/managerSpeciality.php?respuesta=correcto&id=".$_POST['Persona']);
-        } catch (Exception $e) {
-            header("Location: ../Vista/modules/persona/managerSpeciality.php?respuesta=error&mensaje=".$e->getMessage());
-        }
-    }
-
-    static public function eliminarEspecialidad (){
-        try {
-            $ObjPersona = new Persona();
-            if(!empty($_GET['Persona']) && !empty($_GET['Especialidad'])){
-                $ObjPersona->eliminarEspecialidad($_GET['Persona'],$_GET['Especialidad']);
-            }else{
-                throw new Exception('No se recibio la informacion necesaria.');
-            }
-            header("Location: ../Vista/modules/persona/managerSpeciality.php?id=".$_GET['Persona']);
-        } catch (Exception $e) {
-            var_dump($e);
-            //header("Location: ../Vista/modules/persona/manager.php?respuesta=error");
-        }
-    }
-
-    public static function login (){
-        try {
-            if(!empty($_POST['Usuario']) && !empty($_POST['Contrasena'])){
-                $tmpPerson = new Persona();
-                $respuesta = $tmpPerson->Login($_POST['Usuario'], $_POST['Contrasena']);
-                if (is_a($respuesta,"Persona")) {
-                    $hydrator = new ReflectionHydrator(); //Instancia de la clase para convertir objetos
-                    $ArrDataPersona = $hydrator->extract($respuesta); //Convertimos el objeto persona en un array
-                    unset($ArrDataPersona["datab"],$ArrDataPersona["isConnected"],$ArrDataPersona["relEspecialidades"]); //Limpiamos Campos no Necesarios
-                    $_SESSION['UserInSession'] = $ArrDataPersona;
-                    echo json_encode(array('type' => 'success', 'title' => 'Ingreso Correcto', 'text' => 'Sera redireccionado en un momento...'));
-                }else{
-                    echo json_encode(array('type' => 'error', 'title' => 'Error al ingresar', 'text' => $respuesta)); //Si la llamda es por Ajax
-                }
-                return $respuesta; //Si la llamada es por funcion
-            }else{
-                echo json_encode(array('type' => 'error', 'title' => 'Datos Vacios', 'text' => 'Debe ingresar la informacion del usuario y contraseña'));
-                return "Datos Vacios"; //Si la llamada es por funcion
-            }
-        } catch (Exception $e) {
-            var_dump($e);
-            header("Location: ../login.php?respuesta=error");
-        }
-    }
-
-    public static function cerrarSession (){
-        session_unset();
-        session_destroy();
-        header("Location: ../Vista/modules/persona/login.php");
-    }*/
-
 }

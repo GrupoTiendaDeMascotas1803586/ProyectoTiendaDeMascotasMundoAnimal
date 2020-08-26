@@ -128,30 +128,29 @@ class PersonaController
             header("Location: ../views/modules/persona/manager.php?respuesta=error");
         }
     }
-
-    public static function PersonaIsInArray($id, $ArrPersona)
-    {
-        if (count($ArrPersona) > 0) {
-            foreach ($ArrPersona as $Persona) {
-                if ($Persona->getIdPersona() == $id) {
-                    return true;
+            public static function PersonaIsInArray($id, $ArrPersona)
+            {
+                if (count($ArrPersona) > 0) {
+                    foreach ($ArrPersona as $Persona) {
+                        if ($Persona->getIdPersona() == $id) {
+                            return true;
+                        }
+                    }
                 }
+                return false;
             }
-        }
-        return false;
-    }
-    static public function selectPersona($isMultiple = false,
-                                         $isRequired = true,
-                                         $id = "id",
-                                         $nombre = "id",
-                                         $defaultValue = "",
-                                         $class = "",
-                                         $where = "",
-                                         $arrExcluir = array())
-    {
-        $arrPersona = array();
-        if ($where != "") {
-            $base = "SELECT * FROM Persona WHERE ";
+            static public function selectPersona($isMultiple = false,
+                                                 $isRequired = true,
+                                                 $id = "id",
+                                                 $nombre = "id",
+                                                 $defaultValue = "",
+                                                 $class = "",
+                                                 $where = "",
+                                                 $arrExcluir = array())
+            {
+                $arrPersona = array();
+                if ($where != "") {
+                    $base = "SELECT * FROM Persona WHERE ";
             $arrPersona = Persona::search($base . $where);
         } else {
             $arrPersona = Persona:: getAll();
