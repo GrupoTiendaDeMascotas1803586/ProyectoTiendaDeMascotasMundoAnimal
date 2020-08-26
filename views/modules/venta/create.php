@@ -80,7 +80,7 @@
                         <div class="form-group row">
                             <label for="PERSONA" class="col-sm-2 col-form-label">Persona</label>
                             <div class="col-sm-10">
-                                <?= \App\Controllers\PersonaController::selectPersona( false,
+                                <?= \App\Controllers\PersonaController::selectPersona(false,
                                     true,
                                     'PERSONA',
                                     'PERSONA',

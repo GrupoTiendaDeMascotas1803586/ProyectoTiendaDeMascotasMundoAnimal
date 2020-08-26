@@ -11,6 +11,7 @@ class Venta extends BasicModel
     private $fecha;
     private $subtotal;
     private $totalApagar;
+    private $PERSONA;
 
     public function __construct($Venta = array())
     {
@@ -19,6 +20,7 @@ class Venta extends BasicModel
         $this->fecha = $Venta['fecha'] ?? null;
         $this->subtotal = $Venta['subtotal'] ?? null;
         $this->totalApagar = $Venta['totalApagar'] ?? null;
+        $this->PERSONA = $Venta['PERSONA'] ?? null;
     }
 
     /* Metodo destructor cierra la conexion. */
@@ -90,13 +92,30 @@ class Venta extends BasicModel
         $this->totalApagar = $totalApagar;
     }
 
+    /**
+     * @return mixed|null
+     */
+    public function getPERSONA(): ?int
+    {
+        return $this->PERSONA;
+    }
+
+    /**
+     * @param mixed|null $PERSONA
+     */
+    public function setPERSONA(?mixed $PERSONA): void
+    {
+        $this->PERSONA = $PERSONA;
+    }
+
 
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO proyecto.venta VALUES (NULL, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO proyecto.venta VALUES (NULL, ?, ?, ?, ?)", array(
                 $this->fecha,
                 $this->subtotal,
-                $this->totalApagar
+                $this->totalApagar,
+                $this->PERSONA
 
             )
         );
@@ -105,10 +124,11 @@ class Venta extends BasicModel
     }
     public function update() : bool
     {
-        $result = $this->updateRow("UPDATE proyecto.venta SET fecha = ?, subtotal = ?, totalApagar = ? WHERE id = ?", array(
+        $result = $this->updateRow("UPDATE proyecto.venta SET fecha = ?, subtotal = ?, totalApagar = ?, PERSONA = ?, WHERE id = ?", array(
                 $this->fecha,
                 $this->subtotal,
                 $this->totalApagar,
+                $this->PERSONA,
                 $this->id
 
 
@@ -133,6 +153,7 @@ class Venta extends BasicModel
             $Venta->fecha = $valor['fecha'];
             $Venta->subtotal = $valor['subtotal'];
             $Venta->totalApagar = $valor['totalApagar'];
+            $Venta->PERSONA = $valor['PERSONA'];
             $Venta->Disconnect();
             array_push($arrVenta, $Venta);
         }
@@ -149,6 +170,8 @@ class Venta extends BasicModel
             $Venta->fecha = $getrow['fecha'];
             $Venta->subtotal = $getrow['subtotal'];
             $Venta->totalApagar = $getrow['totalApagar'];
+            $Venta->PERSONA = $getrow['PERSONA'];
+
 
         }
         $Venta->Disconnect();

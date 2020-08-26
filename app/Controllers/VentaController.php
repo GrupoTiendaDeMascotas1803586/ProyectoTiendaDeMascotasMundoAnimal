@@ -39,6 +39,7 @@ class VentaController{
             $arrayVENTA['fecha'] = $_POST['fecha'];
             $arrayVENTA['subtotal'] = $_POST['subtotal'];
             $arrayVENTA['totalApagar'] = $_POST['totalApagar'];
+            $arrayVENTA['PERSONA'] = $_POST['PERSONA'];
 
             if (!Venta::VentaRegistrado($arrayVENTA['fecha'])) {
                 $VENTA = new Venta($arrayVENTA);
@@ -60,6 +61,7 @@ class VentaController{
             $arrayVENTA['fecha'] = $_POST['fecha'];
             $arrayVENTA['subtotal'] = $_POST['subtotal'];
             $arrayVENTA['totalApagar'] = $_POST['totalApagar'];
+            $arrayVENTA['PERSONA'] = $_POST['PERSONA'];
             $arrayVENTA['id'] = $_POST['id'];
 
             $venta = new Venta($arrayVENTA);
