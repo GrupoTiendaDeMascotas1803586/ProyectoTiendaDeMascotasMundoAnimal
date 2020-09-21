@@ -1,12 +1,12 @@
 <?php
 require("../../partials/routes.php");
-require("../../../app/Controllers/ElementoController.php");
+require("../../../app/Controllers/VentaController.php");
 
 use App\Controllers\ElementoController; ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Editar ELEMENTO</title>
+    <title><?= getenv('TITLE_SITE') ?> | Editar VENTA</title>
     <?php require("../../partials/head_imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -24,7 +24,7 @@ use App\Controllers\ElementoController; ?>
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Editar Nuevo ELEMENTO</h1>
+                        <h1>Editar Venta</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -44,7 +44,7 @@ use App\Controllers\ElementoController; ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al crear el ELEMENTO: <?= ($_GET['mensaje']) ?? "" ?>
+                        Error al crear la Venta: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
             <?php } else if (empty($_GET['id'])) { ?>
@@ -64,64 +64,33 @@ use App\Controllers\ElementoController; ?>
                 <?php if(!empty($_GET["id"]) && isset($_GET["id"])){ ?>
                     <p>
                     <?php
-                    $DataELEMENTO = ElementoController::searchForID($_GET["id"]);
-                    if(!empty($DataELEMENTO)){
+                    $DataVENTA = VentaController::searchForID($_GET["id"]);
+                    if(!empty($DataVENTA)){
                         ?>
                         <!-- form start -->
-                        <form class="form-horizontal" method="post" id="frmEditElemento" name="frmEditElemento" action="../../../app/Controllers/ElementoController.php?action=edit">
-                            <input id="id" name="id" value="<?php echo $DataELEMENTO->getId(); ?>" hidden required="required" type="text">
+                        <form class="form-horizontal" method="post" id="frmEditVenta" name="frmEditVenta" action="../../../app/Controllers/VentaController.php?action=edit">
+                            <input id="id" name="id" value="<?php echo $DataVENTA->getId(); ?>" hidden required="required" type="text">
                             <div class="card-body">
                                 <div class="form-group row">
-                                    <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+                                    <label for="fecha" class="col-sm-2 col-form-label">Fecha</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="nombre" name="nombre" value="<?= $DataELEMENTO->getNombre(); ?>" placeholder="Ingrese el nombre">
+                                        <input required type="text" class="form-control" id="fecha" name="fecha" value="<?= $DataVENTA->getFecha(); ?>" placeholder="Ingrese la fecha">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="tipoElemento" class="col-sm-2 col-form-label">Tipo Elemento</label>
+                                    <label for="subtotal" class="col-sm-2 col-form-label">subtotal</label>
                                     <div class="col-sm-10">
-                                        <select id="tipoElemento" name="tipoElemento" class="custom-select">
-                                            <option <?= ($DataELEMENTO->getTipoElemento() == "1") ? "selected":""; ?> value="1">Accesorios</option>
-                                            <option <?= ($DataELEMENTO->getTipoElemento() == "2") ? "selected":""; ?> value="2">Alimentos</option>
-                                            <option <?= ($DataELEMENTO->getTipoElemento() == "3") ? "selected":""; ?> value="3">Medicamentos</option>
-                                        </select>
-                                    </div>
-                                </div>-->
-                                <div class="form-group row">
-                                    <label for="tamaño" class="col-sm-2 col-form-label">tamaño</label>
-                                    <div class="col-sm-10">
-                                        <input required type="text" minlength="6" class="form-control" id="tamaño" name="tamaño" value="<?= $DataELEMENTO->getTamaño(); ?>" placeholder="Ingrese el tamaño">
+                                        <input required type="text" minlength="6" class="form-control" id="subtotal" name="subtotal" value="<?= $DataVENTA->getSubtotal(); ?>" placeholder="Ingrese el subtotal">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="material" class="col-sm-2 col-form-label">material</label>
+                                    <label for="totalApagar" class="col-sm-2 col-form-label">TotalApagar</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" minlength="6" class="form-control" id="material" name="material" value="<?= $DataELEMENTO->getMaterial(); ?>" placeholder="Ingrese el material">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="color" class="col-sm-2 col-form-label">color</label>
-                                    <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="color" name="color" value="<?= $DataELEMENTO->getColor(); ?>" placeholder="Ingrese el color">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="marca" class="col-sm-2 col-form-label">marca</label>
-                                    <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="marca" name="marca" value="<?= $DataELEMENTO->getMarca(); ?>" placeholder="Ingrese la marca">
+                                        <input required type="text" minlength="6" class="form-control" id="totalApagar" name="totalApagar" value="<?= $DataVENTA->getTotalApagar(); ?>" placeholder="Ingrese el totalApagar">
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label for="estado" class="col-sm-2 col-form-label">Estado</label>
-                                    <div class="col-sm-10">
-                                        <select id="estado" name="estado" class="custom-select">
-                                            <option <?= ($DataELEMENTO->getEstado() == "Disponible") ? "selected":""; ?> value="1">Disponible</option>
-                                            <option <?= ($DataELEMENTO->getEstado() == "No Disponible") ? "selected":""; ?> value="2">No Disponible</option>
-                                        </select>
-                                    </div>
-                                </div>
 
                             </div>
                             <!-- /.card-body -->

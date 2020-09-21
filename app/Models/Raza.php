@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models;
-
 require('BasicModel.php');
 
 class Raza extends BasicModel
@@ -26,7 +24,7 @@ class Raza extends BasicModel
     }
 
     /**
-     * @return mixed|null
+     * @return int
      */
     public function getId(): int
     {
@@ -34,7 +32,7 @@ class Raza extends BasicModel
     }
 
     /**
-     * @param mixed|null $id
+     * @param int $id
      */
     public function setId(int $id): void
     {
@@ -42,7 +40,7 @@ class Raza extends BasicModel
     }
 
     /**
-     * @return mixed|null
+     * @return string
      */
     public function getNombre(): string
     {
@@ -50,7 +48,7 @@ class Raza extends BasicModel
     }
 
     /**
-     * @param mixed|null $nombre
+     * @param string $nombre
      */
     public function setNombre(string $nombre): void
     {
@@ -58,7 +56,7 @@ class Raza extends BasicModel
     }
 
     /**
-     * @return mixed|null
+     * @return string
      */
     public function getEspecie(): string
     {
@@ -66,17 +64,32 @@ class Raza extends BasicModel
     }
 
     /**
-     * @param mixed|null $especie
+     * @param string $especie
      */
     public function setEspecie(string $especie): void
     {
         $this->especie = $especie;
     }
 
+    /**
+     * @return string
+     */
+    public function getEstado(): ?string
+    {
+        return $this->estado;
+    }
+
+    /**
+     * @param string $estado
+     */
+    public function setEstado(?string $estado): void
+    {
+        $this->estado = $estado;
+    }
 
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO MERproyectoTMMA.Raza VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO proyecto.raza VALUES (NULL, ?, ?, ?)", array(
                 $this->nombre,
                 $this->especie,
                 $this->estado
@@ -88,7 +101,7 @@ class Raza extends BasicModel
 
     public function update() : bool
     {
-        $result = $this->updateRow("UPDATE MERproyectoTMMA.Raza SET nombre = ?, especie = ?, estado = ? WHERE id = ?", array(
+        $result = $this->updateRow("UPDATE proyecto.raza SET nombre = ?, especie = ?, estado = ? WHERE id = ?", array(
                 $this->nombre,
                 $this->especie,
                 $this->estado,
@@ -123,12 +136,12 @@ class Raza extends BasicModel
         return $arrRaza;
     }
 
-    public static function searchForId($id) : Usuarios
+    public static function searchForId($id) : Raza
     {
         $Raza = null;
         if ($id > 0){
             $Raza = new Raza();
-            $getrow = $Raza->getRow("SELECT * FROM MERproyectoTMMA.Raza WHERE id =?", array($id));
+            $getrow = $Raza->getRow("SELECT * FROM proyecto.raza WHERE id =?", array($id));
             $Raza->id = $getrow['id'];
             $Raza->nombre = $getrow['nombre'];
             $Raza->especie = $getrow['especie'];
@@ -140,12 +153,12 @@ class Raza extends BasicModel
 
     public static function getAll() : array
     {
-        return Raza::search("SELECT * FROM MERproyectoTMMA.Raza");
+        return Raza::search("SELECT * FROM proyecto.raza");
     }
 
-    public static function RazaRegistrada ($id) : bool
+    public static function RazaRegistrada ($nombre) : bool
     {
-        $result = Raza::search("SELECT id FROM MERproyectoTMMA.Raza where id = ".$id);
+        $result = Raza::search("SELECT nombre FROM proyecto.raza where nombre = '".$nombre."'");
         if (count($result) > 0){
             return true;
         }else{

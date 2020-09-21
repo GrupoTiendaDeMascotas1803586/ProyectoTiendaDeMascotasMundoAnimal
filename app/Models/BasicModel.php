@@ -38,6 +38,8 @@ abstract class BasicModel {
             $this->datab->setAttribute(\PDO::ATTR_PERSISTENT, true);
         }catch(\PDOException $e) {
             $this->isConnected = false;
+            var_dump($e);
+            die();
             throw new \Exception($e->getMessage());
         }
     }

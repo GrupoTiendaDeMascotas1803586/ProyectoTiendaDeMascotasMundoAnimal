@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Crear ELEMENTO</title>
+    <title><?= getenv('TITLE_SITE') ?> | Crear VENTA</title>
     <?php require("../../partials/head_imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -20,7 +20,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Crear un Nuevo ELEMENTO</h1>
+                        <h1>Crear una Nueva Venta</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -40,7 +40,7 @@
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al crear el ELEMENTO: <?= $_GET['mensaje'] ?>
+                        Error al crear la Venta: <?= $_GET['mensaje'] ?>
                     </div>
                 <?php } ?>
             <?php } ?>
@@ -52,67 +52,45 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" method="post" id="frmCreateELEMENTO" name="frmCreateELEMENTO"
-                      action="../../../app/Controllers/ElementoController.php?action=create">
+                <form class="form-horizontal" method="post" id="frmCreateVENTA" name="frmCreateVENTA"
+                      action="../../../app/Controllers/VentaController.php?action=create">
                     <div class="card-body">
                         <div class="form-group row">
-                            <label for="nombre" class="col-sm-2 col-form-label">nombre</label>
+                            <label for="fecha" class="col-sm-2 col-form-label">fecha</label>
                             <div class="col-sm-10">
-                                <input required type="text" class="form-control" id="nombre" name=" nombre"
-                                placeholder="Ingrese el nombre">
+                                <input required type="text" class="form-control" id="fecha" name="fecha"
+                                       placeholder="Ingrese la fecha">
                             </div>
                         </div>
 
-                                <div class="form-group row">
-                                    <label for="tipoElemento" class="col-sm-2 col-form-label">tipoElemento</label>
-                                    <div class="col-sm-10">
-                                        <select id="tipoElemento" name="tipoElemento" class="custom-select">
-                                            <option value="1">Accesorios</option>
-                                            <option value="2">Alimentos</option>
-                                            <option value="3">Medicamentos</option>
-                                        </select>
-                                    </div>
-                                </div>
-
                         <div class="form-group row">
-                            <label for="tamaño" class="col-sm-2 col-form-label">tamaño</label>
+                            <label for="subtotal" class="col-sm-2 col-form-label">subtotal</label>
                             <div class="col-sm-10">
-                                <input required type="text" minlength="6" class="form-control" id="tamaño" name="tamaño"
-                                       placeholder="Ingrese el tamaño">
+                                <input required type="text" minlength="6" class="form-control" id="subtotal" name="subtotal"
+                                       placeholder="Ingrese el subtotal">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="material" class="col-sm-2 col-form-label">material</label>
+                            <label for="totalApagar" class="col-sm-2 col-form-label">totalApagar</label>
                             <div class="col-sm-10">
-                                <input required type="text" minlength="6" class="form-control" id="material"
-                                       name="material" placeholder="Ingrese el material">
+                                <input required type="text" minlength="6" class="form-control" id="totalApagar"
+                                       name="totalApagar" placeholder="Ingrese el totalApagar">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="color" class="col-sm-2 col-form-label">color</label>
+                            <label for="PERSONA" class="col-sm-2 col-form-label">Persona</label>
                             <div class="col-sm-10">
-                                <input required type="text" class="form-control" id="color" name="color"
-                                       placeholder="Ingrese el color">
+                                <?= \App\Controllers\PersonaController::selectPersona(false,
+                                    true,
+                                    'PERSONA',
+                                    'PERSONA',
+                                    (!empty($dataVenta)) ? $dataVenta->getPERSONA()->getId() : '',
+                                    'form-control select2bs4 select2-info'
+                                )
+                                ?>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="marca" class="col-sm-2 col-form-label">marca</label>
-                        <div class="col-sm-10">
-                            <input required type="text" class="form-control" id="marca" name="marca"
-                                   placeholder="Ingrese la marca">
                         </div>
 
-                    </div>
-                    <div class="form-group row">
-                        <label for="estado" class="col-sm-2 col-form-label">Estado</label>
-                        <div class="col-sm-10">
-                            <select id="estado" name="estado" class="custom-select">
-                                <option value="Disponible">Disponible</option>
-                                <option value="No disponible">No Disponible</option>
-                            </select>
-                        </div>
-                    </div>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

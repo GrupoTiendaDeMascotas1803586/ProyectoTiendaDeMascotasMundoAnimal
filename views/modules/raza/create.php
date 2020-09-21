@@ -52,7 +52,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" method="post" id="frmCreateUsuario" name="frmCreateUsuario" action="../../../app/Controllers/UsuariosController.php?action=create">
+                <form class="form-horizontal" method="post" id="frmCreateRaza" name="frmCreateRaza" action="../../../app/Controllers/RazaController.php?action=create">
                     <div class="card-body">
                         <div class="form-group row">
                             <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
@@ -76,8 +76,8 @@
                             <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                             <div class="col-sm-10">
                                 <select id="estado" name="estado" class="custom-select">
-                                    <option value="1">Disponible</option>
-                                    <option value="2">No Disponible</option>
+                                    <option value="1">Activo</option>
+                                    <option value="2">Inactivo</option>
                                 </select>
                             </div>
                         </div>

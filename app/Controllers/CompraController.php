@@ -1,6 +1,4 @@
 <?php
-
-
 namespace App\Controllers;
 require(__DIR__.'/../Models/Compra.php');
 use App\Models\Compra;
@@ -35,7 +33,7 @@ class CompraController
             $arrayCompra['total'] = $_POST['total'];
 
             if(!Compra::CompraRegistrada($arrayCompra['id'])){
-                $Compra = new Compra() ($arrayCompra);
+                $Compra = new Compra(($arrayCompra));
                 if($Compra->create()){
                     header("Location: ../../views/modules/compra/index.php?respuesta=correcto");
                 }
