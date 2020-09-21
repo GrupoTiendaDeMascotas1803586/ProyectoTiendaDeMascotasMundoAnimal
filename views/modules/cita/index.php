@@ -1,7 +1,8 @@
-<?php require("../../partials/routes.php");
-require("../../../app/Controllers/ElementoController.php");
 
-use App\Controllers\ElementoController; ?>
+<?php require("../../partials/routes.php");
+require("../../../app/Controllers/CitaController.php");
+
+use App\Controllers\CitaController; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +32,7 @@ use App\Controllers\ElementoController; ?>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">ProyectoTiendaDeMascotasMundoAnimal</a></li>
+                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">ProyectoTiendaDeMascotasMundoAnimal </a></li>
                             <li class="breadcrumb-item active">Inicio</li>
                         </ol>
                     </div>
@@ -48,9 +49,9 @@ use App\Controllers\ElementoController; ?>
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-check"></i> Correcto!</h5>
                         <?php if ($_GET['action'] == "create"){ ?>
-                            El Elemento ha sido creado con exito!
+                            La cita ha sido creado con exito!
                         <?php }else if($_GET['action'] == "update"){ ?>
-                            Los datos del elemento han sido actualizados correctamente!
+                            Los datos de la cita han sido actualizados correctamente!
                         <?php } ?>
                     </div>
                 <?php } ?>
@@ -59,7 +60,7 @@ use App\Controllers\ElementoController; ?>
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Gestionar Elemento</h3>
+                    <h3 class="card-title">Gestionar Cita</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                             <i class="fas fa-minus"></i></button>
@@ -72,47 +73,39 @@ use App\Controllers\ElementoController; ?>
                         <div class="col-auto mr-auto"></div>
                         <div class="col-auto">
                             <a role="button" href="create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
-                                <i class="fas fa-plus"></i> Crear Elemento
+                                <i class="fas fa-plus"></i> Crear Cita
                             </a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <table id="tblElemento" class="datatable table table-bordered table-striped">
+                            <table id="tblCita" class="datatable table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nombre</th>
-                                    <th>Tipo Elemento</th>
-                                    <th>Tamaño</th>
-                                    <th>Material</th>
-                                    <th>Color</th>
-                                    <th>Marca</th>
+                                    <th>Hora de Inicio</th>
+                                    <th>Fecha de Inicio</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                $arrELEMENTO = ElementoController::getAll();
-                                foreach ($arrELEMENTO as $ELEMENTO){
+                                $arrCita = CitaController::getAll();
+                                foreach ($arrCita as $Cita){
                                     ?>
                                     <tr>
-                                        <td><?php echo $ELEMENTO->getId(); ?></td>
-                                        <td><?php echo $ELEMENTO->getNombre(); ?></td>
-                                        <td><?php echo $ELEMENTO->getTipoElemento(); ?></td>
-                                        <td><?php echo $ELEMENTO->getTamaño(); ?></td>
-                                        <td><?php echo $ELEMENTO->getMaterial(); ?></td>
-                                        <td><?php echo $ELEMENTO->getColor(); ?></td>
-                                        <td><?php echo $ELEMENTO->getMarca(); ?></td>
-                                        <td><?php echo $ELEMENTO->getEstado(); ?></td>
+                                        <td><?php echo $Cita->getId(); ?></td>
+                                        <td><?php echo $Cita->getHoraInicio(); ?></td>
+                                        <td><?php echo $Cita->getFechaInicio(); ?></td>
+                                        <td><?php echo $Cita->getEstado(); ?></td>
                                         <td>
-                                            <a href="edit.php?id=<?php echo $ELEMENTO->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="show.php?id=<?php echo $ELEMENTO->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
-                                            <?php if ($ELEMENTO->getEstado() != "Activo"){ ?>
-                                                <a href="../../../app/Controllers/ElementoController.php?action=activate&Id=<?php echo $ELEMENTO->getId(); ?>" type="button" data-toggle="tooltip" title="Activar" class="btn docs-tooltip btn-success btn-xs"><i class="fa fa-check-square"></i></a>
+                                            <a href="edit.php?id=<?php echo $Cita->getId(); ?>" type="button" data-toggle="tooltip" title="Actualizar" class="btn docs-tooltip btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="show.php?id=<?php echo $Cita->getId(); ?>" type="button" data-toggle="tooltip" title="Ver" class="btn docs-tooltip btn-warning btn-xs"><i class="fa fa-eye"></i></a>
+                                            <?php if ($Cita->getEstado() != "Activo"){ ?>
+                                                <a href="../../../app/Controllers/CitaController.php?action=activate&Id=<?php echo $Cita->getId(); ?>" type="button" data-toggle="tooltip" title="Activar" class="btn docs-tooltip btn-success btn-xs"><i class="fa fa-check-square"></i></a>
                                             <?php }else{ ?>
-                                                <a type="button" href="../../../app/Controllers/ElementoController.php?action=inactivate&Id=<?php echo $ELEMENTO->getId(); ?>" data-toggle="tooltip" title="Inactivar" class="btn docs-tooltip btn-danger btn-xs"><i class="fa fa-times-circle"></i></a>
+                                                <a type="button" href="../../../app/Controllers/CitaController.php?action=inactivate&Id=<?php echo $Cita->getId(); ?>" data-toggle="tooltip" title="Inactivar" class="btn docs-tooltip btn-danger btn-xs"><i class="fa fa-times-circle"></i></a>
                                             <?php } ?>
                                         </td>
                                     </tr>
@@ -121,12 +114,8 @@ use App\Controllers\ElementoController; ?>
                                 <tfoot>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nombre</th>
-                                    <th>TipoElemento</th>
-                                    <th>Tamaño</th>
-                                    <th>Material</th>
-                                    <th>Color</th>
-                                    <th>Marca</th>
+                                    <th>Hora de Inicio</th>
+                                    <th>Fecha de Inicio</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>
