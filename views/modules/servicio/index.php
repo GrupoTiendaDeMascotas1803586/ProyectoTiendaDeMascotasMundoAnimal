@@ -71,7 +71,7 @@ use App\Controllers\ServicioController; ?>
                     <div class="row">
                         <div class="col-auto mr-auto"></div>
                         <div class="col-auto">
-                            <a role="button" href="Create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
+                            <a role="button" href="create.php" class="btn btn-primary float-right" style="margin-right: 5px;">
                                 <i class="fas fa-plus"></i> Crear Servicio
                             </a>
                         </div>

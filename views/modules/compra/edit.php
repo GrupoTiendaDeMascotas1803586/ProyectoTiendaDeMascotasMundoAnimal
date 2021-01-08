@@ -1,10 +1,11 @@
 <?php
 require("../../partials/routes.php");
+require("../../../app/Controllers/PersonaController.php");
 require("../../../app/Controllers/CompraController.php");
-
+use App\Controllers\PersonaController;
 use App\Controllers\CompraController; ?>
 <!DOCTYPE html>
-<html>
+<htm
 <head>
     <title><?= getenv('TITLE_SITE') ?> | Editar Compra</title>
     <?php require("../../partials/head_imports.php"); ?>
@@ -82,6 +83,28 @@ use App\Controllers\CompraController; ?>
                                     <label for="total" class="col-sm-2 col-form-label">Total</label>
                                     <div class="col-sm-10">
                                         <input required type="number" minlength="6" class="form-control" id="total" name="total" value="<?= $DataCompra->getTotal(); ?>" placeholder="Ingrese el total">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="estado" class="col-sm-2 col-form-label">Estado</label>
+                                    <div class="col-sm-10">
+                                        <select id="estado" name="estado" class="custom-select">
+                                            <option <?= ($DataCompra->getEstado() == "Activo") ? "selected":""; ?> value="Activo">Activo</option>
+                                            <option <?= ($DataCompra->getEstado() == "Inactivo") ? "selected":""; ?> value="Inactivo">Inactivo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="PERSONA_id" class="col-sm-2 col-form-label">Persona</label>
+                                    <div class="col-sm-10">
+                                        <?= PersonaController::selectUsuario(false,
+                                            true,
+                                            'PERSONA_id',
+                                            'PERSONA_id',
+                                            (!empty($dataProducto)) ? $dataProducto->getPersonaId()->getId() : '',
+                                            'form-control select2bs4 select2-info',
+                                            "")
+                                        ?>
                                     </div>
                                 </div>
                             </div>

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Crear ELEMENTO</title>
+    <title><?= getenv('TITLE_SITE') ?> | Crear Elemento</title>
     <?php require("../../partials/head_imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -20,7 +20,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Crear un Nuevo ELEMENTO</h1>
+                        <h1>Crear un Nuevo Elemento</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -64,7 +64,7 @@
                         </div>
 
                                 <div class="form-group row">
-                                    <label for="tipoElemento" class="col-sm-2 col-form-label">tipoElemento</label>
+                                    <label for="tipoElemento" class="col-sm-2 col-form-label">Tipo Elemento</label>
                                     <div class="col-sm-10">
                                         <select id="tipoElemento" name="tipoElemento" class="custom-select">
                                             <option value="1">Accesorios</option>
@@ -77,30 +77,38 @@
                         <div class="form-group row">
                             <label for="tamaño" class="col-sm-2 col-form-label">tamaño</label>
                             <div class="col-sm-10">
-                                <input required type="text" minlength="6" class="form-control" id="tamaño" name="tamaño"
+                                <input  type="text" minlength="1" class="form-control" id="tamaño" name="tamaño"
                                        placeholder="Ingrese el tamaño">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="material" class="col-sm-2 col-form-label">material</label>
                             <div class="col-sm-10">
-                                <input required type="text" minlength="6" class="form-control" id="material"
+                                <input  type="text" minlength="1" class="form-control" id="material"
                                        name="material" placeholder="Ingrese el material">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="color" class="col-sm-2 col-form-label">color</label>
                             <div class="col-sm-10">
-                                <input required type="text" class="form-control" id="color" name="color"
+                                <input  type="text" class="form-control" id="color" name="color"
                                        placeholder="Ingrese el color">
                             </div>
                         </div>
+                       <div class="form-group row">
+                            <label for="marca" class="col-sm-2 col-form-label">marca</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control" id="marca" name="marca"
+                                   placeholder="Ingrese la marca">
+                        </div>
                     </div>
                     <div class="form-group row">
-                        <label for="marca" class="col-sm-2 col-form-label">marca</label>
+                        <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                         <div class="col-sm-10">
-                            <input required type="text" class="form-control" id="marca" name="marca"
-                                   placeholder="Ingrese la marca">
+                            <select id="estado" name="estado" class="custom-select">
+                                <option value="1">activo</option>
+                                <option value="2">inactivo</option>
+                            </select>
                         </div>
                     </div>
             </div>

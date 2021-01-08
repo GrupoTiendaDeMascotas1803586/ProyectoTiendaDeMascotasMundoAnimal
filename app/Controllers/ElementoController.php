@@ -35,17 +35,18 @@ class ElementoController{
     static public function create()
     {
         try {
-            $arrayELEMENTO = array();
-            $arrayELEMENTO['nombre'] = $_POST['nombre'];
-            $arrayELEMENTO['tipoElemento'] = $_POST['tipoElemento'];
-            $arrayELEMENTO['tamaño'] = $_POST['tamaño'];
-            $arrayELEMENTO['material'] = $_POST['material'];
-            $arrayELEMENTO['color'] = $_POST['color'];
-            $arrayELEMENTO['marca'] = $_POST['marca'];
+            $arrayElemento = array();
+            $arrayElemento['nombre'] = $_POST['nombre'];
+            $arrayElemento['tipoElemento'] = $_POST['tipoElemento'];
+            $arrayElemento['tamaño'] = $_POST['tamaño'];
+            $arrayElemento['material'] = $_POST['material'];
+            $arrayElemento['color'] = $_POST['color'];
+            $arrayElemento['marca'] = $_POST['marca'];
+            $arrayElemento['estado'] = $_POST['estado'];
 
-            if(!ElementoController::ELEMENTORegistrado($arrayELEMENTO['id'])){
-                $ELEMENTO = new ElementoController($arrayELEMENTO);
-                if($ELEMENTO->create()){
+            if(!Elemento::ElementoRegistrado($arrayElemento['nombre'])){
+                $Elemento = new Elemento ($arrayElemento);
+                if($Elemento->create()){
                     header("Location: ../../views/modules/elemento/index.php?respuesta=correcto");
                 }
             }else{
@@ -58,19 +59,20 @@ class ElementoController{
 
     static public function edit (){
         try {
-            $arrayELEMENTO = array();
-            $arrayELEMENTO['nombre'] = $_POST['nombre'];
-            $arrayELEMENTO['tipoElemento'] = $_POST['tipoElemento'];
-            $arrayELEMENTO['tamaño'] = $_POST['tamaño'];
-            $arrayELEMENTO['material'] = $_POST['material'];
-            $arrayELEMENTO['color'] = $_POST['color'];
-            $arrayELEMENTO['marca'] = $_POST['marca'];
-            $arrayELEMENTO['id'] = $_POST['id'];
+            $arrayElemento = array();
+            $arrayElemento['nombre'] = $_POST['nombre'];
+            $arrayElemento['tipoElemento'] = $_POST['tipoElemento'];
+            $arrayElemento['tamaño'] = $_POST['tamaño'];
+            $arrayElemento['material'] = $_POST['material'];
+            $arrayElemento['color'] = $_POST['color'];
+            $arrayElemento['marca'] = $_POST['marca'];
+            $arrayElemento['estado'] = $_POST['estado'];
+            $arrayElemento['id'] = $_POST['id'];
 
-            $elemento = new Elemento($arrayELEMENTO);
-            $elemento->update();
+            $Elemento = new Elemento($arrayElemento);
+            $Elemento->update();
 
-            header("Location: ../../views/modules/elemento/show.php?Id=".$elemento->getid()."&respuesta=correcto");
+            header("Location: ../../views/modules/elemento/show.php?id=".$Elemento->getId()."&respuesta=correcto");
         } catch (\Exception $e) {
             //var_dump($e);
             header("Location: ../../views/modules/elemento/edit.php?respuesta=error&mensaje=".$e->getMessage());
@@ -79,9 +81,9 @@ class ElementoController{
 
     static public function activate (){
         try {
-            $ObjELEMENTO = Elemento::searchForId($_GET['id']);
-            $ObjELEMENTO->setEstado("Activo");
-            if($ObjELEMENTO->update()){
+            $ObjElemento = Elemento::searchForId($_GET['id']);
+            $ObjElemento->setEstado("activo");
+            if($ObjElemento->update()){
                 header("Location: ../../views/modules/elemento/index.php");
             }else{
                 header("Location: ../../views/modules/elemento/index.php?respuesta=error&mensaje=Error al guardar");
@@ -94,9 +96,9 @@ class ElementoController{
 
     static public function inactivate (){
         try {
-            $ObjELEMENTO = Elemento::searchForId($_GET['id']);
-            $ObjELEMENTO->setEstado("Inactivo");
-            if($ObjELEMENTO->update()){
+            $ObjElemento = Elemento::searchForId($_GET['id']);
+            $ObjElemento->setEstado("inactivo");
+            if($ObjElemento->update()){
                 header("Location: ../../views/modules/elemento/index.php");
             }else{
                 header("Location: ../../views/modules/elemento/index.php?respuesta=error&mensaje=Error al guardar");

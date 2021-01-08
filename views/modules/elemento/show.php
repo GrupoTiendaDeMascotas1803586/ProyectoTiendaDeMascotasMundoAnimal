@@ -6,7 +6,7 @@ use App\Controllers\ElementoController; ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Datos del elemento</title>
+    <title><?= getenv('TITLE_SITE') ?> | Datos de los Elementos </title>
     <?php require("../../partials/head_imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -24,11 +24,11 @@ use App\Controllers\ElementoController; ?>
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Informacion del elemento</h1>
+                        <h1>Informacion de los elementos</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">ProyectoTiendaDeMascotasMundoAnimal</a></li>
+                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/views/">ProyectoTiendaDeMascotasMundoAnimal</a></li>
                             <li class="breadcrumb-item active">Inicio</li>
                         </ol>
                     </div>
@@ -44,7 +44,7 @@ use App\Controllers\ElementoController; ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al consultar el elemento: <?= ($_GET['mensaje']) ?? "" ?>
+                        Error al consultar los elementos: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
             <?php } else if (empty($_GET['id'])) { ?>
@@ -56,33 +56,41 @@ use App\Controllers\ElementoController; ?>
             <?php } ?>
 
             <!-- Horizontal Form -->
-            <hr class="card card-info">
-                <?php if(!empty($_GET["Id"]) && isset($_GET["Id"])){
-                    $DataELEMENTO = ElementoController::searchForID($_GET["Id"]);
-                    if(!empty($DataELEMENTO)){
+            <div class="card card-info">
+                <?php if(!empty($_GET["id"]) && isset($_GET["id"])){
+                    $DataElemento = ElementoController::searchForID($_GET["id"]);
+                    if(!empty($DataElemento)){
                         ?>
                         <div class="card-header">
-                            <h3 class="card-title"><?= $DataELEMENTO->getNombre()  ?></h3>
+                            <h3 class="card-title"><?= $DataElemento->getNombre() ?></h3>
                         </div>
-            <div class="card-body">
-                <p>
-                <hr>
-                <strong><i class="fas fa-user mr-1"></i> Nombre</strong>
-                <p class="text-muted"><?= $DataELEMENTO->getNombre().": ".$DataELEMENTO->getNombre() ?></p>
-                <hr>
-                <strong><i class="far fa-file-alt mr-1"></i> TipoElemento</strong>
-                <p class="text-muted"><?= $DataELEMENTO->getTipoElemento()." - ".$DataELEMENTO->getTipoElemento() ?></p>
-                <strong><i class="far fa-file-alt mr-1"></i> Tamaño</strong>
-                <p class="text-muted"><?= $DataELEMENTO->getTamaño()." - ".$DataELEMENTO->getTamaño() ?></p>
-                <strong><i class="far fa-file-alt mr-1"></i> Material</strong>
-                <p class="text-muted"><?= $DataELEMENTO->getMaterial()." - ".$DataELEMENTO->getMaterial() ?></p>
-                <strong><i class="far fa-file-alt mr-1"></i> Color</strong>
-                <p class="text-muted"><?= $DataELEMENTO->getColor()." - ".$DataELEMENTO->getColor() ?></p>
-                <strong><i class="far fa-file-alt mr-1"></i> Marca</strong>
-                <p class="text-muted"><?= $DataELEMENTO->getMarca()." - ".$DataELEMENTO->getMarca() ?></p>
-                </p>
+                        <div class="card-body">
+                            <strong><i class="fas fa-user mr-1"></i>Tipo Elemento</strong>
+                            <p class="text-muted"><?= $DataElemento->getTipoElemento() ?></p>
+                            <hr>
+                            <strong><i class="fas fa-user mr-1"></i> Tamaño </strong>
+                            <p class="text-muted"><?= $DataElemento->getTamaño() ?></p>
+                            <hr>
+                            <p>
+                                <strong><i class="fas fa-book mr-1"></i> Material </strong>
+                            <p class="text-muted">
+                                <?= $DataElemento->getMaterial() ?>
+                            </p>
+                            <hr>
 
-            </div>
+                            <strong><i class="fas fa-book mr-1"></i>Color</strong>
+                            <p class="text-muted">
+                                <?= $DataElemento->getColor() ?>
+                            </p>
+                            <hr>
+
+                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Marca </strong>
+                            <p class="text-muted"><?= $DataElemento->getMarca() ?></p>
+
+                            <hr>
+                            <strong><i class="far fa-file-alt mr-1"></i> Estado</strong>
+                            <p class="text-muted"><?= $DataElemento->getEstado() ?></p>
+                            </p>
 
                         </div>
                         <div class="card-footer">

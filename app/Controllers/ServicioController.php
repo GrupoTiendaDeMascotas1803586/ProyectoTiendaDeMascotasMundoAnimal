@@ -44,13 +44,13 @@ class ServicioController
             if(!Servicio::ServicioRegistrado($arrayServicio['id'])){
                 $Servicio = new Servicio ($arrayServicio);
                 if($Servicio->create()){
-                    header("Location: ../../views/modules/Servicio/index.php?respuesta=correcto");
+                    header("Location: ../../views/modules/servicio/index.php?respuesta=correcto");
                 }
             }else{
-                header("Location: ../../views/modules/Servicio/create.php?respuesta=error&mensaje=Servicio ya registrado");
+                header("Location: ../../views/modules/servicio/create.php?respuesta=error&mensaje=servicio ya registrado");
             }
         } catch (Exception $e) {
-            header("Location: ../../views/modules/Servicio/create.php?respuesta=error&mensaje=" . $e->getMessage());
+            header("Location: ../../views/modules/servicio/create.php?respuesta=error&mensaje=" . $e->getMessage());
         }
     }
 
@@ -67,10 +67,10 @@ class ServicioController
             $user = new Servicio($arrayServicio);
             $user->update();
 
-            header("Location: ../../views/modules/Servicio/show.php?id=".$user->getId()."&respuesta=correcto");
+            header("Location: ../../views/modules/servicio/show.php?id=".$user->getId()."&respuesta=correcto");
         } catch (\Exception $e) {
             //var_dump($e);
-            header("Location: ../../views/modules/Servicio/edit.php?respuesta=error&mensaje=".$e->getMessage());
+            header("Location: ../../views/modules/servicio/edit.php?respuesta=error&mensaje=".$e->getMessage());
         }
     }
 
@@ -79,13 +79,13 @@ class ServicioController
             $ObjServicio = Servicio::searchForId($_GET['Id']);
             $ObjServicio->setEstado("Disponible");
             if($ObjServicio->update()){
-                header("Location: ../../views/modules/Servicio/index.php");
+                header("Location: ../../views/modules/servicio/index.php");
             }else{
-                header("Location: ../../views/modules/Servicio/index.php?respuesta=error&mensaje=Error al guardar");
+                header("Location: ../../views/modules/servicio/index.php?respuesta=error&mensaje=Error al guardar");
             }
         } catch (\Exception $e) {
             //var_dump($e);
-            header("Location: ../../views/modules/Servicio/index.php?respuesta=error&mensaje=".$e->getMessage());
+            header("Location: ../../views/modules/servicio/index.php?respuesta=error&mensaje=".$e->getMessage());
         }
     }
 
@@ -94,13 +94,13 @@ class ServicioController
             $ObjServicio = Servicio::searchForId($_GET['Id']);
             $ObjServicio->setEstado("No Disponible");
             if($ObjServicio->update()){
-                header("Location: ../../views/modules/Servicio/index.php");
+                header("Location: ../../views/modules/servicio/index.php");
             }else{
-                header("Location: ../../views/modules/Servicio/index.php?respuesta=error&mensaje=Error al guardar");
+                header("Location: ../../views/modules/servicio/index.php?respuesta=error&mensaje=Error al guardar");
             }
         } catch (\Exception $e) {
             //var_dump($e);
-            header("Location: ../../views/modules/Servicio/index.php?respuesta=error");
+            header("Location: ../../views/modules/servicio/index.php?respuesta=error");
         }
     }
 
@@ -109,7 +109,7 @@ class ServicioController
             return Servicio::searchForId($id);
         } catch (\Exception $e) {
             var_dump($e);
-            header("Location: ../../views/modules/Servicio/manager.php?respuesta=error");
+            header("Location: ../../views/modules/servicio/manager.php?respuesta=error");
         }
     }
 
@@ -118,7 +118,7 @@ class ServicioController
             return Servicio::getAll();
         } catch (\Exception $e) {
             var_dump($e);
-            header("Location: ../Vista/modules/Servicio/manager.php?respuesta=error");
+            header("Location: ../Vista/modules/servicio/manager.php?respuesta=error");
         }
     }
 

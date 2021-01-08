@@ -127,5 +127,42 @@ class PersonaController
             var_dump($e);
             header("Location: ../views/modules/persona/manager.php?respuesta=error");
         }
-    } 
+    }
+    private static function usuarioIsInArray($idpersona, $arrpersona){
+        if(count($arrpersona) > 0){
+            foreach ($arrpersona as $persona){
+                if($persona->getId() == $idpersona){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    static public function selectUsuario ($isMultiple=false,
+                                          $isRequired=true,
+                                          $id="PERSONA_id",
+                                          $nombre="PERSONA_id",
+                                          $defaultValue="",
+                                          $class="form-control",
+                                          $where="",
+                                          $arrExcluir = array()){
+        $arrpersona = array();
+        if($where != ""){
+            $base = "SELECT * FROM Persona WHERE ";
+            $arrpersona = Persona ::search($base.' '.$where);
+        }else{
+            $arrpersona = Persona::getAll();
+        }
+
+        $htmlSelect = "<select ".(($isMultiple) ? "multiple" : "")." ".(($isRequired) ? "required" : "")." id= '".$id."' name='".$nombre."' class='".$class."' style='width: 100%;'>";
+        $htmlSelect .= "<option value='' >Seleccione</option>";
+        if(count($arrpersona) > 0){
+            foreach ($arrpersona as $persona)
+                if (!PersonaController::usuarioIsInArray($persona->getId(),$arrExcluir))
+                    $htmlSelect .= "<option ".(($persona != "") ? (($defaultValue == $persona->getId()) ? "selected" : "" ) : "")." value='".$persona->getId()."'> ".$persona->getNombre()." </option>";
+        }
+        $htmlSelect .= "</select>";
+        return $htmlSelect;
+    }
 }

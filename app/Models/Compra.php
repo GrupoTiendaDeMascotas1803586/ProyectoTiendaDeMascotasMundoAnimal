@@ -1,13 +1,21 @@
 <?php
 
 namespace App\Models;
-require('BasicModel.php');
+
+require_once ('Persona.php');
+
+use App\Models\persona;
+
+
+
 
 class Compra extends BasicModel
 {
     private $id;
     private $fecha;
     private $total;
+    private $estado;
+    private $PERSONA_id;
 
 
     public function __construct($Compra = array())
@@ -16,6 +24,9 @@ class Compra extends BasicModel
         $this->id = $Compra['id'] ?? null;
         $this->fecha = $Compra['fecha'] ?? null;
         $this->total = $Compra['total'] ?? null;
+        $this->estado = $Compra['estado'] ?? null;
+        $this->PERSONA_id = $Compra['PERSONA_id'] ?? null;
+
 
     }
     function __destruct() {
@@ -56,26 +67,58 @@ class Compra extends BasicModel
     }
 
     /**
-     * @return double
+     * @return int
      */
-    public function getTotal(): ?double
+    public function getTotal(): int
     {
         return $this->total;
     }
 
     /**
-     * @param double $total
+     * @param int $total
      */
-    public function setTotal(?double $total): void
+    public function setTotal(?int $total): void
     {
         $this->total = $total;
+    }
+    /**
+     * @return string
+     */
+    public function getestado(): string
+    {
+        return $this->estado;
+    }
+
+    /**
+     * @param string $estado
+     */
+    public function setestado(?string $estado): void
+    {
+        $this->estado = $estado;
+    }
+    /**
+     * @return Persona
+     */
+    public function getPersonaId(): ? Persona
+    {
+        return $this->PERSONA_id;
+    }
+
+    /**
+     * @param Persona $personaId
+     */
+    public function setPersonaId (?Persona $personaId): void
+    {
+        $this-> PERSONA_id = $personaId;
     }
 
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO proyecto.compra VALUES (NULL, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO proyecto.compra VALUES (NULL, ?, ?,?,?)", array(
                 $this->fecha,
                 $this->total,
+                $this->estado,
+                $this->PERSONA_id->getId(), 
 
             )
         );
@@ -85,10 +128,12 @@ class Compra extends BasicModel
 
     public function update() : bool
     {
-        $result = $this->updateRow("UPDATE proyecto.compra SET fecha = ?,total= ? WHERE id = ?", array(
+        $result = $this->updateRow("UPDATE proyecto.compra SET fecha = ?,total= ?, estado= ?, PERSONA_id=? WHERE id = ?", array(
 
                 $this->fecha,
                 $this->total,
+                $this->estado,
+                $this->PERSONA_id -> getId(),
                 $this->id
             )
         );
@@ -112,6 +157,9 @@ class Compra extends BasicModel
             $Compra->id = $valor['id'];
             $Compra->fecha = $valor['fecha'];
             $Compra->total = $valor['total'];
+            $Compra->estado = $valor['estado'];
+            $Compra->PERSONA_id =  Persona::searchForId($valor['PERSONA_id']);
+
 
 
             $Compra->Disconnect();
@@ -121,7 +169,7 @@ class Compra extends BasicModel
         return $arrCompra;
     }
 
-    public static function searchForId($id) : Compra
+    public static function searchForID($id) : Compra
     {
         $Compra = null;
         if ($id > 0){
@@ -130,6 +178,8 @@ class Compra extends BasicModel
             $Compra->id = $getrow['id'];
             $Compra->fecha = $getrow['fecha'];
             $Compra->total = $getrow['total'];
+            $Compra->estado = $getrow['estado'];
+            $Compra->PERSONA_id = Persona::searchForId($getrow['PERSONA_id']);
 
         }
         $Compra->Disconnect();
@@ -143,7 +193,7 @@ class Compra extends BasicModel
 
     public static function CompraRegistrada ($id) : bool
     {
-        $result = Compra::search("SELECT id FROM proyecto.compra where id = '".$id."'");
+        $result = Compra::search("SELECT id FROM proyecto.compra where fecha = '".$id."'");
         if (count($result) > 0){
             return true;
         }else{

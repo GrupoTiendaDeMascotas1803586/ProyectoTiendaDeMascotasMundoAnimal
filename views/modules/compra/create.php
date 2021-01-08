@@ -1,4 +1,14 @@
-<?php require("../../partials/routes.php"); ?>
+<?php
+require_once ("../../../App/Controllers/PersonaController.php");
+require("../../partials/routes.php");
+use App\Controllers\PersonaController;
+use App\Controllers\CompraController;
+
+
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +34,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">ProyectoTiendaDeMascotasMundoAnimal</a></li>
+                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/views/">ProyectoTiendaDeMascotasMundoAnimal</a></li>
                             <li class="breadcrumb-item active">Inicio</li>
                         </ol>
                     </div>
@@ -48,7 +58,7 @@
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">Horizontal Form</h3>
+                    <h3 class="card-title">Formulario compra</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -58,9 +68,10 @@
                         <div class="form-group row">
                             <label for="fecha" class="col-sm-2 col-form-label">fecha</label>
                             <div class="col-sm-10">
-                                <input required type="text" class="form-control" id="fecha" name="fecha" placeholder="Ingrese la fecha">
+                                <input required type="date" class="form-control" id="fecha" name="fecha" placeholder="Ingrese la fecha">
                             </div>
                         </div>
+
 
                         <div class="form-group row">
                             <label for="total" class="col-sm-2 col-form-label">total</label>
@@ -68,8 +79,28 @@
                                 <input required type="number" minlength="6" class="form-control" id="total" name="total" placeholder="Ingrese el total">
                             </div>
                         </div>
-
-
+                        <div class="form-group row">
+                            <label for="estado" class="col-sm-2 col-form-label">Estado</label>
+                            <div class="col-sm-10">
+                                <select id="estado" name="estado" class="custom-select">
+                                    <option value="1">activo</option>
+                                    <option value="2">inactivo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="PERSONA_id" class="col-sm-2 col-form-label">Persona</label>
+                            <div class="col-sm-10">
+                                <?= PersonaController::selectUsuario(false,
+                                    true,
+                                    'PERSONA_id',
+                                    'PERSONA_id',
+                                    (!empty($dataProducto)) ? $dataProducto->getPersonaId()->getId() : '',
+                                    'form-control select2bs4 select2-info',
+                                    "Estado = 'Activo'")
+                                ?>
+                            </div>
+                        </div>
 
                     </div>
                     <!-- /.card-body -->

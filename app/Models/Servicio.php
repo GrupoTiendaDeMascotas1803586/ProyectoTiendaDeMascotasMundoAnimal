@@ -105,7 +105,7 @@ class Servicio extends BasicModel{
 
     public function create() : bool
     {
-        $result = $this->insertRow("INSERT INTO proyecto.Servicio VALUES (NULL, ?, ?, ?, ?, ?)", array(
+        $result = $this->insertRow("INSERT INTO proyecto.servicio VALUES (NULL, ?, ?, ?, ?, ?)", array(
                 $this->Nombre,
                 $this->Costo,
                 $this->Estado,
@@ -119,7 +119,7 @@ class Servicio extends BasicModel{
 
     public function update() : bool
     {
-        $result = $this->updateRow("UPDATE proyecto.Servicio SET Nombre = ?, Costo = ?, Estado = ?, TipoServicio = ? WHERE id = ?", array(
+        $result = $this->updateRow("UPDATE proyecto.servicio SET Nombre = ?, Costo = ?, Estado = ?, TipoServicio = ? WHERE id = ?", array(
                 $this->Nombre,
                 $this->Costo,
                 $this->Estado,
@@ -161,7 +161,7 @@ class Servicio extends BasicModel{
         $Servicio = null;
         if ($id > 0){
             $Servicio = new Servicio();
-            $getrow = $Servicio->getRow("SELECT * FROM proyecto.Servicio WHERE id =?", array($id));
+            $getrow = $Servicio->getRow("SELECT * FROM proyecto.servicio WHERE id =?", array($id));
             $Servicio->id = $getrow['id'];
             $Servicio->Nombre = $getrow['Nombre'];
             $Servicio->Costo = $getrow['Costo'];
@@ -174,12 +174,12 @@ class Servicio extends BasicModel{
 
     public static function getAll() : array
     {
-        return Servicio::search("SELECT * FROM proyecto.Servicio");
+        return Servicio::search("SELECT * FROM proyecto.servicio");
     }
 
         public static function ServicioRegistrado ($id) : bool
     {
-        $result = Servicio::search("SELECT id FROM proyecto.Servicio where id = ".$id);
+        $result = Servicio::search("SELECT id FROM proyecto.servicio where id = ".$id);
         if (count($result) > 0){
             return true;
         }else{

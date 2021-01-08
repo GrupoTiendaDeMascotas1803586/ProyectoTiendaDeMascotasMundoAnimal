@@ -1,8 +1,11 @@
-<?php
+.<?php
 require("../../partials/routes.php");
 require("../../../app/Controllers/CompraController.php");
 
-use App\Controllers\CompraController; ?>
+use App\Controllers\CompraController;
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +31,7 @@ use App\Controllers\CompraController; ?>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/Views/">ProyectoTiendaDeMascotasMundoAnimal</a></li>
+                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/views/">ProyectoTiendaDeMascotasMundoAnimal</a></li>
                             <li class="breadcrumb-item active">Inicio</li>
                         </ol>
                     </div>
@@ -62,15 +65,25 @@ use App\Controllers\CompraController; ?>
                     if(!empty($DataCompra)){
                         ?>
                         <div class="card-header">
-                            <h3 class="card-title"><?= $DataCompra->getNombre()  ?></h3>
+                            <h3 class="card-title">compra</h3>
                         </div>
                         <div class="card-body">
+                            <strong><i class="fas fa-book mr-1"></i> Proveedor </strong>
+                            <p class="text-muted"><?= $DataCompra->getPersonaId()->getNombre()?></p>
+                            <hr>
 
                             <strong><i class="fas fa-book mr-1"></i> Fecha</strong>
-                            <p class="text-muted"><?= $DataCompra->getFecha()." ".$DataCompra->getFecha() ?></p>
+                            <p class="text-muted"><?= $DataCompra->getFecha() ?></p>
                             <hr>
                             <strong><i class="fas fa-user mr-1"></i> Total</strong>
                             <p class="text-muted"><?= $DataCompra->getTotal() ?></p>
+                            <hr>
+                            <strong><i class="fas fa-user mr-1"></i> estado</strong>
+                            <p class="text-muted"><?= $DataCompra->getestado() ?></p>
+                            <hr>
+                            <strong><i class="fas fa-user mr-1"></i> Persona</strong>
+                            <p class="text-muted"><?= $DataCompra->getPersonaId()->getNombre() ?></p>
+
 
                         </div>
                         <div class="card-footer">

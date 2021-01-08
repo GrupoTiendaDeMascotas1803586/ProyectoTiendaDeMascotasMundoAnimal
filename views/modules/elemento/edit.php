@@ -6,7 +6,7 @@ use App\Controllers\ElementoController; ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= getenv('TITLE_SITE') ?> | Editar ELEMENTO</title>
+    <title><?= getenv('TITLE_SITE') ?> | Editar Elemento </title>
     <?php require("../../partials/head_imports.php"); ?>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -24,7 +24,7 @@ use App\Controllers\ElementoController; ?>
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Editar Nuevo ELEMENTO</h1>
+                        <h1>Editar Elemento</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -44,7 +44,7 @@ use App\Controllers\ElementoController; ?>
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                        Error al crear el ELEMENTO: <?= ($_GET['mensaje']) ?? "" ?>
+                        Error al editar el Elemento: <?= ($_GET['mensaje']) ?? "" ?>
                     </div>
                 <?php } ?>
             <?php } else if (empty($_GET['id'])) { ?>
@@ -64,17 +64,17 @@ use App\Controllers\ElementoController; ?>
                 <?php if(!empty($_GET["id"]) && isset($_GET["id"])){ ?>
                     <p>
                     <?php
-                    $DataELEMENTO = ElementoController::searchForID($_GET["id"]);
-                    if(!empty($DataELEMENTO)){
+                    $DataElemento = ElementoController::searchForID($_GET["id"]);
+                    if(!empty($DataElemento)){
                         ?>
                         <!-- form start -->
                         <form class="form-horizontal" method="post" id="frmEditElemento" name="frmEditElemento" action="../../../app/Controllers/ElementoController.php?action=edit">
-                            <input id="Id" name="Id" value="<?php echo $DataELEMENTO->getId(); ?>" hidden required="required" type="text">
+                            <input id="id" name="id" value="<?php echo $DataElemento->getId(); ?>" hidden required="required" type="text">
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="nombre" name="nombre" value="<?= $DataELEMENTO->getNombre(); ?>" placeholder="Ingrese el nombre">
+                                        <input required type="text" class="form-control" id="nombre" name="nombre" value="<?= $DataElemento->getNombre(); ?>" placeholder="Ingrese el nombre">
                                     </div>
                                 </div>
 
@@ -82,34 +82,34 @@ use App\Controllers\ElementoController; ?>
                                     <label for="tipoElemento" class="col-sm-2 col-form-label">Tipo Elemento</label>
                                     <div class="col-sm-10">
                                         <select id="tipoElemento" name="tipoElemento" class="custom-select">
-                                            <option <?= ($DataELEMENTO->getTipoElemento() == "1") ? "selected":""; ?> value="1">Accesorios</option>
-                                            <option <?= ($DataELEMENTO->getTipoElemento() == "2") ? "selected":""; ?> value="2">Alimentos</option>
-                                            <option <?= ($DataELEMENTO->getTipoElemento() == "3") ? "selected":""; ?> value="3">Medicamentos</option>
+                                            <option <?= ($DataElemento->getTipoElemento() == "Accesorios") ? "selected":"Accesorios"; ?> value="Accesorios">Accesorios</option>
+                                            <option <?= ($DataElemento->getTipoElemento() == "Medicamentos") ? "selected":"Medicamentos"; ?> value="Medicamentos">Medicamentos</option>
+                                            <option <?= ($DataElemento->getTipoElemento() == "Alimentos") ? "selected":"Alimentos"; ?> value="Alimentos">Alimentos</option>
                                         </select>
                                     </div>
-                                </div>-->
+                                </div>
                                 <div class="form-group row">
                                     <label for="tamaño" class="col-sm-2 col-form-label">tamaño</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" minlength="6" class="form-control" id="tamaño" name="tamaño" value="<?= $DataELEMENTO->getTamaño(); ?>" placeholder="Ingrese el tamaño">
+                                        <input  type="text" minlength="1" class="form-control" id="tamaño" name="tamaño" value="<?= $DataElemento->getTamaño(); ?>" placeholder="Ingrese el tamaño">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="material" class="col-sm-2 col-form-label">material</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" minlength="6" class="form-control" id="material" name="material" value="<?= $DataELEMENTO->getMaterial(); ?>" placeholder="Ingrese el material">
+                                        <input  type="text" minlength="1" class="form-control" id="material" name="material" value="<?= $DataElemento->getMaterial(); ?>" placeholder="Ingrese el material">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="color" class="col-sm-2 col-form-label">color</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="color" name="color" value="<?= $DataELEMENTO->getColor(); ?>" placeholder="Ingrese el color">
+                                        <input  type="text" class="form-control" id="color" name="color" value="<?= $DataElemento->getColor(); ?>" placeholder="Ingrese el color">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="marca" class="col-sm-2 col-form-label">marca</label>
                                     <div class="col-sm-10">
-                                        <input required type="text" class="form-control" id="marca" name="marca" value="<?= $DataELEMENTO->getMarca(); ?>" placeholder="Ingrese la marca">
+                                        <input required type="text" class="form-control" id="marca" name="marca" value="<?= $DataElemento->getMarca(); ?>" placeholder="Ingrese la marca">
                                     </div>
                                 </div>
 
@@ -117,8 +117,8 @@ use App\Controllers\ElementoController; ?>
                                     <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                                     <div class="col-sm-10">
                                         <select id="estado" name="estado" class="custom-select">
-                                            <option <?= ($DataELEMENTO->getEstado() == "Activo") ? "selected":""; ?> value="Activo">Activo</option>
-                                            <option <?= ($DataELEMENTO->getEstado() == "Inactivo") ? "selected":""; ?> value="Inactivo">Inactivo</option>
+                                            <option <?= ($DataElemento->getEstado() == "Activo") ? "selected":""; ?> value="Activo">Activo</option>
+                                            <option <?= ($DataElemento->getEstado() == "Inactivo") ? "selected":""; ?> value="Inactivo">Inactivo</option>
                                         </select>
                                     </div>
                                 </div>

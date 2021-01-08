@@ -125,6 +125,7 @@
                             </div>
                         </div>
 
+
                         <div class="form-group row">
                             <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                             <div class="col-sm-10">
@@ -135,8 +136,7 @@
                             </div>
                         </div>
 
-
-                    </div>
+            </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                         <button type="submit" class="btn btn-info">Enviar</button>
