@@ -39,8 +39,8 @@ class RazaController
             $arrayRaza = array();
             $arrayRaza['nombre'] = $_POST['nombre'];
             $arrayRaza['especie'] = $_POST['especie'];
-            $arrayRaza['estado'] = 'Activo';
-            if(!Raza::RazaRegistrada($arrayRaza['documento'])){
+            $arrayRaza['estado'] = 'Disponible';
+            if(!Raza::RazaRegistrada($arrayRaza['nombre'])){
                 $Raza = new Raza ($arrayRaza);
                 if($Raza->create()){
                     header("Location: ../../views/modules/raza/index.php?respuesta=correcto");

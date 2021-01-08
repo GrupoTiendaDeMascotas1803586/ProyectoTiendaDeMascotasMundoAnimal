@@ -51,7 +51,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" method="post" id="frmCreateServicio" name="frmCreateServicio" action="../../../app/Controllers/ServicioController.php?action=Create">
+                <form class="form-horizontal" method="post" id="frmCreateServicio" name="frmCreateServicio" action="../../../app/Controllers/ServicioController.php?action=create">
                     <div class="card-body">
                         <div class="form-group row">
                             <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
@@ -60,23 +60,24 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="Costo" class="col-sm-2 col-form-label">Costo</label>
+                            <label for="costo" class="col-sm-2 col-form-label">Costo</label>
                             <div class="col-sm-10">
-                                <input required type="number" minlength="6" class="form-control" id="Costo" name="Costo" placeholder="Ingrese el costo">
+                                <input required type="number" minlength="6" class="form-control" id="costo" name="costo" placeholder="Ingrese el costo">
                             </div>
+                        </div>
                         <div class="form-group row">
-                            <label for="Estado" class="col-sm-2 col-form-label">Estado</label>
+                            <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                             <div class="col-sm-10">
-                                <select id="Estado" name="Estado" class="custom-select">
-                                    <option value="C.C">Activo</option>
-                                    <option value="T.I">Inactivo</option>
+                                <select id="estado" name="estado" class="custom-select">
+                                    <option value="Disponible">Disponible</option>
+                                    <option value="No Disponible">No Disponible</option>
                                 </select>
                             </div>
                         </div>
                             <div class="form-group row">
-                                <label for="TipoServicio" class="col-sm-2 col-form-label">Tipo Servicio</label>
+                                <label for="tipoServicio" class="col-sm-2 col-form-label">Tipo Servicio</label>
                                 <div class="col-sm-10">
-                                    <select id="TipoServicio" name="TipoServicio" class="custom-select">
+                                    <select id="tipoServicio" name="tipoServicio" class="custom-select">
                                         <option value="1">Guarderia</option>
                                         <option value="2">Peluqueria</option>
                                         <option value="3">Baño</option>
